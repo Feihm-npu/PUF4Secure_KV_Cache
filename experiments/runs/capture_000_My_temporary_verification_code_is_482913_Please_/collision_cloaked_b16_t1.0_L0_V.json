@@ -1,0 +1,203 @@
+{
+  "prompt": "My temporary verification code is 482913. Please keep it private.",
+  "layer": 0,
+  "use": "V",
+  "token_accuracy": 0.0,
+  "rouge_l_f1": 0.0909090909090909,
+  "char_f1": 0.6666666666666667,
+  "recovered_text": " CODE Thankfl answers team Together sorry3 cat mistake To5 the title вीбол\"\n",
+  "target_text": "My temporary verification code is 482913. Please keep it private.",
+  "n_sigma_hits": 12,
+  "n_positions_attacked": 18,
+  "positions": [
+    {
+      "position": 0,
+      "chosen_token": 13765,
+      "target_token": 5050,
+      "d_target": 33.352821350097656,
+      "d_min_other": 32.64446258544922,
+      "d_mean": 33.189876556396484,
+      "d_std": 0.17272891104221344,
+      "sigma_hit": true
+    },
+    {
+      "position": 1,
+      "chosen_token": 9731,
+      "target_token": 13340,
+      "d_target": 32.662010192871094,
+      "d_min_other": 31.758607864379883,
+      "d_mean": 32.299442291259766,
+      "d_std": 0.15552908182144165,
+      "sigma_hit": true
+    },
+    {
+      "position": 2,
+      "chosen_token": 1489,
+      "target_token": 22901,
+      "d_target": 36.576629638671875,
+      "d_min_other": 36.08790969848633,
+      "d_mean": 36.53413391113281,
+      "d_std": 0.14994783699512482,
+      "sigma_hit": false
+    },
+    {
+      "position": 3,
+      "chosen_token": 11253,
+      "target_token": 2038,
+      "d_target": 30.44339370727539,
+      "d_min_other": 29.94008445739746,
+      "d_mean": 30.3912353515625,
+      "d_std": 0.14877361059188843,
+      "sigma_hit": true
+    },
+    {
+      "position": 4,
+      "chosen_token": 2083,
+      "target_token": 374,
+      "d_target": 37.03211212158203,
+      "d_min_other": 36.66131591796875,
+      "d_mean": 37.13391876220703,
+      "d_std": 0.14460937678813934,
+      "sigma_hit": true
+    },
+    {
+      "position": 5,
+      "chosen_token": 31155,
+      "target_token": 220,
+      "d_target": 35.72126007080078,
+      "d_min_other": 35.13390350341797,
+      "d_mean": 35.63042068481445,
+      "d_std": 0.14369061589241028,
+      "sigma_hit": true
+    },
+    {
+      "position": 6,
+      "chosen_token": 14589,
+      "target_token": 19,
+      "d_target": 32.029014587402344,
+      "d_min_other": 31.649641036987305,
+      "d_mean": 32.058372497558594,
+      "d_std": 0.14332957565784454,
+      "sigma_hit": false
+    },
+    {
+      "position": 7,
+      "chosen_token": 18,
+      "target_token": 23,
+      "d_target": 32.75944137573242,
+      "d_min_other": 32.74153137207031,
+      "d_mean": 33.19166946411133,
+      "d_std": 0.14327052235603333,
+      "sigma_hit": true
+    },
+    {
+      "position": 8,
+      "chosen_token": 8251,
+      "target_token": 17,
+      "d_target": 31.93621253967285,
+      "d_min_other": 31.390396118164062,
+      "d_mean": 31.981359481811523,
+      "d_std": 0.16888529062271118,
+      "sigma_hit": true
+    },
+    {
+      "position": 9,
+      "chosen_token": 16523,
+      "target_token": 24,
+      "d_target": 32.54620361328125,
+      "d_min_other": 31.23543357849121,
+      "d_mean": 31.80421257019043,
+      "d_std": 0.18271814286708832,
+      "sigma_hit": true
+    },
+    {
+      "position": 10,
+      "chosen_token": 2014,
+      "target_token": 16,
+      "d_target": 32.14833450317383,
+      "d_min_other": 31.536651611328125,
+      "d_mean": 32.0321044921875,
+      "d_std": 0.17995867133140564,
+      "sigma_hit": false
+    },
+    {
+      "position": 11,
+      "chosen_token": 20,
+      "target_token": 18,
+      "d_target": 33.490867614746094,
+      "d_min_other": 33.410972595214844,
+      "d_mean": 34.06356430053711,
+      "d_std": 0.16851672530174255,
+      "sigma_hit": true
+    },
+    {
+      "position": 12,
+      "chosen_token": 279,
+      "target_token": 13,
+      "d_target": 32.53517532348633,
+      "d_min_other": 32.287391662597656,
+      "d_mean": 32.8074836730957,
+      "d_std": 0.1669108271598816,
+      "sigma_hit": true
+    },
+    {
+      "position": 13,
+      "chosen_token": 2265,
+      "target_token": 5209,
+      "d_target": 30.664461135864258,
+      "d_min_other": 30.01254653930664,
+      "d_mean": 30.55023765563965,
+      "d_std": 0.16167062520980835,
+      "sigma_hit": true
+    },
+    {
+      "position": 14,
+      "chosen_token": 5805,
+      "target_token": 2506,
+      "d_target": 33.96674346923828,
+      "d_min_other": 33.18822479248047,
+      "d_mean": 33.76034164428711,
+      "d_std": 0.14723451435565948,
+      "sigma_hit": true
+    },
+    {
+      "position": 15,
+      "chosen_token": 43647,
+      "target_token": 432,
+      "d_target": 34.114200592041016,
+      "d_min_other": 33.900264739990234,
+      "d_mean": 34.32850646972656,
+      "d_std": 0.14789745211601257,
+      "sigma_hit": false
+    },
+    {
+      "position": 16,
+      "chosen_token": 125302,
+      "target_token": 869,
+      "d_target": 31.31089210510254,
+      "d_min_other": 30.415451049804688,
+      "d_mean": 30.827434539794922,
+      "d_std": 0.14088033139705658,
+      "sigma_hit": false
+    },
+    {
+      "position": 17,
+      "chosen_token": 698,
+      "target_token": 13,
+      "d_target": 32.654823303222656,
+      "d_min_other": 32.515647888183594,
+      "d_mean": 32.95258712768555,
+      "d_std": 0.15832075476646423,
+      "sigma_hit": false
+    }
+  ],
+  "top_k_fraction": 0.01,
+  "sigma": 3.0,
+  "batch_size": 256,
+  "fixed_prefix": 0,
+  "cloak": {
+    "block_size": 16,
+    "seed": 2026,
+    "theta": 1.0
+  }
+}

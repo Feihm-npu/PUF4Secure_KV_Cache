@@ -1,0 +1,251 @@
+{
+  "rows": [
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.0,
+      "fid_K": 0.0009472739629504994,
+      "fid_V": 0.0016118215286488509,
+      "noisy_inj_rouge_l": 0.25531914893617025,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.01,
+      "fid_K": 0.0009472739629504994,
+      "fid_V": 0.0016118215286488509,
+      "noisy_inj_rouge_l": 0.25531914893617025,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.05,
+      "fid_K": 0.0009472739629504994,
+      "fid_V": 0.0016118215286488509,
+      "noisy_inj_rouge_l": 0.25531914893617025,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.1,
+      "fid_K": 0.0009472739629504994,
+      "fid_V": 0.0016118215286488509,
+      "noisy_inj_rouge_l": 0.25531914893617025,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.2,
+      "fid_K": 0.0009472739629504994,
+      "fid_V": 0.0016118215286488509,
+      "noisy_inj_rouge_l": 0.25531914893617025,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.3,
+      "fid_K": 1.5365019474606476,
+      "fid_V": 1.4167888599552332,
+      "noisy_inj_rouge_l": 0.0,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "My temporary verification code is 482913. Please",
+      "ber": 0.4,
+      "fid_K": 1.53527749546775,
+      "fid_V": 1.411518571803464,
+      "noisy_inj_rouge_l": 0.0,
+      "wrong_inj_rouge_l": 0.07692307692307693,
+      "wrong_fid_K": 1.3473892811134873,
+      "wrong_fid_V": 1.4175257337796647
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.0,
+      "fid_K": 0.001063658529531098,
+      "fid_V": 0.0015922138650502037,
+      "noisy_inj_rouge_l": 0.5,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.01,
+      "fid_K": 0.001063658529531098,
+      "fid_V": 0.0015922138650502037,
+      "noisy_inj_rouge_l": 0.5,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.05,
+      "fid_K": 0.001063658529531098,
+      "fid_V": 0.0015922138650502037,
+      "noisy_inj_rouge_l": 0.5,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.1,
+      "fid_K": 0.001063658529531098,
+      "fid_V": 0.0015922138650502037,
+      "noisy_inj_rouge_l": 0.5,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.2,
+      "fid_K": 0.001063658529531098,
+      "fid_V": 0.0015922138650502037,
+      "noisy_inj_rouge_l": 0.5,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.3,
+      "fid_K": 1.5157298211162638,
+      "fid_V": 1.4157451855821983,
+      "noisy_inj_rouge_l": 0.0,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "The internal project codename is blue-river and ",
+      "ber": 0.4,
+      "fid_K": 1.5414223367911757,
+      "fid_V": 1.415598628452926,
+      "noisy_inj_rouge_l": 0.0,
+      "wrong_inj_rouge_l": 0.19047619047619044,
+      "wrong_fid_K": 1.3680916101541332,
+      "wrong_fid_V": 1.4155505794645253
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.0,
+      "fid_K": 0.0010409612113617005,
+      "fid_V": 0.0016039046865655993,
+      "noisy_inj_rouge_l": 0.08000000000000002,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.01,
+      "fid_K": 0.0010409612113617005,
+      "fid_V": 0.0016039046865655993,
+      "noisy_inj_rouge_l": 0.08000000000000002,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.05,
+      "fid_K": 0.0010409612113617005,
+      "fid_V": 0.0016039046865655993,
+      "noisy_inj_rouge_l": 0.08000000000000002,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.1,
+      "fid_K": 0.0010409612113617005,
+      "fid_V": 0.0016039046865655993,
+      "noisy_inj_rouge_l": 0.08000000000000002,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.2,
+      "fid_K": 0.0010409612113617005,
+      "fid_V": 0.0016039046865655993,
+      "noisy_inj_rouge_l": 0.08000000000000002,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.3,
+      "fid_K": 1.5442441202648867,
+      "fid_V": 1.4119436414594013,
+      "noisy_inj_rouge_l": 0.0,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic t",
+      "ber": 0.4,
+      "fid_K": 1.5497494156435678,
+      "fid_V": 1.4166613389799787,
+      "noisy_inj_rouge_l": 0.03571428571428571,
+      "wrong_inj_rouge_l": 0.0,
+      "wrong_fid_K": 1.3481482006398993,
+      "wrong_fid_V": 1.4130527030457516
+    }
+  ],
+  "dbm_by_ber": {
+    "0.0": {
+      "mean_noisy_leak": 0.2784397163120568,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": -0.18930662717896765
+    },
+    "0.01": {
+      "mean_noisy_leak": 0.2784397163120568,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": -0.18930662717896765
+    },
+    "0.05": {
+      "mean_noisy_leak": 0.2784397163120568,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": -0.18930662717896765
+    },
+    "0.1": {
+      "mean_noisy_leak": 0.2784397163120568,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": -0.18930662717896765
+    },
+    "0.2": {
+      "mean_noisy_leak": 0.2784397163120568,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": -0.18930662717896765
+    },
+    "0.3": {
+      "mean_noisy_leak": 0.0,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": 0.08913308913308912
+    },
+    "0.4": {
+      "mean_noisy_leak": 0.011904761904761904,
+      "mean_wrong_leak": 0.08913308913308912,
+      "DBM": 0.07722832722832722
+    }
+  }
+}

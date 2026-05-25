@@ -1,0 +1,57 @@
+{
+  "max_new_tokens": 128,
+  "fp32_cache": false,
+  "prompts": [
+    {
+      "prompt": "My temporary verification code is 482913. Please keep it private.",
+      "plain_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. 5. To verify the authenticity of the user's identity. 6. To verify the authenticity of the user's identity. 7. To verify the authenticity of the user's identity. 8. To verify the authenticity of the user's identity. 9. To verify the authenticity of the user's identity. ",
+      "wrapped_text": " I need to use this code to verify my account. I am not a member of any organization, and I have no access to any other information. I am a student, and I need to use this code to verify my account. I am not a member of any organization, and I have no access to any other information. I am a student, and I need to use this code to verify my account. I am a student, and I need to use this code to verify my account. I am a student, and I need to use this code to verify my account. I am a student, and I need to use this",
+      "plain_len": 128,
+      "wrapped_len": 128,
+      "divergence_step": 4,
+      "exact_match_rate": 0.046875,
+      "char_overlap": 0.7276190476190476,
+      "rouge_l_vs_plain": 0.19607843137254902,
+      "logits_max_abs_per_step_mean": 14.856414794921875,
+      "logits_max_abs_per_step_max": 26.9609375,
+      "logits_rel_l2_per_step_mean": 0.8739894909914396,
+      "logits_rel_l2_per_step_max": 1.5188869838921617,
+      "logits_rel_l2_first_step": 0.0222633223974612,
+      "logits_rel_l2_last_step": 0.977787354682984
+    },
+    {
+      "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+      "plain_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that",
+      "wrapped_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that",
+      "plain_len": 128,
+      "wrapped_len": 128,
+      "divergence_step": 128,
+      "exact_match_rate": 1.0,
+      "char_overlap": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "logits_max_abs_per_step_mean": 0.2760143280029297,
+      "logits_max_abs_per_step_max": 1.56640625,
+      "logits_rel_l2_per_step_mean": 0.022030345938820764,
+      "logits_rel_l2_per_step_max": 0.08630646814778663,
+      "logits_rel_l2_first_step": 0.023072202312997607,
+      "logits_rel_l2_last_step": 0.027544279812580348
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+      "plain_text": " The number is a 7-digit number. The number is 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "wrapped_text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+      "plain_len": 128,
+      "wrapped_len": 128,
+      "divergence_step": 12,
+      "exact_match_rate": 0.09375,
+      "char_overlap": 0.12824010914051842,
+      "rouge_l_vs_plain": 0.1487603305785124,
+      "logits_max_abs_per_step_mean": 13.716766357421875,
+      "logits_max_abs_per_step_max": 19.78125,
+      "logits_rel_l2_per_step_mean": 1.1075766344991669,
+      "logits_rel_l2_per_step_max": 1.9002221267508668,
+      "logits_rel_l2_first_step": 0.03446142248552761,
+      "logits_rel_l2_last_step": 1.737874088754602
+    }
+  ]
+}

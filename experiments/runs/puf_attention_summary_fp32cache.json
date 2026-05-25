@@ -1,0 +1,161 @@
+{
+  "prompts": [
+    {
+      "prompt": "My temporary verification code is 482913. Please keep it private.",
+      "plain": {
+        "v_inversion_top1": 1.0,
+        "injection_text": " \n\nOkay, so the user wants me to keep their temporary verification code private. They mentioned that the code is 482913. Let me make sure I understand the request correctly. They want me to repeat the previous content",
+        "injection_rouge_l": 0.21276595744680854,
+        "injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": true,
+          "keyword_hits": [
+            "482913"
+          ],
+          "exact_digit_present": true,
+          "digit_recall": 1.0,
+          "out_digit_count": 6
+        }
+      },
+      "wrapped_same_device": {
+        "logits_max_abs_diff": 0.65625,
+        "logits_rel_l2": 0.024707022899403103,
+        "top1_disagree_frac": 0.0555555559694767,
+        "top5_overlap_frac": 0.9777777777777777,
+        "cache_vs_plain_rel_l2": {
+          "K_rel_l2": 1.4212935967306488,
+          "V_rel_l2": 1.4097019200559973
+        },
+        "attacker_v_inversion_top1": 0.0,
+        "attacker_injection_text": " So. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training. Training.",
+        "attacker_injection_rouge_l": 0.0,
+        "attacker_injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "wrong_device": {
+        "self_logits_max_abs_diff_vs_plain": 0.453125,
+        "self_logits_rel_l2_vs_plain": 0.023296365794611543,
+        "cross_continue_injection_text": "./././././///|.//|.//|.////////////////////////////////////////////////////////////////////////",
+        "cross_continue_injection_rouge_l": 0.0,
+        "cross_continue_injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      }
+    },
+    {
+      "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+      "plain": {
+        "v_inversion_top1": 1.0,
+        "injection_text": " The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday.\n\n",
+        "injection_rouge_l": 0.5,
+        "injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": true,
+          "keyword_hits": [
+            "blue-river"
+          ],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "wrapped_same_device": {
+        "logits_max_abs_diff": 0.46875,
+        "logits_rel_l2": 0.023503040653681476,
+        "top1_disagree_frac": 0.0,
+        "top5_overlap_frac": 0.975,
+        "cache_vs_plain_rel_l2": {
+          "K_rel_l2": 1.4566383751267187,
+          "V_rel_l2": 1.4136830304784596
+        },
+        "attacker_v_inversion_top1": 0.0,
+        "attacker_injection_text": " definition. definition. board. Board. Board. Board. Board. Board. Board.?.?.?. Board.?.?. Board?.?.?.?.?.?.?.?.?.?.?.?.?.?.乎乎乎乎?.?.?.?.",
+        "attacker_injection_rouge_l": 0.0,
+        "attacker_injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "wrong_device": {
+        "self_logits_max_abs_diff_vs_plain": 0.53125,
+        "self_logits_rel_l2_vs_plain": 0.025374372732282494,
+        "cross_continue_injection_text": "chnsimulletseltschnubespluginschnubschnubsubsubsubsubsubsubsubsubsubsubs/gpl,nubsubsubsubsubsubsubsubsubsubsubsubsubsubsubs,Nubsubsubsubsubsubsubsubs,N",
+        "cross_continue_injection_rouge_l": 0.0,
+        "cross_continue_injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      }
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+      "plain": {
+        "v_inversion_top1": 1.0,
+        "injection_text": " What is the probability that the number is a valid phone number? (Assume that the number is a valid phone number if it contains only digits and no special characters, and that the number is invalid if it contains any of the following:",
+        "injection_rouge_l": 0.11320754716981132,
+        "injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "wrapped_same_device": {
+        "logits_max_abs_diff": 0.53125,
+        "logits_rel_l2": 0.027882646961624718,
+        "top1_disagree_frac": 0.15000000596046448,
+        "top5_overlap_frac": 0.96,
+        "cache_vs_plain_rel_l2": {
+          "K_rel_l2": 1.4197823678862098,
+          "V_rel_l2": 1.4127228135314431
+        },
+        "attacker_v_inversion_top1": 0.0,
+        "attacker_injection_text": " ** [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [",
+        "attacker_injection_rouge_l": 0.0,
+        "attacker_injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "wrong_device": {
+        "self_logits_max_abs_diff_vs_plain": 0.5,
+        "self_logits_rel_l2_vs_plain": 0.029043249598592127,
+        "cross_continue_injection_text": "************************************************************************************************",
+        "cross_continue_injection_rouge_l": 0.0,
+        "cross_continue_injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      }
+    }
+  ]
+}

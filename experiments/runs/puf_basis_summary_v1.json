@@ -1,0 +1,835 @@
+[
+  {
+    "prompt": "My temporary verification code is 482913. Please keep it private.",
+    "seq_len": 18,
+    "variants": {
+      "P0_plain": {
+        "inversion_V_L0_top1": 1.0,
+        "collision_V_L0_token_acc": 0.8333333333333334,
+        "collision_V_L0_rouge_l": 0.7368421052631577,
+        "collision_V_L0_text": "Myemporary Check Code is 482913. Please keep it private.",
+        "injection_rouge_l": 0.25531914893617025,
+        "injection_char_f1": 0.496124031007752,
+        "injection_text": " \n\nOkay, so the user wants me to keep their temporary verification code private. They mentioned that the code is 482913 and they want it to be kept private. I need to make sure I don't share or",
+        "injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": true,
+          "keyword_hits": [
+            "482913"
+          ],
+          "exact_digit_present": true,
+          "digit_recall": 1.0,
+          "out_digit_count": 6
+        }
+      },
+      "P4_KV_givens_row": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "row",
+          "block_size": 16,
+          "session_refresh": false
+        },
+        "protect_s": 0.11749495286494493,
+        "recover_s": 0.11618247255682945,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0009472739629504994,
+          "V_rel_l2": 0.0012302486715177932
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3446240846836,
+          "V_rel_l2": 1.4103860385066698
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "\n\n# toP of: of: of: of of:: of#\n\n of",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.24615384615384617,
+          "injection_text": " John. I I I I I-I-I-I-I-I-I-I-I-5-5-5-2-2-2-2-2-2-2-2-2-2-2-2-2-",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.16666666666666666,
+            "out_digit_count": 16
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.3886255924170616,
+          "injection_text": " The... the\n.\n. The. the following significant, the question\n. The question the question . The question. The . .\n\n .\nThe answer . . . .\n\n\n\n\n . . .",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " \n\nOkay, so the user wants me to keep their temporary verification code private. They mentioned that the code is 482913 and they want it to be kept private. I need to make sure I don't share or",
+        "same_device_decloak_injection_rouge_l": 0.25531914893617025,
+        "same_device_decloak_injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": true,
+          "keyword_hits": [
+            "482913"
+          ],
+          "exact_digit_present": true,
+          "digit_recall": 1.0,
+          "out_digit_count": 6
+        }
+      },
+      "P4_KV_givens_block": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "block",
+          "block_size": 8,
+          "session_refresh": false
+        },
+        "protect_s": 0.12885235995054245,
+        "recover_s": 0.1184621574357152,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0009472739629504994,
+          "V_rel_l2": 0.0012302486715177932
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3473892811134873,
+          "V_rel_l2": 1.4082640780770166
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "P: of of of: of of of: of\n\n: of: of of:",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.3170731707317073,
+          "injection_text": " John. I I I I...........................auledbrbrnewbrnewbrbrnewbrbrbrblbrbrbrbrbrbr12222111111111",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.3333333333333333,
+            "out_digit_count": 14
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.189873417721519,
+          "injection_text": " The... the\n.\n. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " \n\nOkay, so the user wants me to keep their temporary verification code private. They mentioned that the code is 482913 and they want it to be kept private. I need to make sure I don't share or",
+        "same_device_decloak_injection_rouge_l": 0.25531914893617025,
+        "same_device_decloak_injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": true,
+          "keyword_hits": [
+            "482913"
+          ],
+          "exact_digit_present": true,
+          "digit_recall": 1.0,
+          "out_digit_count": 6
+        }
+      },
+      "P5_KV_givens_session_refresh": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "none",
+          "block_size": 16,
+          "session_refresh": true
+        },
+        "protect_s": 0.10200537834316492,
+        "recover_s": 0.09999027941375971,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0010746308280702058,
+          "V_rel_l2": 0.001232300450176616
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.4440769978626427,
+          "V_rel_l2": 1.4029548987344733
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "\n\nAN of of of\n. a.\n.\n to ofs ofto to",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.430188679245283,
+          "injection_text": " \n\nOkay, I need to continue the previous content. Let me start by the first person. I'll start the first person. I'll start by the first person. I'll start by the first person. I'll start by the first",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.2857142857142857,
+          "injection_text": " The previous content. The previous content. The previous content. The previous content. The previous content. The previous content. The previous content. The previous content. The previous content. The previous content. The previous content. The previous content.",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " \n\nOkay, so the user wants me to keep their temporary verification code private. They mentioned that the code is 482913 and they want it to be kept private. I need to make sure I don't share or",
+        "same_device_decloak_injection_rouge_l": 0.25531914893617025,
+        "same_device_decloak_injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": true,
+          "keyword_hits": [
+            "482913"
+          ],
+          "exact_digit_present": true,
+          "digit_recall": 1.0,
+          "out_digit_count": 6
+        }
+      },
+      "P5_KV_givens_row_session_refresh": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "row",
+          "block_size": 16,
+          "session_refresh": true
+        },
+        "protect_s": 0.1182056162506342,
+        "recover_s": 0.11576291546225548,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0010036122072484466,
+          "V_rel_l2": 0.0012349071769578181
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.4667680813861612,
+          "V_rel_l2": 1.4100428830691274
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "Se: of of:in? of by  ofs of: a??”",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.07079646017699116,
+          "injection_text": " 122 1222222222222222222222222222222222222222222",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.3333333333333333,
+            "out_digit_count": 46
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.13664596273291926,
+          "injection_text": " ) ) ) ) ) ) ) ) ) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",
+          "injection_leakage": {
+            "secret": "verification_code",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " \n\nOkay, so the user wants me to keep their temporary verification code private. They mentioned that the code is 482913 and they want it to be kept private. I need to make sure I don't share or",
+        "same_device_decloak_injection_rouge_l": 0.25531914893617025,
+        "same_device_decloak_injection_leakage": {
+          "secret": "verification_code",
+          "keyword_present": true,
+          "keyword_hits": [
+            "482913"
+          ],
+          "exact_digit_present": true,
+          "digit_recall": 1.0,
+          "out_digit_count": 6
+        }
+      }
+    }
+  },
+  {
+    "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+    "seq_len": 16,
+    "variants": {
+      "P0_plain": {
+        "inversion_V_L0_top1": 1.0,
+        "collision_V_L0_token_acc": 0.6875,
+        "collision_V_L0_rouge_l": 0.8333333333333334,
+        "collision_V_L0_text": "The Internal Program Codename is BlueRiver and the launch date is Friday.",
+        "injection_rouge_l": 0.5,
+        "injection_char_f1": 0.49169435215946844,
+        "injection_text": " The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday.\n\n",
+        "injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": true,
+          "keyword_hits": [
+            "blue-river"
+          ],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "P4_KV_givens_row": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "row",
+          "block_size": 16,
+          "session_refresh": false
+        },
+        "protect_s": 0.11771912407130003,
+        "recover_s": 0.11525033414363861,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.001063658529531098,
+          "V_rel_l2": 0.0012194143711783555
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3680879038364153,
+          "V_rel_l2": 1.4159591153466746
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "S: of to of a of: of ofto of of of of to",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.36666666666666664,
+          "injection_text": "PNewPNewPNewPNewPNewPWithNewPNewPWithNewPFirstPWithNewPNewPNewPNewPNewPNewPNewPNewPWithPNewPFirstPNewPWith",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.18181818181818182,
+          "injection_text": " \n\n. .class. and.}.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 20
+          }
+        },
+        "same_device_decloak_injection_text": " The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday.\n\n",
+        "same_device_decloak_injection_rouge_l": 0.5,
+        "same_device_decloak_injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": true,
+          "keyword_hits": [
+            "blue-river"
+          ],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "P4_KV_givens_block": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "block",
+          "block_size": 8,
+          "session_refresh": false
+        },
+        "protect_s": 0.11908360198140144,
+        "recover_s": 0.11525195743888617,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.001063658529531098,
+          "V_rel_l2": 0.0012194143711783555
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3680916101541332,
+          "V_rel_l2": 1.4157717103654794
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "\n\ne: a of of of? of of to of of of?”:",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.35028248587570615,
+          "injection_text": "PNewPNewPNewPNewPNewPWithNewPNewPWithNewPNewPNewPWithNewPNewPNewPNewPNewPNewPNewPWithPNewPNewPFirstPNew",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.18181818181818182,
+          "injection_text": " \n\n. .class. and.}.1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 20
+          }
+        },
+        "same_device_decloak_injection_text": " The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday.\n\n",
+        "same_device_decloak_injection_rouge_l": 0.5,
+        "same_device_decloak_injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": true,
+          "keyword_hits": [
+            "blue-river"
+          ],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "P5_KV_givens_session_refresh": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "none",
+          "block_size": 16,
+          "session_refresh": true
+        },
+        "protect_s": 0.10089318174868822,
+        "recover_s": 0.10067418217658997,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0011141303031697674,
+          "V_rel_l2": 0.0012477634782425396
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.2872308325100228,
+          "V_rel_l2": 1.4073621235539981
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "\n\n# to to to# of of from\n\ntoto#to of",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.3105022831050228,
+          "injection_text": " same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. same. first.",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.35897435897435903,
+          "injection_text": " Day\n\n Day\n\n\n\niseisefulnoon个项目 Isis Isis Isis Isis Isis Isisvos Isis全日 Isis Isis Isis漓 Irving Squadron Isis漓dingdingdingdingdingdingdingdingding Isis漓漓漓漓漓漓漓漓漓漓漓",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday.\n",
+        "same_device_decloak_injection_rouge_l": 0.5,
+        "same_device_decloak_injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": true,
+          "keyword_hits": [
+            "blue-river"
+          ],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      },
+      "P5_KV_givens_row_session_refresh": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "row",
+          "block_size": 16,
+          "session_refresh": true
+        },
+        "protect_s": 0.11575006227940321,
+        "recover_s": 0.11490947473794222,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.001095317760531221,
+          "V_rel_l2": 0.0012136096992565362
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.5172739747166517,
+          "V_rel_l2": 1.4204229885256747
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "##\n: of: of of: of\" ofto: ofto",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.4649446494464945,
+          "injection_text": "\n\n\n\n\n\n\n\n\n\n\n\n Revised License Certificateificateserved.ervederved,n|| nineteenth Nath Natherved* ninety***... Nathernareth* Nath* Nath***...* Nath*** Nath** Nath**......\n\n\n\n\n\n\n\n\n\n\n\n                 ",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.1702127659574468,
+          "injection_char_f1": 0.45138888888888884,
+          "injection_text": " \n\nThe document is a reference. \n\nThe document is a reference. \n\nThe reference is a reference. \n\nThe reference is a reference. \n\nThe reference is a. \n\n.\n\nThe reference is a document.\n\nThe reference is a document.\n\n",
+          "injection_leakage": {
+            "secret": "project_codename",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday. The internal project codename is blue-river and the launch date is Friday.\n\n",
+        "same_device_decloak_injection_rouge_l": 0.5,
+        "same_device_decloak_injection_leakage": {
+          "secret": "project_codename",
+          "keyword_present": true,
+          "keyword_hits": [
+            "blue-river"
+          ],
+          "exact_digit_present": false,
+          "digit_recall": 0.0,
+          "out_digit_count": 0
+        }
+      }
+    }
+  },
+  {
+    "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+    "seq_len": 20,
+    "variants": {
+      "P0_plain": {
+        "inversion_V_L0_top1": 1.0,
+        "collision_V_L0_token_acc": 0.7,
+        "collision_V_L0_rouge_l": 0.5,
+        "collision_V_L0_text": "AL' import email of in this hypothetical test is 555-0108.",
+        "injection_rouge_l": 0.08000000000000002,
+        "injection_char_f1": 0.38709677419354843,
+        "injection_text": " What is the probability that the number is a valid phone number? (Assume that the digits are chosen independently and uniformly at random from 0 to 9, and that the first digit is not zero)\nAnswer:\nWe are given that",
+        "injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.14285714285714285,
+          "out_digit_count": 2
+        }
+      },
+      "P4_KV_givens_row": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "row",
+          "block_size": 16,
+          "session_refresh": false
+        },
+        "protect_s": 0.11499958392232656,
+        "recover_s": 0.11438157502561808,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0010409612113617005,
+          "V_rel_l2": 0.0012319301395145288
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3454538142377737,
+          "V_rel_l2": 1.4141148608626366
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "A\n: from: of. of of of of of: of of: of of of of",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.2019230769230769,
+          "injection_text": " N. Ch Ch Ch CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH_CH_CH_CH_CH CH CH CH CH CH CH CH CH CH CH CH EVERY CH CH CH CH_CH_CH_CH_CH_CH_CH",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0930232558139535,
+          "injection_char_f1": 0.32160804020100503,
+          "injection_text": " This is a. This is a. This is a. This is a. This is a. This. This is a. This. This. This. This is a. This is a. This. This. is a. This",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " What is the probability that the number is a valid phone number? (Assume that the digits are uniformly distributed and that the number is a random number in the range 1000-9999)\nAnswer:\n\nWe are",
+        "same_device_decloak_injection_rouge_l": 0.13636363636363635,
+        "same_device_decloak_injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.2857142857142857,
+          "out_digit_count": 8
+        }
+      },
+      "P4_KV_givens_block": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "block",
+          "block_size": 8,
+          "session_refresh": false
+        },
+        "protect_s": 0.11675671767443419,
+        "recover_s": 0.11600467842072248,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0010409612113617005,
+          "V_rel_l2": 0.0012319301395145288
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3481482006398993,
+          "V_rel_l2": 1.4163111811502227
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "\nม of of: of of of of of: of of of. of: of of:",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.1951219512195122,
+          "injection_text": " N. Ch Ch Ch CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH CH_CH_CH_CH_CH CH CH CH CH CH CH CH CH CH CH EACH CH CH N CH N CH CH CH CH CH CH",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0930232558139535,
+          "injection_char_f1": 0.32160804020100503,
+          "injection_text": " This is a. This is a. This is a. This is a. This is a. This. This is a. This. This. This. This is a. This is a. This. This. is a. This",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " What is the probability that the number is a valid phone number? (Assume that the digits are uniformly distributed and that the number is a random number in the range 1000-9999)\nAnswer:\n\nWe are",
+        "same_device_decloak_injection_rouge_l": 0.13636363636363635,
+        "same_device_decloak_injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.2857142857142857,
+          "out_digit_count": 8
+        }
+      },
+      "P5_KV_givens_session_refresh": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "none",
+          "block_size": 16,
+          "session_refresh": true
+        },
+        "protect_s": 0.10008927527815104,
+        "recover_s": 0.10113038588315248,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0010223305780181922,
+          "V_rel_l2": 0.001238948548498934
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.2699589782069247,
+          "V_rel_l2": 1.3980569628249386
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "#\n#\" to of to oftoto of of. to. of a. a, of",
+          "injection_rouge_l": 0.17391304347826086,
+          "injection_char_f1": 0.5632183908045978,
+          "injection_text": "---|https\n\n\n\n \n\nin the\n\n  in the包括ument.  herea\n}}+numbers:ored\n\nThis is:_with\n}} \n\n\n\n\n\n\n this\n\n\n\n}} \n\n{{}} \n\n",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.46948356807511743,
+          "injection_text": " a series. drawing. drawing. drawing. drawn. everything-cluding- whatsoever-extends-termin--obria-kwargs-umer-termin-ane-ane-ane-ane-ure-ane-ure-ure-",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "same_device_decloak_injection_text": " What is the probability that the number is a valid phone number? (Assume that the digits are uniformly distributed and that the number is a random number in the range 1000-9999)\nAnswer:\n\nWe are",
+        "same_device_decloak_injection_rouge_l": 0.13636363636363635,
+        "same_device_decloak_injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.2857142857142857,
+          "out_digit_count": 8
+        }
+      },
+      "P5_KV_givens_row_session_refresh": {
+        "spec": {
+          "kind_k": "givens",
+          "kind_v": "givens",
+          "include_k": true,
+          "include_v": true,
+          "layout": "row",
+          "block_size": 16,
+          "session_refresh": true
+        },
+        "protect_s": 0.11888573132455349,
+        "recover_s": 0.12093544565141201,
+        "fidelity_same_device": {
+          "K_rel_l2": 0.0008829648865537377,
+          "V_rel_l2": 0.0012216575814912897
+        },
+        "fidelity_wrong_device": {
+          "K_rel_l2": 1.3269022951496756,
+          "V_rel_l2": 1.4098199022884952
+        },
+        "attacks_on_protected": {
+          "inversion_V_L0_top1": 0.0,
+          "collision_V_L0_token_acc": 0.0,
+          "collision_V_L0_rouge_l": 0.0,
+          "collision_V_L0_text": "#\nof of of\tof of by\tof a\tto\tof of tototo of ofto a",
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.382608695652174,
+          "injection_text": " Alosed extended\t\t\tNamedQuery\t\tSlännännännännännänn JohnstonResearchersResearchersResearchersNN\nN\n+\n+\n+\n+\n+\n+\n+\n+\n+\n\n\n\nI'llWomenExternalWomenExternalListListListAList",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.0,
+            "out_digit_count": 0
+          }
+        },
+        "attacks_on_wrong_device_recovered": {
+          "inversion_V_L0_top1": 0.0,
+          "injection_rouge_l": 0.0,
+          "injection_char_f1": 0.328125,
+          "injection_text": " ,).).   two.  ().   two.. ,.   two.  (ic) ed.  the. : 1.  .  . ",
+          "injection_leakage": {
+            "secret": "phone_number",
+            "keyword_present": false,
+            "keyword_hits": [],
+            "exact_digit_present": false,
+            "digit_recall": 0.14285714285714285,
+            "out_digit_count": 1
+          }
+        },
+        "same_device_decloak_injection_text": " What is the probability that the number is a valid phone number? (Assume that the digits are uniformly distributed and that the number is a random number in the range 1000-9999)\nAnswer:\n\nWe are",
+        "same_device_decloak_injection_rouge_l": 0.13636363636363635,
+        "same_device_decloak_injection_leakage": {
+          "secret": "phone_number",
+          "keyword_present": false,
+          "keyword_hits": [],
+          "exact_digit_present": false,
+          "digit_recall": 0.2857142857142857,
+          "out_digit_count": 8
+        }
+      }
+    }
+  }
+]

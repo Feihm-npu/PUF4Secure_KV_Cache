@@ -1,0 +1,317 @@
+{
+  "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+  "target_text": "Alice's private phone number in this synthetic test is 555-0108.",
+  "V_top1_text": "Alice's private phone number in this synthetic test is 555-0108.",
+  "K_top1_text": "ائمaye defaultsủủ쳐omes defaults Defaults dashes defaults牍牍牍 Defaults defaultsไข defaults牍 defaults",
+  "V_acc_top1": 1.0,
+  "V_acc_topk": 1.0,
+  "K_acc_top1": 0.0,
+  "K_acc_topk": 0.0,
+  "top_k": 5,
+  "V_recovered_per_pos": [
+    [
+      "Alice",
+      " Alice",
+      " alice",
+      "alice",
+      " Alicia"
+    ],
+    [
+      "'s",
+      "’s",
+      "'S",
+      "'re",
+      "'m"
+    ],
+    [
+      " private",
+      "private",
+      " Private",
+      "Private",
+      "\tprivate"
+    ],
+    [
+      " phone",
+      " phones",
+      "phone",
+      " PHONE",
+      " Phone"
+    ],
+    [
+      " number",
+      "number",
+      " Number",
+      "_number",
+      "Number"
+    ],
+    [
+      " in",
+      "在",
+      " In",
+      "In",
+      " on"
+    ],
+    [
+      " this",
+      "this",
+      "(this",
+      "\tthis",
+      "这个"
+    ],
+    [
+      " synthetic",
+      " Synthetic",
+      " synth",
+      "syn",
+      "合成"
+    ],
+    [
+      " test",
+      "test",
+      " Test",
+      "测试",
+      "Test"
+    ],
+    [
+      " is",
+      "是",
+      " has",
+      " was",
+      " are"
+    ],
+    [
+      " ",
+      "1",
+      " (",
+      "2",
+      ","
+    ],
+    [
+      "5",
+      "4",
+      "6",
+      "3",
+      "1"
+    ],
+    [
+      "5",
+      "4",
+      "6",
+      "3",
+      "1"
+    ],
+    [
+      "5",
+      "4",
+      "6",
+      "3",
+      "1"
+    ],
+    [
+      "-",
+      "/",
+      " -",
+      " ",
+      "("
+    ],
+    [
+      "0",
+      "1",
+      "2",
+      "3",
+      "5"
+    ],
+    [
+      "1",
+      "2",
+      "3",
+      "0",
+      "4"
+    ],
+    [
+      "0",
+      "1",
+      "2",
+      "3",
+      "5"
+    ],
+    [
+      "8",
+      "7",
+      "9",
+      "6",
+      "4"
+    ],
+    [
+      ".",
+      ",",
+      " ",
+      "-",
+      ":"
+    ]
+  ],
+  "K_recovered_per_pos": [
+    [
+      "ائم",
+      "我一直",
+      "有意",
+      "Instead",
+      "ipes"
+    ],
+    [
+      "aye",
+      " Defaults",
+      "牍",
+      "ไข",
+      "준"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      " dashes",
+      " branches",
+      " els"
+    ],
+    [
+      "ủ",
+      "ائم",
+      "ipes",
+      "有意",
+      "elen"
+    ],
+    [
+      "ủ",
+      "ائم",
+      "shots",
+      "春夏",
+      "еры"
+    ],
+    [
+      "쳐",
+      "shots",
+      "辈",
+      "代",
+      "!\")"
+    ],
+    [
+      "omes",
+      "rowsing",
+      "北京时间",
+      "flamm",
+      " rebuilding"
+    ],
+    [
+      " defaults",
+      " '-')\n",
+      "'er",
+      " Defaults",
+      " '-')"
+    ],
+    [
+      " Defaults",
+      "'er",
+      "acia",
+      "очка",
+      "铛"
+    ],
+    [
+      " dashes",
+      " defaults",
+      "!\")",
+      " branches",
+      " Defaults"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      "ourcing",
+      " dashes",
+      " defaulted"
+    ],
+    [
+      "牍",
+      "landı",
+      " blank",
+      " defaulted",
+      "ไข"
+    ],
+    [
+      "牍",
+      "landı",
+      " blank",
+      " defaulted",
+      "ไข"
+    ],
+    [
+      "牍",
+      "landı",
+      " blank",
+      " defaulted",
+      "ไข"
+    ],
+    [
+      " Defaults",
+      " defaults",
+      "uhan",
+      " dashes",
+      "defaults"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      "landı",
+      " defaulted",
+      " dashes"
+    ],
+    [
+      "ไข",
+      "牍",
+      " untranslated",
+      " scrambled",
+      "\\Context"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      "landı",
+      " defaulted",
+      " dashes"
+    ],
+    [
+      "牍",
+      "landı",
+      " blank",
+      "ไข",
+      " defaulted"
+    ],
+    [
+      " defaults",
+      "ourcing",
+      " Defaults",
+      "landı",
+      " dashes"
+    ]
+  ],
+  "target_per_pos": [
+    "Alice",
+    "'s",
+    " private",
+    " phone",
+    " number",
+    " in",
+    " this",
+    " synthetic",
+    " test",
+    " is",
+    " ",
+    "5",
+    "5",
+    "5",
+    "-",
+    "0",
+    "1",
+    "0",
+    "8",
+    "."
+  ]
+}

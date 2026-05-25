@@ -1,0 +1,257 @@
+{
+  "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+  "target_text": "The internal project codename is blue-river and the launch date is Friday.",
+  "V_top1_text": "The internal project codename is blue-river and the launch date is Friday.",
+  "K_top1_text": "ائم '-')\nủไขائم dashes defaultsomes '-')\nائم Defaults'erائم dashesائم defaults",
+  "V_acc_top1": 1.0,
+  "V_acc_topk": 1.0,
+  "K_acc_top1": 0.0,
+  "K_acc_topk": 0.0,
+  "top_k": 5,
+  "V_recovered_per_pos": [
+    [
+      "The",
+      " The",
+      ".The",
+      "the",
+      " THE"
+    ],
+    [
+      " internal",
+      "internal",
+      " Internal",
+      "Internal",
+      "(internal"
+    ],
+    [
+      " project",
+      "项目",
+      "project",
+      " projects",
+      " Project"
+    ],
+    [
+      " cod",
+      "cod",
+      " Cod",
+      "Cod",
+      "_cod"
+    ],
+    [
+      "ename",
+      "ENAME",
+      "enames",
+      "lename",
+      "的名字"
+    ],
+    [
+      " is",
+      "是",
+      " has",
+      " was",
+      " are"
+    ],
+    [
+      " blue",
+      "blue",
+      "蓝",
+      " Blue",
+      "-blue"
+    ],
+    [
+      "-r",
+      "-R",
+      "/r",
+      "_r",
+      "(r"
+    ],
+    [
+      "iver",
+      "IVER",
+      "ivers",
+      "ivering",
+      "ivered"
+    ],
+    [
+      " and",
+      "和",
+      "and",
+      " и",
+      " và"
+    ],
+    [
+      " the",
+      "the",
+      " a",
+      " The",
+      "The"
+    ],
+    [
+      " launch",
+      "launch",
+      " Launch",
+      " launches",
+      " launching"
+    ],
+    [
+      " date",
+      "date",
+      "\tdate",
+      " dates",
+      " Date"
+    ],
+    [
+      " is",
+      "是",
+      " has",
+      " was",
+      " are"
+    ],
+    [
+      " Friday",
+      " Thursday",
+      "Friday",
+      " Wednesday",
+      " Tuesday"
+    ],
+    [
+      ".",
+      ",",
+      " ",
+      "-",
+      ":"
+    ]
+  ],
+  "K_recovered_per_pos": [
+    [
+      "ائم",
+      "ipline",
+      "我一直",
+      "有意",
+      "ipes"
+    ],
+    [
+      " '-')\n",
+      " defaults",
+      "!\")",
+      " '-')",
+      "})\","
+    ],
+    [
+      "ủ",
+      "очка",
+      "очки",
+      "еры",
+      "ушки"
+    ],
+    [
+      "ไข",
+      "牍",
+      "landı",
+      " ''),",
+      " scrambled"
+    ],
+    [
+      "ائم",
+      "ibrary",
+      "ity",
+      "我一直",
+      "ious"
+    ],
+    [
+      " dashes",
+      " defaults",
+      "!\")",
+      " branches",
+      " Defaults"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      "'er",
+      "})\",",
+      " '-')"
+    ],
+    [
+      "omes",
+      "rowsing",
+      "无障碍",
+      " Clippers",
+      "flamm"
+    ],
+    [
+      " '-')\n",
+      " Defaults",
+      "')}}\n",
+      " '-')",
+      "'er"
+    ],
+    [
+      "ائم",
+      "ibrary",
+      "iveness",
+      "我一直",
+      ".mp"
+    ],
+    [
+      " Defaults",
+      " defaults",
+      "牍",
+      " defaulted",
+      "landı"
+    ],
+    [
+      "'er",
+      " ''),",
+      " ''),\n",
+      " Defaults",
+      " defaults"
+    ],
+    [
+      "ائم",
+      "ủ",
+      "ソン",
+      "几个",
+      "有意"
+    ],
+    [
+      " dashes",
+      " defaults",
+      "!\")",
+      " branches",
+      " Defaults"
+    ],
+    [
+      "ائم",
+      "有意",
+      "我一直",
+      "辈",
+      "ipline"
+    ],
+    [
+      " defaults",
+      "ourcing",
+      " Defaults",
+      "landı",
+      " dashes"
+    ]
+  ],
+  "target_per_pos": [
+    "The",
+    " internal",
+    " project",
+    " cod",
+    "ename",
+    " is",
+    " blue",
+    "-r",
+    "iver",
+    " and",
+    " the",
+    " launch",
+    " date",
+    " is",
+    " Friday",
+    "."
+  ]
+}

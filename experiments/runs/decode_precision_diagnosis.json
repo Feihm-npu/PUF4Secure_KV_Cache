@@ -1,0 +1,59 @@
+{
+  "max_new_tokens": 64,
+  "prompts": [
+    {
+      "prompt": "My temporary verification code is 482913. Please keep it private.",
+      "plain_bf_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. 5",
+      "plain_fp_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. I need",
+      "wrap_bf_text": " I need to use this code to verify my account. I am not a member of any organization, and I have no access to any other information. I am a student, and I need to use this code to verify my account. I am not a member of any organization, and I have no access to any other",
+      "wrap_fp_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. I need",
+      "divergence": {
+        "wrap_bf_vs_plain_bf": 4,
+        "wrap_fp_vs_plain_fp": 64,
+        "plain_fp_vs_plain_bf": 62,
+        "wrap_fp_vs_plain_bf": 62
+      },
+      "rouge_l": {
+        "wrap_bf_vs_plain_bf": 0.23076923076923075,
+        "wrap_fp_vs_plain_fp": 1.0,
+        "plain_fp_vs_plain_bf": 0.967741935483871
+      }
+    },
+    {
+      "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+      "plain_bf_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+      "plain_fp_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+      "wrap_bf_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+      "wrap_fp_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+      "divergence": {
+        "wrap_bf_vs_plain_bf": 64,
+        "wrap_fp_vs_plain_fp": 64,
+        "plain_fp_vs_plain_bf": 64,
+        "wrap_fp_vs_plain_bf": 64
+      },
+      "rouge_l": {
+        "wrap_bf_vs_plain_bf": 1.0,
+        "wrap_fp_vs_plain_fp": 1.0,
+        "plain_fp_vs_plain_bf": 1.0
+      }
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+      "plain_bf_text": " The number is a 7-digit number. The number is 100000000000000000000000000000000000000000000000000",
+      "plain_fp_text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+      "wrap_bf_text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+      "wrap_fp_text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+      "divergence": {
+        "wrap_bf_vs_plain_bf": 12,
+        "wrap_fp_vs_plain_fp": 64,
+        "plain_fp_vs_plain_bf": 12,
+        "wrap_fp_vs_plain_bf": 12
+      },
+      "rouge_l": {
+        "wrap_bf_vs_plain_bf": 0.27692307692307694,
+        "wrap_fp_vs_plain_fp": 1.0,
+        "plain_fp_vs_plain_bf": 0.27692307692307694
+      }
+    }
+  ]
+}

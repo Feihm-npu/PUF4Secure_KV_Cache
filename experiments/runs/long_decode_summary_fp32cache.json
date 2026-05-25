@@ -1,0 +1,57 @@
+{
+  "max_new_tokens": 128,
+  "fp32_cache": true,
+  "prompts": [
+    {
+      "prompt": "My temporary verification code is 482913. Please keep it private.",
+      "plain_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. 5. To verify the authenticity of the user's identity. 6. To verify the authenticity of the user's identity. 7. To verify the authenticity of the user's identity. 8. To verify the authenticity of the user's identity. 9. To verify the authenticity of the user's identity. ",
+      "wrapped_text": " I need to use this code to verify my account. I am not a member of any organization, and I have no access to any other information. I am a student, and I need to use this code to verify my account. I am not a member of any organization, and I have no access to any other information. I am a student, and I need to use this code to verify my account. I am a student, and I need to use this code to verify my account. I am a student, and I need to use this code to verify my account. I am a student, and I need to use this",
+      "plain_len": 128,
+      "wrapped_len": 128,
+      "divergence_step": 4,
+      "exact_match_rate": 0.046875,
+      "char_overlap": 0.7276190476190476,
+      "rouge_l_vs_plain": 0.19607843137254902,
+      "logits_max_abs_per_step_mean": 14.857139587402344,
+      "logits_max_abs_per_step_max": 27.0,
+      "logits_rel_l2_per_step_mean": 0.8736176967815515,
+      "logits_rel_l2_per_step_max": 1.511397778566652,
+      "logits_rel_l2_first_step": 0.024309683517496024,
+      "logits_rel_l2_last_step": 0.9893096901314131
+    },
+    {
+      "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+      "plain_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that",
+      "wrapped_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that",
+      "plain_len": 128,
+      "wrapped_len": 128,
+      "divergence_step": 128,
+      "exact_match_rate": 1.0,
+      "char_overlap": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "logits_max_abs_per_step_mean": 0.28318023681640625,
+      "logits_max_abs_per_step_max": 1.75,
+      "logits_rel_l2_per_step_mean": 0.022338150793009236,
+      "logits_rel_l2_per_step_max": 0.09797272359126502,
+      "logits_rel_l2_first_step": 0.022719304584397946,
+      "logits_rel_l2_last_step": 0.027810064604791584
+    },
+    {
+      "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+      "plain_text": " The number is a 7-digit number. The number is 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "wrapped_text": " The number is a 7-digit number. The number is 555-0108. The number is a 7-digit number. The number is 555-0108. The number is a 7-digit number. The number is 555-0108. The number is a 7-digit number. The number is 555-0108. The number is a 7-digit number. The number is 555-0108. The number is a 7-digit number. The number is 555-0",
+      "plain_len": 128,
+      "wrapped_len": 128,
+      "divergence_step": 13,
+      "exact_match_rate": 0.1875,
+      "char_overlap": 0.23886639676113358,
+      "rouge_l_vs_plain": 0.2571428571428572,
+      "logits_max_abs_per_step_mean": 11.56694221496582,
+      "logits_max_abs_per_step_max": 22.78125,
+      "logits_rel_l2_per_step_mean": 0.83654429984253,
+      "logits_rel_l2_per_step_max": 1.5775596560564176,
+      "logits_rel_l2_first_step": 0.04086150826998651,
+      "logits_rel_l2_last_step": 0.8171125840014726
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "puf4secure-kvcache"
+version = "0.1.0"
+description = "Reproduction scaffold for KV-cache privacy attacks and KV-Cloak defense."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

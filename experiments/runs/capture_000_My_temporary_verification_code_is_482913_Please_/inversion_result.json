@@ -1,0 +1,287 @@
+{
+  "prompt": "My temporary verification code is 482913. Please keep it private.",
+  "target_text": "My temporary verification code is 482913. Please keep it private.",
+  "V_top1_text": "My temporary verification code is 482913. Please keep it private.",
+  "K_top1_text": "phansipesủủ dashes defaults牍牍ไข牍ไข牍 defaultsائمibraryomes defaults defaults",
+  "V_acc_top1": 1.0,
+  "V_acc_topk": 1.0,
+  "K_acc_top1": 0.0,
+  "K_acc_topk": 0.0,
+  "top_k": 5,
+  "V_recovered_per_pos": [
+    [
+      "My",
+      " My",
+      "my",
+      " my",
+      "_my"
+    ],
+    [
+      " temporary",
+      "temporary",
+      "Temporary",
+      " Temporary",
+      "临时"
+    ],
+    [
+      " verification",
+      " Verification",
+      "verification",
+      "Verification",
+      "_verification"
+    ],
+    [
+      " code",
+      "代码",
+      "code",
+      " Code",
+      "_code"
+    ],
+    [
+      " is",
+      "是",
+      " has",
+      " was",
+      " are"
+    ],
+    [
+      " ",
+      "1",
+      " (",
+      "2",
+      ","
+    ],
+    [
+      "4",
+      "3",
+      "5",
+      "2",
+      "1"
+    ],
+    [
+      "8",
+      "7",
+      "9",
+      "6",
+      "4"
+    ],
+    [
+      "2",
+      "1",
+      "3",
+      "4",
+      "5"
+    ],
+    [
+      "9",
+      "8",
+      "7",
+      "6",
+      "1"
+    ],
+    [
+      "1",
+      "2",
+      "3",
+      "0",
+      "4"
+    ],
+    [
+      "3",
+      "2",
+      "1",
+      "4",
+      "5"
+    ],
+    [
+      ".",
+      ",",
+      " ",
+      "-",
+      ":"
+    ],
+    [
+      " Please",
+      "Please",
+      " please",
+      "please",
+      " PLEASE"
+    ],
+    [
+      " keep",
+      " Keep",
+      "keep",
+      " keeps",
+      " keeping"
+    ],
+    [
+      " it",
+      "它",
+      " It",
+      "It",
+      "it"
+    ],
+    [
+      " private",
+      "private",
+      " Private",
+      "Private",
+      "\tprivate"
+    ],
+    [
+      ".",
+      ",",
+      " ",
+      "-",
+      ":"
+    ]
+  ],
+  "K_recovered_per_pos": [
+    [
+      "phans",
+      "omes",
+      "ไข",
+      " ''),",
+      " Sabha"
+    ],
+    [
+      "ipes",
+      "我一直",
+      "!\")",
+      "ائم",
+      "\")))"
+    ],
+    [
+      "ủ",
+      "腰部",
+      "春夏",
+      "ソン",
+      "')}}\n"
+    ],
+    [
+      "ủ",
+      "ائم",
+      "еры",
+      "elen",
+      "ipes"
+    ],
+    [
+      " dashes",
+      " defaults",
+      "!\")",
+      " branches",
+      " Defaults"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      "ourcing",
+      " dashes",
+      " defaulted"
+    ],
+    [
+      "牍",
+      "landı",
+      "ไข",
+      " blank",
+      " defaulted"
+    ],
+    [
+      "牍",
+      "landı",
+      " blank",
+      "ไข",
+      " defaulted"
+    ],
+    [
+      "ไข",
+      "牍",
+      "\\Context",
+      " scrambled",
+      " untranslated"
+    ],
+    [
+      "牍",
+      "landı",
+      " blank",
+      " defaulted",
+      "ไข"
+    ],
+    [
+      "ไข",
+      "牍",
+      " untranslated",
+      " scrambled",
+      "\\Context"
+    ],
+    [
+      "牍",
+      "ไข",
+      "landı",
+      " scrambled",
+      " blank"
+    ],
+    [
+      " defaults",
+      "ourcing",
+      " Defaults",
+      "landı",
+      " dashes"
+    ],
+    [
+      "ائم",
+      "我一直",
+      "ipline",
+      " vont",
+      "ibrary"
+    ],
+    [
+      "ibrary",
+      "kaar",
+      "ائم",
+      "WEEN",
+      "ity"
+    ],
+    [
+      "omes",
+      "rowsing",
+      " scrambled",
+      "flamm",
+      " upright"
+    ],
+    [
+      " defaults",
+      " Defaults",
+      " dashes",
+      " branches",
+      " els"
+    ],
+    [
+      " defaults",
+      "ourcing",
+      " Defaults",
+      "landı",
+      " dashes"
+    ]
+  ],
+  "target_per_pos": [
+    "My",
+    " temporary",
+    " verification",
+    " code",
+    " is",
+    " ",
+    "4",
+    "8",
+    "2",
+    "9",
+    "1",
+    "3",
+    ".",
+    " Please",
+    " keep",
+    " it",
+    " private",
+    "."
+  ]
+}
