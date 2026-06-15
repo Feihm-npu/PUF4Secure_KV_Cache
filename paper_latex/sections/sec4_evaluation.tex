@@ -77,11 +77,11 @@ Llama-3.2-1B & Protected native & 120 & \best{0 (0.0\%)} & \best{0 (0.0\%)} & \b
 \end{tabular}
 \end{table*}
 
-Real-context seeded prompts produce the same injection result, on both public-news and real-email corpora. Table~\ref{tab:real-context-pii} shows that both Qwen3-0.6B and Llama-3.2-1B leak exact keywords in 69 of 300 plaintext CC-News contexts (23.0\%), whereas protected native caches leak zero exact keywords. Exact digit leakage drops from 50 of 300 to 0 of 300 on Qwen3 and from 45 of 300 to 0 of 300 on Llama. To move beyond public news to genuine private-style correspondence, we repeat the benchmark with contexts drawn from the Enron email corpus: plaintext caches leak exact keywords in 14 of 200 prompts (7.0\%) and exact digit strings in 12 of 200, while protected native caches again leak zero. The plaintext leak rate is lower on Enron because real email text is a noisier injection setting than clean news prose, but the protection result is unchanged at exact zero.
+Real-context seeded prompts produce the same injection result, on both public-news and real-email corpora. Table~\ref{tab:real-context-pii} shows that both Qwen3-0.6B and Llama-3.2-1B leak exact keywords in 69 of 300 plaintext CC-News contexts (23.0\%), whereas protected native caches leak zero exact keywords. Exact digit leakage drops from 50 of 300 to 0 of 300 on Qwen3 and from 45 of 300 to 0 of 300 on Llama. To move beyond public news to genuine private-style correspondence, we repeat the benchmark with contexts drawn from the Enron email corpus: plaintext caches leak exact keywords in 14 of 200 prompts (7.0\%) and exact digit strings in 12 of 200, while protected native caches again leak zero. The plaintext leak rate is lower on Enron because real email text is a noisier injection setting than clean news prose, but the protection result is unchanged at exact zero. Finally, to drop the synthetic-secret assumption entirely, we mine the email addresses and phone numbers that \emph{genuinely occur} in the Enron emails (regex over the cached text) and score recovery of those real entities rather than a seeded one: plaintext caches leak 35 of 200 real entities on Qwen3-0.6B (17.5\%; $22\%$ of emails, $7\%$ of phones) and 25 of 200 on Llama-3.2-1B (12.5\%), while protected native caches leak zero real entities on both models. Real, naturally occurring PII is therefore recovered from plaintext caches and eliminated by protection, not just synthetic secrets we planted.
 
 \begin{table*}[t]
 \centering
-\caption{Real-context seeded PII benchmark. Protected native caches eliminate exact keyword and digit leakage when synthetic secrets are embedded in cached CC-News articles and, more realistically, in Enron emails.}
+\caption{Real-context PII benchmark. Protected native caches eliminate exact keyword and digit leakage for synthetic secrets embedded in cached CC-News articles and Enron emails, and---most realistically---for real email addresses and phone numbers mined from the Enron emails themselves.}
 \label{tab:real-context-pii}
 \begin{tabular}{llccc}
 \toprule
@@ -93,6 +93,11 @@ Llama-3.2-1B & Plain (CC-News) & 300 & 69 (23.0\%) & 45 (15.0\%) \\
 Llama-3.2-1B & Protected native (CC-News) & 300 & \best{0 (0.0\%)} & \best{0 (0.0\%)} \\
 Qwen3-0.6B & Plain (Enron email) & 200 & 14 (7.0\%) & 12 (6.0\%) \\
 Qwen3-0.6B & Protected native (Enron email) & 200 & \best{0 (0.0\%)} & \best{0 (0.0\%)} \\
+\midrule
+Qwen3-0.6B & Plain (Enron, real entities) & 200 & 35 (17.5\%) & 4 (2.0\%) \\
+Qwen3-0.6B & Protected (Enron, real entities) & 200 & \best{0 (0.0\%)} & \best{0 (0.0\%)} \\
+Llama-3.2-1B & Plain (Enron, real entities) & 200 & 25 (12.5\%) & 7 (3.5\%) \\
+Llama-3.2-1B & Protected (Enron, real entities) & 200 & \best{0 (0.0\%)} & \best{0 (0.0\%)} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -457,4 +462,4 @@ AES-at-rest (decrypted) & plaintext $V$ & 1.000 \\
 
 \subsection{Open Evaluation Gaps}
 
-The Route~B experiments close the largest earlier gaps: the candidate audit now extends to $N=1000$ (RQ7) and confirms the advantage is flat in the candidate-set size, the differencing attack and its nonce fix are validated on real caches (RQ8), the head-to-head against encrypt-at-rest quantifies the materialization/throughput tradeoff (RQ9), and the PUF/FE assumptions are discharged in simulation (RQ10). Three gaps remain before submission. First, although the real-context PII benchmark covers public CC-News articles and real Enron emails, the secrets themselves are still seeded synthetically with exact scoring rather than mined from genuinely private records. Second, the PUF is simulated; RQ10 discharges the assumptions in software, but real FPGA traces are still needed to validate physical min-entropy, reliability, and helper-data leakage. Third, performance uses the unoptimized PyTorch wrapper: the orthogonal path composes with fused \texttt{scaled\_dot\_product\_attention} (Section~\ref{sec:discussion}), but fp16 FlashAttention and a fused affine de-masking cache-load kernel remain future work.
+The Route~B experiments close the largest earlier gaps: the candidate audit now extends to $N=1000$ (RQ7) and confirms the advantage is flat in the candidate-set size, the differencing attack and its nonce fix are validated on real caches (RQ8), the head-to-head against encrypt-at-rest quantifies the materialization/throughput tradeoff (RQ9), and the PUF/FE assumptions are discharged in simulation (RQ10). Two gaps remain before submission. First, the PUF is simulated; RQ10 discharges the assumptions in software, but real FPGA traces are still needed to validate physical min-entropy, reliability, and helper-data leakage. Second, performance uses the unoptimized PyTorch wrapper: the orthogonal path composes with fused \texttt{scaled\_dot\_product\_attention} (Section~\ref{sec:discussion}), but fp16 FlashAttention and a fused affine de-masking cache-load kernel remain future work.

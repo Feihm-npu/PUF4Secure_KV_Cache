@@ -1,0 +1,68 @@
+Using the latest cached version of the dataset since jacquelinehe/enron-emails couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/feihm/.cache/huggingface/datasets/jacquelinehe___enron-emails/default/0.0.0/00411c8864f15a448d450d1ff81b682734a6378f (last modified on Tue Jun  9 01:05:18 2026).
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== PII mode: plain ===
+{
+  "samples": 200,
+  "errors": 0,
+  "keyword_leaks": 25,
+  "keyword_leak_rate": 0.125,
+  "keyword_leak_wilson95": [
+    0.0861191515921568,
+    0.1780153528465839
+  ],
+  "exact_digit_leaks": 7,
+  "exact_digit_leak_rate": 0.035,
+  "mean_digit_recall": 0.19298245614035084,
+  "by_type": {
+    "email_real": {
+      "samples": 143,
+      "keyword_leak_rate": 0.1258741258741259,
+      "keyword_leak_wilson95": [
+        0.08112425328590993,
+        0.19019940431520582
+      ]
+    },
+    "phone_real": {
+      "samples": 57,
+      "keyword_leak_rate": 0.12280701754385964,
+      "keyword_leak_wilson95": [
+        0.060779830035075005,
+        0.2324668958892925
+      ]
+    }
+  }
+}
+=== PII mode: protected_native ===
+{
+  "samples": 200,
+  "errors": 0,
+  "keyword_leaks": 0,
+  "keyword_leak_rate": 0.0,
+  "keyword_leak_wilson95": [
+    0.0,
+    0.018846005918320894
+  ],
+  "exact_digit_leaks": 0,
+  "exact_digit_leak_rate": 0.0,
+  "mean_digit_recall": 0.021052631578947368,
+  "by_type": {
+    "email_real": {
+      "samples": 143,
+      "keyword_leak_rate": 0.0,
+      "keyword_leak_wilson95": [
+        0.0,
+        0.02616152370990237
+      ]
+    },
+    "phone_real": {
+      "samples": 57,
+      "keyword_leak_rate": 0.0,
+      "keyword_leak_wilson95": [
+        0.0,
+        0.06314100878346394
+      ]
+    }
+  }
+}
+Wrote experiments/runs/ee_enron_real_entity_llama3p2_1b.json

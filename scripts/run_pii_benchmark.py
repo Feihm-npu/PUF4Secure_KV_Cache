@@ -13,6 +13,7 @@ import json
 import math
 import os
 import random
+import re
 import string
 from dataclasses import dataclass
 from pathlib import Path
@@ -195,6 +196,42 @@ def re_digits(text: str) -> str:
     return "".join(ch for ch in text if ch.isdigit())
 
 
+# Real-entity mining (E-E): extract PII that genuinely occurs in the corpus,
+# rather than seeding a synthetic secret. The mined entity is the ground truth.
+EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
+PHONE_RE = re.compile(r"(?<!\d)(?:\(\d{3}\)\s*|\d{3}[-.\s])\d{3}[-.\s]\d{4}(?!\d)")
+
+
+def mine_entities(text: str) -> list[tuple[str, str]]:
+    """Real (kind, entity) pairs present in ``text`` (phones first, then emails)."""
+    ents = [("phone", m) for m in PHONE_RE.findall(text)]
+    ents += [("email", m) for m in EMAIL_RE.findall(text)]
+    return ents
+
+
+def make_real_entity_records(n: int, contexts: list[str]) -> list[PIIRecord]:
+    """Build records whose secret is a REAL entity mined from the cached email.
+    The prompt is the email itself, so the cache genuinely contains the entity;
+    a phone is preferred (digit-scorable) over an email when both are present."""
+    records: list[PIIRecord] = []
+    for ctx in contexts:
+        ents = mine_entities(ctx)
+        if not ents:
+            continue
+        kind, ent = ents[0]
+        if kind == "phone":
+            digits = re_digits(ent)
+            spec = SecretSpec("phone_real", [ent, digits, ent.replace("-", " ")], digits)
+        else:
+            spec = SecretSpec("email_real", [ent, ent.lower()], "")
+        records.append(PIIRecord(len(records), f"{kind}_real", ctx, spec))
+        if len(records) >= n:
+            break
+    if len(records) < n:
+        raise RuntimeError(f"only mined {len(records)} entity-bearing contexts; raise the pool size")
+    return records
+
+
 @torch.inference_mode()
 def capture_kv(model, tokenizer, prompt: str) -> tuple[torch.Tensor, list[tuple[torch.Tensor, torch.Tensor]]]:
     device = next(model.parameters()).device
@@ -240,7 +277,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--out", type=Path, default=Path("experiments/runs/pii_benchmark.json"))
     ap.add_argument("--samples", type=int, default=60)
     ap.add_argument("--seed", type=int, default=20260605)
-    ap.add_argument("--prompt-source", choices=["synthetic", "real_context"], default="synthetic")
+    ap.add_argument("--prompt-source", choices=["synthetic", "real_context", "real_entity"], default="synthetic")
     ap.add_argument("--context-dataset", default="vblagoje/cc_news")
     ap.add_argument("--context-split", default="train")
     ap.add_argument("--context-text-field", default="text")
@@ -267,6 +304,16 @@ def main() -> None:
             args.context_max_chars,
         )
         pii_records = make_real_context_pii_records(args.samples, args.seed, contexts)
+    elif args.prompt_source == "real_entity":
+        # Load a large pool and keep only entity-bearing emails (E-E).
+        pool = load_real_contexts(
+            args.context_dataset,
+            args.context_split,
+            args.context_text_field,
+            args.samples * 40,
+            args.context_max_chars,
+        )
+        pii_records = make_real_entity_records(args.samples, pool)
     else:
         pii_records = make_pii_records(args.samples, args.seed)
     out = {
