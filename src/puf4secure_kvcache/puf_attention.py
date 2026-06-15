@@ -39,6 +39,7 @@ except Exception:  # pragma: no cover - optional performance dependency
 
 from .puf_basis import _basis_for, _seed_generator
 from .puf_sim import PUFSim
+from .mask_gen import counter_seeds, counter_mask_rows
 
 
 _ORIG_FORWARDS: dict[int, Callable] = {}
@@ -194,19 +195,21 @@ def _affine_mask_cached(attn, slot: str, positions: torch.Tensor, num_heads: int
     cache = attn._puf_mask_cache.get(slot)
     have = 0 if cache is None else cache.shape[0]
     if need > have:
-        g = attn._puf_mask_gen.get(slot)
-        if g is None:
-            # Fold the per-write nonce into the keystream context (R2). When the
-            # nonce is unset, purpose_eff == purpose, so the seed and hence the
-            # whole keystream are byte-for-byte identical to the legacy path.
+        seeds = attn._puf_mask_gen.get(slot)
+        if seeds is None:
+            # Counter-based keystream (P0): the mask at (pos, head, ch) is a pure
+            # function of its flat counter pos*(H*D)+head*D+ch via tl.randn, keyed
+            # by a 126-bit (sa, sb) derived from the PUF root, nonce, layer, and
+            # purpose. The per-write nonce folds into the key context (R2); this
+            # is the exact generator the fused attention kernel will reuse.
             wn = getattr(attn, "_puf_write_nonce", None)
             purpose_eff = purpose if wn is None else f"{purpose}|wn={wn}"
-            seed = attn._puf_root.derive_seed(layer=layer, group=-1, block=-1, purpose=purpose_eff)
-            g = _seed_generator(seed, torch.device("cpu"))
-            attn._puf_mask_gen[slot] = g
+            seeds = counter_seeds(attn._puf_root, layer, purpose_eff)
+            attn._puf_mask_gen[slot] = seeds
         delta = need - have
-        new = (torch.randn((delta, num_heads, head_dim), generator=g, dtype=torch.float32)
-               * float(mask_std)).to(device)
+        sa, sb = seeds
+        new = counter_mask_rows(sa, sb, have, delta, num_heads, head_dim,
+                                float(mask_std), torch.device(device))
         cache = new if cache is None else torch.cat([cache, new.to(cache.device)], dim=0)
         attn._puf_mask_cache[slot] = cache
     rows = cache.index_select(0, pos.to(cache.device))    # [len, H, D]
