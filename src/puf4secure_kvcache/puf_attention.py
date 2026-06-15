@@ -40,6 +40,7 @@ except Exception:  # pragma: no cover - optional performance dependency
 from .puf_basis import _basis_for, _seed_generator
 from .puf_sim import PUFSim
 from .mask_gen import counter_seeds, counter_mask_rows
+from .fused_attn import fused_demask_decode
 
 
 _ORIG_FORWARDS: dict[int, Callable] = {}
@@ -404,12 +405,21 @@ def _wrapped_forward(self, hidden_states, position_embeddings, attention_mask,
         cache_kwargs = {"sin": sin, "cos": cos, "cache_position": cache_position}
         k, v = past_key_values.update(k, v, self.layer_idx, cache_kwargs)
 
+    # Fused decode path: regenerate+subtract the PUF mask inside the attention
+    # kernel (no separate O(n) de-mask pass). Decode (one query) on CUDA only.
+    _puf_use_fused = (
+        getattr(self, "_puf_affine_mask", False)
+        and getattr(self, "_puf_attn_backend", "eager") == "triton_fused"
+        and q.shape[2] == 1
+        and k.is_cuda
+    )
+
     if getattr(self, "_puf_unit_norm_cache", False):
         k_full_norm = _update_norm_sidecar(self, "_puf_k_norm_sidecar", k_current_norm, k.shape[2])
         v_full_norm = _update_norm_sidecar(self, "_puf_v_norm_sidecar", v_current_norm, v.shape[2])
         k_attn = k.float() * k_full_norm.to(k.device)
         v_attn = v.float() * v_full_norm.to(v.device)
-    elif getattr(self, "_puf_affine_mask", False):
+    elif getattr(self, "_puf_affine_mask", False) and not _puf_use_fused:
         full_pos = _cache_positions(k.shape[2], cache_position, device=k.device)
         if full_pos.numel() != k.shape[2]:
             full_pos = torch.arange(k.shape[2], dtype=torch.long, device=k.device)
@@ -444,7 +454,17 @@ def _wrapped_forward(self, hidden_states, position_embeddings, attention_mask,
     # fp32 attention matmul (rotation-aware: keeps bf16 rounding from
     # accumulating asymmetrically vs. the unrotated baseline path). The SDPA
     # backend routes the same rotated tensors through the fused-kernel API.
-    if getattr(self, "_puf_attn_backend", "eager") == "sdpa":
+    if _puf_use_fused:
+        wn = getattr(self, "_puf_write_nonce", None)
+        pe = (lambda p: p) if wn is None else (lambda p: f"{p}|wn={wn}")
+        sk = counter_seeds(self._puf_root, self.layer_idx, pe("K_affine_mask"))
+        sv = counter_seeds(self._puf_root, self.layer_idx, pe("V_affine_mask"))
+        fused = fused_demask_decode(
+            q[:, :, 0, :].float(), k.float(), v.float(), sk, sv,
+            float(self._puf_mask_std), scale=self.scaling,
+        )
+        attn_output, attn_weights = fused[:, None, :, :], None   # [B, 1, Hq, d]
+    elif getattr(self, "_puf_attn_backend", "eager") == "sdpa":
         attn_output, attn_weights = _sdpa_attention(
             self, q, k_attn, v_attn, attention_mask, scaling=self.scaling,
         )
