@@ -1,0 +1,13 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== Confidentiality analysis (qwen3, N=32, samples=60) ===
+ sigma  T0normGE  T0gramGE   T1 GE  2candAdv   bound     TV   fp32err
+     0      1.00      1.00    1.00     1.000   1.000  1.000   3.5e-08
+     8     15.90     16.38   10.72     0.434   0.427  0.407   2.4e-06
+    16     15.53     16.30   13.37     0.215   0.213  0.211   4.8e-06
+    32     15.53     16.45   15.70     0.112   0.107  0.106   9.9e-06
+    64     15.58     16.80   17.23     0.046   0.053  0.053   1.9e-05
+   128     15.73     16.63   16.98     0.006   0.027  0.027   4.0e-05
+   256     15.62     16.15   15.57     0.017   0.013  0.013   7.9e-05
+   512     15.77     16.72   16.30     0.003   0.007  0.007   1.6e-04
+chance: GE=16.5
+wrote experiments/runs/confidentiality_analysis_qwen3.json

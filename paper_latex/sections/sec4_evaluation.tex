@@ -1,7 +1,7 @@
 \section{Evaluation}
 \label{sec:evaluation}
 
-We evaluate seven questions: whether plaintext caches leak secrets; which attacks orthogonal \sys{} suppresses, whether the leak extends to the full basis-invariant class (norm, Gram, spectrum), and whether affine masking removes that class; whether physical binding survives cache migration where a software key would not; whether the legitimate path preserves utility across model families and standard benchmarks; which adaptive profiling attacks break incomplete defenses; whether simulated PUF noise stays within the correction budget; and what prototype serving overhead remains.
+We evaluate whether plaintext caches leak secrets; which attacks orthogonal \sys{} suppresses, whether the leak extends to the full basis-invariant class (norm, Gram, spectrum), and whether affine masking removes that class; whether physical binding survives cache migration where a software key would not; whether the legitimate path preserves utility across model families and standard benchmarks; which adaptive profiling attacks break incomplete defenses; whether simulated PUF noise stays within the correction budget; and what prototype serving overhead remains. The theory-driven experiments (RQ7--RQ11) then test the predictions of Section~\ref{sec:theory}: large-candidate confidentiality, the differencing attack and its nonce fix, the head-to-head against encrypt-at-rest, the PUF/FE assumptions, and a rigorous confidentiality analysis in which the measured \textsc{IND-MIG} advantage is compared against the proven Gaussian-mechanism bound, the guessing entropy is reported, and an adaptive attack suite delimits the exact threat boundary.
 
 \subsection{Experimental Setup}
 
@@ -385,6 +385,75 @@ Helper-data leakage (\ref{ass:fe}) & N/A (sim) \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{RQ11: Rigorous confidentiality --- theory-matched advantage, guessing entropy, and adaptive attacks}
+\label{sec:rigorous}
+
+The candidate top-1 numbers above are coarse. We now (i) measure the actual \textsc{IND-MIG} advantage against the proven Gaussian-mechanism bound, (ii) report the information-theoretic guessing entropy, and (iii) subject the affine mask to an adaptive attack suite that pins down exactly which adversaries it stops. We capture plaintext layer-0 V-caches once (60 records, 32 candidates) and evaluate every $\sigma$ and attacker at the tensor level. Three attackers face the protected cache $\tilde C=CO+M$: the \emph{migration} attacker (threat model: invariants only, no basis), the \emph{basis-equipped optimal} attacker (additionally knows $O$, i.e.\ a same-session-KPA adversary that learned the basis and then migrated; its likelihood test realizes the worst case the bound governs), and the \emph{analytic bound} itself.
+
+\textbf{The measured advantage tracks the proven bound.} Figure~\ref{fig:sweep} plots the optimal attacker's empirical 2-candidate \textsc{IND-MIG} advantage against the Theorem~\ref{thm:confidentiality} bound $\Delta/(\sigma\sqrt{2\pi})$ and the exact optimal $2\Phi(\Delta/2\sigma){-}1$, across $\sigma$. The three curves coincide within sampling noise (e.g.\ on Qwen3-0.6B, measured/bound $=0.434/0.427$ at $\sigma{=}8$, $0.215/0.213$ at $16$, $0.112/0.107$ at $32$), so the proven bound is not loose---it predicts the measured worst-case advantage. On the same axis the fp32 de-mask error grows monotonically (Theorem~\ref{thm:precision}), and the shaded region is the feasible operating window where the advantage is below $0.05$ and the error below $10^{-3}$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/confidentiality_sweep.pdf}
+\caption{RQ11. The measured optimal-attacker \textsc{IND-MIG} advantage (blue) tracks the Gaussian-mechanism bound of Theorem~\ref{thm:confidentiality} (dashed) and decays to the $1/32$ chance level, while the fp32 de-mask error (green, right axis) grows with $\sigma$ (Theorem~\ref{thm:precision}); the shaded band is the feasible window. Orthogonal protection is the $\sigma{=}0$ endpoint with advantage $1.0$.}
+\label{fig:sweep}
+\end{figure}
+
+\textbf{The migration attacker is reduced to blind guessing.} Table~\ref{tab:ge} reports guessing entropy (mean rank of the true secret among $N{=}32$; $1$ = fully recovered, $(N{+}1)/2{=}16.5$ = chance). Orthogonal caches ($\sigma{=}0$) have guessing entropy $1.0$ on both models---the secret is always rank-1, i.e.\ zero residual uncertainty, consistent with Theorem~\ref{thm:impossible}. For any $\sigma\ge16$ the migration attacker's guessing entropy is at the chance level on both Qwen3-0.6B and Llama-3.2-1B: the affine mask leaves essentially the full $\log_2 N$ bits of uncertainty.
+
+\begin{table}[t]
+\centering
+\caption{RQ11. Guessing entropy of the migration attacker (mean rank, $N{=}32$, chance $16.5$). Orthogonal ($\sigma{=}0$) fully recovers (GE $1.0$); affine leaves the secret at chance for $\sigma\ge16$.}
+\label{tab:ge}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+$\sigma$ & Qwen3-0.6B & Llama-3.2-1B \\
+\midrule
+0 (orthogonal) & 1.0 & 1.0 \\
+16 & 15.5 & 17.2 \\
+64 & 15.6 & 17.4 \\
+128 & 15.7 & 17.2 \\
+512 & 15.8 & 17.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Adaptive attacks define the exact boundary.} Table~\ref{tab:adaptive} reports two attackers stronger than single-shot matching. Same-session known-plaintext recovers \emph{both} the basis (orthogonal Procrustes on cross-prompt differences, which cancel the mask) and the mask itself, stripping a held-out cache to residual $0.000$---so the affine mask, like the orthogonal basis, is broken under same-session KPA, and its protection is only for the migration attacker; under a refreshed nonce the recovered $(O,M)$ do not transfer (residual $\gg 1$). The averaging attacker, which needs the same secret cached many times under independent per-write masks, stays at chance through $10^5$ observations and reaches only top-1 $0.50$ (Qwen3) or chance (Llama) at $10^6$ observations: recovery requires $\Theta((\sigma\sqrt{d}/\lVert X\rVert)^2)$ identical re-cachings, an impractical capability. Together with the differencing attack (Table~\ref{tab:differencing}), these state the boundary precisely: the per-write nonce stops differencing, session refresh stops cross-session transfer, and same-session aligned known-plaintext is the designed non-goal.
+
+\begin{table}[t]
+\centering
+\caption{RQ11. Adaptive attacks on the affine mask (std~128). KPA rows report strip residual (same-session $\to 0$ = broken; refreshed nonce $\gg 1$ = safe); averaging rows report top-1, needing $\ge 10^6$ identical re-cachings.}
+\label{tab:adaptive}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Attack & Qwen3-0.6B & Llama-3.2-1B \\
+\midrule
+KPA, same session & 0.000 & 0.000 \\
+KPA, refreshed nonce & $\gg 1$ & $\gg 1$ \\
+Averaging, $10^5$ obs. & 0.075 & 0.000 \\
+Averaging, $10^6$ obs. & 0.500 & 0.025 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{No plaintext is materialized, in use or at rest.} Finally, Table~\ref{tab:materialize} operationalizes Definition~\ref{def:inuse}. Encrypt-at-rest must decrypt a cache page to plaintext $V$ before attention, so an in-use memory snapshot yields plaintext and layer-0 V-inversion recovers every token (top-1 $1.000$, the RQ1 baseline). Orthogonal and affine \sys{} compute on the rotated coordinate $VO$ and never produce model-native plaintext anywhere in the memory hierarchy, so the same inversion on an in-use snapshot fails (top-1 $0.000$, the RQ2 cache-defense result). This is the property that distinguishes \sys{} from encryption even granting equal at-rest key handling.
+
+\begin{table}[t]
+\centering
+\caption{RQ11. In-use materialization (Definition~\ref{def:inuse}). Layer-0 V-inversion top-1 on the tensor that attention actually consumes; only encrypt-at-rest exposes plaintext.}
+\label{tab:materialize}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Scheme & In-use tensor & V-inv \\
+\midrule
+AES-at-rest (decrypted) & plaintext $V$ & 1.000 \\
+\sys{}, orth./affine & rotated $VO$ & \best{0.000} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Answer to RQ11:} The measured \textsc{IND-MIG} advantage tracks the Gaussian-mechanism bound of Theorem~\ref{thm:confidentiality} across $\sigma$ and decays to chance; the migration attacker's guessing entropy is at the $16.5$ chance level for $\sigma\ge16$ on both models (versus $1.0$ for orthogonal); same-session KPA is the precise non-goal while differencing, cross-session transfer, and averaging through $10^5$ observations are all defeated; and no plaintext K/V is materialized in use or at rest.
 
 \subsection{Open Evaluation Gaps}
 

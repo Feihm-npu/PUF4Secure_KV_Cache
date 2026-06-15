@@ -1,0 +1,40 @@
+{
+  "config": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "samples": 40,
+    "candidates": 32,
+    "seed": 20260615,
+    "secret_types": "verification_code",
+    "layer": 0,
+    "sigma": 128.0,
+    "device_id": "device_A",
+    "tag": "qwen3"
+  },
+  "kpa_affine": [
+    {
+      "n_known": 4,
+      "same_session_residual": 5.513475150476408e-14,
+      "refresh_residual": 1258.7012508385712
+    },
+    {
+      "n_known": 16,
+      "same_session_residual": 4.8723394970983917e-14,
+      "refresh_residual": 1258.701250838572
+    },
+    {
+      "n_known": 64,
+      "same_session_residual": 4.723028458317968e-14,
+      "refresh_residual": 1258.7012508385708
+    }
+  ],
+  "averaging_top1_by_nobs": {
+    "1": 0.075,
+    "256": 0.05,
+    "4096": 0.075,
+    "65536": 0.075,
+    "262144": 0.1,
+    "1048576": 0.5
+  },
+  "chance": 0.03125
+}

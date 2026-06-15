@@ -1,0 +1,14 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== Adaptive attacks vs affine (qwen3, sigma=128.0) ===
+A1 same-session KPA (recover O+M, strip residual; ~0 = broken):
+  n_known=  4: same-session resid=0.0000  refresh resid=1258.7013
+  n_known= 16: same-session resid=0.0000  refresh resid=1258.7013
+  n_known= 64: same-session resid=0.0000  refresh resid=1258.7013
+A2 averaging attack top-1 vs #observations (chance=0.031):
+  n_obs=   1: top-1=0.075
+  n_obs= 256: top-1=0.050
+  n_obs=4096: top-1=0.075
+  n_obs=65536: top-1=0.075
+  n_obs=262144: top-1=0.100
+  n_obs=1048576: top-1=0.500
+wrote experiments/runs/adaptive_attacks_affine_qwen3.json

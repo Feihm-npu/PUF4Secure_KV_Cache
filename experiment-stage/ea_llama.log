@@ -1,0 +1,13 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== Confidentiality analysis (llama3p2_1b, N=32, samples=60) ===
+ sigma  T0normGE  T0gramGE   T1 GE  2candAdv   bound     TV   fp32err
+     0      1.00      1.00    1.00     1.000   1.000  1.000   4.9e-08
+     8     17.33     15.55   16.07     0.153   0.136  0.136   3.7e-06
+    16     17.18     16.23   15.53     0.069   0.068  0.068   7.4e-06
+    32     17.42     17.03   14.82     0.049   0.034  0.034   1.4e-05
+    64     17.37     16.75   17.80     0.002   0.017  0.017   2.9e-05
+   128     17.22     16.65   14.63     0.034   0.009  0.009   6.0e-05
+   256     17.23     16.03   19.95     0.022   0.004  0.004   1.1e-04
+   512     17.23     16.72   17.28     0.009   0.002  0.002   2.3e-04
+chance: GE=16.5
+wrote experiments/runs/confidentiality_analysis_llama3p2_1b.json
