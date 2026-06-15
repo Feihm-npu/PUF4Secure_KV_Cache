@@ -1,0 +1,104 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/profiling_native_sanity.json",
+    "n_prompts": 50,
+    "seq_len": 32,
+    "seed": 12345,
+    "prompts_file": "experiments/prompts/synthetic_privacy_prompts.txt",
+    "force_fp32": false,
+    "fp32_cache": false,
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "scenarios": {
+    "S1_native_same_session": {
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "rows_per_unit": 1600,
+      "n_units": 448,
+      "fit_time_s": 13.630162972956896,
+      "mean_basis_recovery_err_vs_fit": 0.00900115629388771,
+      "fresh_prompt_residual": 0.019271401988302468,
+      "fresh_prompt_transfer_residual": 0.01926944809733819,
+      "downstream": {
+        "rows": [
+          {
+            "prompt": "My temporary verification code is 482913. Please keep it private.",
+            "transfer_residual": 0.028139229471386622,
+            "v_inversion_top1": 1.0
+          },
+          {
+            "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+            "transfer_residual": 0.016045765294676818,
+            "v_inversion_top1": 1.0
+          },
+          {
+            "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+            "transfer_residual": 0.02199988958571229,
+            "v_inversion_top1": 1.0
+          }
+        ],
+        "mean_transfer_residual": 0.022061628117258578,
+        "mean_v_inversion_top1": 1.0
+      }
+    },
+    "S4_native_session_refresh": {
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "99999999999999999999999999999999",
+      "rows_per_unit": 1600,
+      "n_units": 448,
+      "fit_time_s": 13.630162972956896,
+      "mean_basis_recovery_err_vs_fit": 0.00900115629388771,
+      "fresh_prompt_residual": 1.4040027669969388,
+      "fresh_prompt_transfer_residual": 1.4038903144447006,
+      "downstream": {
+        "rows": [
+          {
+            "prompt": "My temporary verification code is 482913. Please keep it private.",
+            "transfer_residual": 1.4024355448088752,
+            "v_inversion_top1": 0.0
+          },
+          {
+            "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+            "transfer_residual": 1.4064906050234054,
+            "v_inversion_top1": 0.0
+          },
+          {
+            "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+            "transfer_residual": 1.4052200697269612,
+            "v_inversion_top1": 0.0
+          }
+        ],
+        "mean_transfer_residual": 1.4047154065197471,
+        "mean_v_inversion_top1": 0.0
+      }
+    }
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 2282.4033203125,
+        "reserved_mib": 2576.0
+      }
+    ]
+  }
+}

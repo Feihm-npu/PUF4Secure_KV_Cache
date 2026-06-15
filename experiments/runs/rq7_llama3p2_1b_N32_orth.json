@@ -1,0 +1,1454 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B",
+    "snapshot": null,
+    "out": "experiments/runs/rq7_llama3p2_1b_N32_orth.json",
+    "samples": 30,
+    "candidates": 32,
+    "seed": 20260605,
+    "secret_types": "verification_code",
+    "modes": [
+      "plain",
+      "protected_native"
+    ],
+    "layers": "0",
+    "distance_mode": "l2",
+    "distance_modes": "norm_l2,gram_l2",
+    "include_k": false,
+    "include_v": true,
+    "force_fp32": true,
+    "fp32_cache": true,
+    "norm_blind": false,
+    "norm_log_range": 1.0,
+    "unit_norm_cache": false,
+    "nonorth_log_range": 0.0,
+    "affine_mask": false,
+    "mask_std": 4.0,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B/snapshots/4e20de362430cd3b72f300e6b0f18e50e7166e08"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "7",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "modes": {
+    "plain": {
+      "norm_l2": {
+        "summary": {
+          "samples": 30,
+          "top1": 1.0,
+          "mrr": 1.0,
+          "by_type": {
+            "verification_code": {
+              "samples": 30,
+              "top1": 1.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "records": [
+          {
+            "index": 0,
+            "secret_type": "verification_code",
+            "true_secret": "824130",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 1,
+            "secret_type": "verification_code",
+            "true_secret": "821617",
+            "pred_candidate_index": 11,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 2,
+            "secret_type": "verification_code",
+            "true_secret": "629986",
+            "pred_candidate_index": 28,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 3,
+            "secret_type": "verification_code",
+            "true_secret": "055177",
+            "pred_candidate_index": 19,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 4,
+            "secret_type": "verification_code",
+            "true_secret": "778281",
+            "pred_candidate_index": 23,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 5,
+            "secret_type": "verification_code",
+            "true_secret": "473272",
+            "pred_candidate_index": 1,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 6,
+            "secret_type": "verification_code",
+            "true_secret": "721188",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 7,
+            "secret_type": "verification_code",
+            "true_secret": "527683",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 8,
+            "secret_type": "verification_code",
+            "true_secret": "739192",
+            "pred_candidate_index": 4,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 9,
+            "secret_type": "verification_code",
+            "true_secret": "131024",
+            "pred_candidate_index": 31,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 10,
+            "secret_type": "verification_code",
+            "true_secret": "452099",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 11,
+            "secret_type": "verification_code",
+            "true_secret": "736018",
+            "pred_candidate_index": 12,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 12,
+            "secret_type": "verification_code",
+            "true_secret": "442016",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 13,
+            "secret_type": "verification_code",
+            "true_secret": "827839",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 14,
+            "secret_type": "verification_code",
+            "true_secret": "536535",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 15,
+            "secret_type": "verification_code",
+            "true_secret": "955787",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 16,
+            "secret_type": "verification_code",
+            "true_secret": "978416",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 17,
+            "secret_type": "verification_code",
+            "true_secret": "714793",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 18,
+            "secret_type": "verification_code",
+            "true_secret": "202645",
+            "pred_candidate_index": 29,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 19,
+            "secret_type": "verification_code",
+            "true_secret": "018270",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 20,
+            "secret_type": "verification_code",
+            "true_secret": "380727",
+            "pred_candidate_index": 21,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 21,
+            "secret_type": "verification_code",
+            "true_secret": "630120",
+            "pred_candidate_index": 16,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 22,
+            "secret_type": "verification_code",
+            "true_secret": "640004",
+            "pred_candidate_index": 5,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 23,
+            "secret_type": "verification_code",
+            "true_secret": "437521",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 24,
+            "secret_type": "verification_code",
+            "true_secret": "021595",
+            "pred_candidate_index": 30,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 25,
+            "secret_type": "verification_code",
+            "true_secret": "483845",
+            "pred_candidate_index": 22,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 26,
+            "secret_type": "verification_code",
+            "true_secret": "540723",
+            "pred_candidate_index": 17,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 27,
+            "secret_type": "verification_code",
+            "true_secret": "876466",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 28,
+            "secret_type": "verification_code",
+            "true_secret": "435152",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 29,
+            "secret_type": "verification_code",
+            "true_secret": "140649",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          }
+        ]
+      },
+      "gram_l2": {
+        "summary": {
+          "samples": 30,
+          "top1": 1.0,
+          "mrr": 1.0,
+          "by_type": {
+            "verification_code": {
+              "samples": 30,
+              "top1": 1.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "records": [
+          {
+            "index": 0,
+            "secret_type": "verification_code",
+            "true_secret": "824130",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 1,
+            "secret_type": "verification_code",
+            "true_secret": "821617",
+            "pred_candidate_index": 11,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 2,
+            "secret_type": "verification_code",
+            "true_secret": "629986",
+            "pred_candidate_index": 28,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 3,
+            "secret_type": "verification_code",
+            "true_secret": "055177",
+            "pred_candidate_index": 19,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 4,
+            "secret_type": "verification_code",
+            "true_secret": "778281",
+            "pred_candidate_index": 23,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 5,
+            "secret_type": "verification_code",
+            "true_secret": "473272",
+            "pred_candidate_index": 1,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 6,
+            "secret_type": "verification_code",
+            "true_secret": "721188",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 7,
+            "secret_type": "verification_code",
+            "true_secret": "527683",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 8,
+            "secret_type": "verification_code",
+            "true_secret": "739192",
+            "pred_candidate_index": 4,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 9,
+            "secret_type": "verification_code",
+            "true_secret": "131024",
+            "pred_candidate_index": 31,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 10,
+            "secret_type": "verification_code",
+            "true_secret": "452099",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 11,
+            "secret_type": "verification_code",
+            "true_secret": "736018",
+            "pred_candidate_index": 12,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 12,
+            "secret_type": "verification_code",
+            "true_secret": "442016",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 13,
+            "secret_type": "verification_code",
+            "true_secret": "827839",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 14,
+            "secret_type": "verification_code",
+            "true_secret": "536535",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 15,
+            "secret_type": "verification_code",
+            "true_secret": "955787",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 16,
+            "secret_type": "verification_code",
+            "true_secret": "978416",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 17,
+            "secret_type": "verification_code",
+            "true_secret": "714793",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 18,
+            "secret_type": "verification_code",
+            "true_secret": "202645",
+            "pred_candidate_index": 29,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 19,
+            "secret_type": "verification_code",
+            "true_secret": "018270",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 20,
+            "secret_type": "verification_code",
+            "true_secret": "380727",
+            "pred_candidate_index": 21,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 21,
+            "secret_type": "verification_code",
+            "true_secret": "630120",
+            "pred_candidate_index": 16,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 22,
+            "secret_type": "verification_code",
+            "true_secret": "640004",
+            "pred_candidate_index": 5,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 23,
+            "secret_type": "verification_code",
+            "true_secret": "437521",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 24,
+            "secret_type": "verification_code",
+            "true_secret": "021595",
+            "pred_candidate_index": 30,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 25,
+            "secret_type": "verification_code",
+            "true_secret": "483845",
+            "pred_candidate_index": 22,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 26,
+            "secret_type": "verification_code",
+            "true_secret": "540723",
+            "pred_candidate_index": 17,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 27,
+            "secret_type": "verification_code",
+            "true_secret": "876466",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 28,
+            "secret_type": "verification_code",
+            "true_secret": "435152",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          },
+          {
+            "index": 29,
+            "secret_type": "verification_code",
+            "true_secret": "140649",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 0.0,
+            "best_score": 0.0
+          }
+        ]
+      }
+    },
+    "protected_native": {
+      "norm_l2": {
+        "summary": {
+          "samples": 30,
+          "top1": 1.0,
+          "mrr": 1.0,
+          "by_type": {
+            "verification_code": {
+              "samples": 30,
+              "top1": 1.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "records": [
+          {
+            "index": 0,
+            "secret_type": "verification_code",
+            "true_secret": "824130",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.5447396246345306e-07,
+            "best_score": 4.5447396246345306e-07
+          },
+          {
+            "index": 1,
+            "secret_type": "verification_code",
+            "true_secret": "821617",
+            "pred_candidate_index": 11,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.485727629344183e-07,
+            "best_score": 4.485727629344183e-07
+          },
+          {
+            "index": 2,
+            "secret_type": "verification_code",
+            "true_secret": "629986",
+            "pred_candidate_index": 28,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.5545007765213086e-07,
+            "best_score": 4.5545007765213086e-07
+          },
+          {
+            "index": 3,
+            "secret_type": "verification_code",
+            "true_secret": "055177",
+            "pred_candidate_index": 19,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.4658835918198747e-07,
+            "best_score": 4.4658835918198747e-07
+          },
+          {
+            "index": 4,
+            "secret_type": "verification_code",
+            "true_secret": "778281",
+            "pred_candidate_index": 23,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 5.02724446960201e-07,
+            "best_score": 5.02724446960201e-07
+          },
+          {
+            "index": 5,
+            "secret_type": "verification_code",
+            "true_secret": "473272",
+            "pred_candidate_index": 1,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.62225074215894e-07,
+            "best_score": 4.62225074215894e-07
+          },
+          {
+            "index": 6,
+            "secret_type": "verification_code",
+            "true_secret": "721188",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.4658835918198747e-07,
+            "best_score": 4.4658835918198747e-07
+          },
+          {
+            "index": 7,
+            "secret_type": "verification_code",
+            "true_secret": "527683",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.5545007765213086e-07,
+            "best_score": 4.5545007765213086e-07
+          },
+          {
+            "index": 8,
+            "secret_type": "verification_code",
+            "true_secret": "739192",
+            "pred_candidate_index": 4,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.856505597672367e-07,
+            "best_score": 4.856505597672367e-07
+          },
+          {
+            "index": 9,
+            "secret_type": "verification_code",
+            "true_secret": "131024",
+            "pred_candidate_index": 31,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.425928636919707e-07,
+            "best_score": 4.425928636919707e-07
+          },
+          {
+            "index": 10,
+            "secret_type": "verification_code",
+            "true_secret": "452099",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.455928319657687e-07,
+            "best_score": 4.455928319657687e-07
+          },
+          {
+            "index": 11,
+            "secret_type": "verification_code",
+            "true_secret": "736018",
+            "pred_candidate_index": 12,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.792068466485944e-07,
+            "best_score": 4.792068466485944e-07
+          },
+          {
+            "index": 12,
+            "secret_type": "verification_code",
+            "true_secret": "442016",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.515329976584326e-07,
+            "best_score": 4.515329976584326e-07
+          },
+          {
+            "index": 13,
+            "secret_type": "verification_code",
+            "true_secret": "827839",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.660522847643733e-07,
+            "best_score": 4.660522847643733e-07
+          },
+          {
+            "index": 14,
+            "secret_type": "verification_code",
+            "true_secret": "536535",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.5251545088831335e-07,
+            "best_score": 4.5251545088831335e-07
+          },
+          {
+            "index": 15,
+            "secret_type": "verification_code",
+            "true_secret": "955787",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.801327122549992e-07,
+            "best_score": 4.801327122549992e-07
+          },
+          {
+            "index": 16,
+            "secret_type": "verification_code",
+            "true_secret": "978416",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.698483166976075e-07,
+            "best_score": 4.698483166976075e-07
+          },
+          {
+            "index": 17,
+            "secret_type": "verification_code",
+            "true_secret": "714793",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.395724033656734e-07,
+            "best_score": 4.395724033656734e-07
+          },
+          {
+            "index": 18,
+            "secret_type": "verification_code",
+            "true_secret": "202645",
+            "pred_candidate_index": 29,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.96502366331697e-07,
+            "best_score": 4.96502366331697e-07
+          },
+          {
+            "index": 19,
+            "secret_type": "verification_code",
+            "true_secret": "018270",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.660522847643733e-07,
+            "best_score": 4.660522847643733e-07
+          },
+          {
+            "index": 20,
+            "secret_type": "verification_code",
+            "true_secret": "380727",
+            "pred_candidate_index": 21,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.707925427283044e-07,
+            "best_score": 4.707925427283044e-07
+          },
+          {
+            "index": 21,
+            "secret_type": "verification_code",
+            "true_secret": "630120",
+            "pred_candidate_index": 16,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.425928636919707e-07,
+            "best_score": 4.425928636919707e-07
+          },
+          {
+            "index": 22,
+            "secret_type": "verification_code",
+            "true_secret": "640004",
+            "pred_candidate_index": 5,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.670041846566164e-07,
+            "best_score": 4.670041846566164e-07
+          },
+          {
+            "index": 23,
+            "secret_type": "verification_code",
+            "true_secret": "437521",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.6029953182369354e-07,
+            "best_score": 4.6029953182369354e-07
+          },
+          {
+            "index": 24,
+            "secret_type": "verification_code",
+            "true_secret": "021595",
+            "pred_candidate_index": 30,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.62225074215894e-07,
+            "best_score": 4.62225074215894e-07
+          },
+          {
+            "index": 25,
+            "secret_type": "verification_code",
+            "true_secret": "483845",
+            "pred_candidate_index": 22,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.6509842377417954e-07,
+            "best_score": 4.6509842377417954e-07
+          },
+          {
+            "index": 26,
+            "secret_type": "verification_code",
+            "true_secret": "540723",
+            "pred_candidate_index": 17,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.6509842377417954e-07,
+            "best_score": 4.6509842377417954e-07
+          },
+          {
+            "index": 27,
+            "secret_type": "verification_code",
+            "true_secret": "876466",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 5.044880708737765e-07,
+            "best_score": 5.044880708737765e-07
+          },
+          {
+            "index": 28,
+            "secret_type": "verification_code",
+            "true_secret": "435152",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.828995088246302e-07,
+            "best_score": 4.828995088246302e-07
+          },
+          {
+            "index": 29,
+            "secret_type": "verification_code",
+            "true_secret": "140649",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 4.7548556381116214e-07,
+            "best_score": 4.7548556381116214e-07
+          }
+        ]
+      },
+      "gram_l2": {
+        "summary": {
+          "samples": 30,
+          "top1": 1.0,
+          "mrr": 1.0,
+          "by_type": {
+            "verification_code": {
+              "samples": 30,
+              "top1": 1.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "records": [
+          {
+            "index": 0,
+            "secret_type": "verification_code",
+            "true_secret": "824130",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 2.002239398279926e-06,
+            "best_score": 2.002239398279926e-06
+          },
+          {
+            "index": 1,
+            "secret_type": "verification_code",
+            "true_secret": "821617",
+            "pred_candidate_index": 11,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9629421785793966e-06,
+            "best_score": 1.9629421785793966e-06
+          },
+          {
+            "index": 2,
+            "secret_type": "verification_code",
+            "true_secret": "629986",
+            "pred_candidate_index": 28,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 2.0681388832599623e-06,
+            "best_score": 2.0681388832599623e-06
+          },
+          {
+            "index": 3,
+            "secret_type": "verification_code",
+            "true_secret": "055177",
+            "pred_candidate_index": 19,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.8385297835266101e-06,
+            "best_score": 1.8385297835266101e-06
+          },
+          {
+            "index": 4,
+            "secret_type": "verification_code",
+            "true_secret": "778281",
+            "pred_candidate_index": 23,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.8899133920058375e-06,
+            "best_score": 1.8899133920058375e-06
+          },
+          {
+            "index": 5,
+            "secret_type": "verification_code",
+            "true_secret": "473272",
+            "pred_candidate_index": 1,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.8961088699143147e-06,
+            "best_score": 1.8961088699143147e-06
+          },
+          {
+            "index": 6,
+            "secret_type": "verification_code",
+            "true_secret": "721188",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.895629679893318e-06,
+            "best_score": 1.895629679893318e-06
+          },
+          {
+            "index": 7,
+            "secret_type": "verification_code",
+            "true_secret": "527683",
+            "pred_candidate_index": 15,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9493745639920235e-06,
+            "best_score": 1.9493745639920235e-06
+          },
+          {
+            "index": 8,
+            "secret_type": "verification_code",
+            "true_secret": "739192",
+            "pred_candidate_index": 4,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.955377911144751e-06,
+            "best_score": 1.955377911144751e-06
+          },
+          {
+            "index": 9,
+            "secret_type": "verification_code",
+            "true_secret": "131024",
+            "pred_candidate_index": 31,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9968501874245703e-06,
+            "best_score": 1.9968501874245703e-06
+          },
+          {
+            "index": 10,
+            "secret_type": "verification_code",
+            "true_secret": "452099",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 2.013189259741921e-06,
+            "best_score": 2.013189259741921e-06
+          },
+          {
+            "index": 11,
+            "secret_type": "verification_code",
+            "true_secret": "736018",
+            "pred_candidate_index": 12,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 2.027303708018735e-06,
+            "best_score": 2.027303708018735e-06
+          },
+          {
+            "index": 12,
+            "secret_type": "verification_code",
+            "true_secret": "442016",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9616468307503965e-06,
+            "best_score": 1.9616468307503965e-06
+          },
+          {
+            "index": 13,
+            "secret_type": "verification_code",
+            "true_secret": "827839",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9963249542342965e-06,
+            "best_score": 1.9963249542342965e-06
+          },
+          {
+            "index": 14,
+            "secret_type": "verification_code",
+            "true_secret": "536535",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9134442936774576e-06,
+            "best_score": 1.9134442936774576e-06
+          },
+          {
+            "index": 15,
+            "secret_type": "verification_code",
+            "true_secret": "955787",
+            "pred_candidate_index": 25,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9775916371145286e-06,
+            "best_score": 1.9775916371145286e-06
+          },
+          {
+            "index": 16,
+            "secret_type": "verification_code",
+            "true_secret": "978416",
+            "pred_candidate_index": 6,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.8904947864939459e-06,
+            "best_score": 1.8904947864939459e-06
+          },
+          {
+            "index": 17,
+            "secret_type": "verification_code",
+            "true_secret": "714793",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9038466234633233e-06,
+            "best_score": 1.9038466234633233e-06
+          },
+          {
+            "index": 18,
+            "secret_type": "verification_code",
+            "true_secret": "202645",
+            "pred_candidate_index": 29,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9174019598722225e-06,
+            "best_score": 1.9174019598722225e-06
+          },
+          {
+            "index": 19,
+            "secret_type": "verification_code",
+            "true_secret": "018270",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9743324628507253e-06,
+            "best_score": 1.9743324628507253e-06
+          },
+          {
+            "index": 20,
+            "secret_type": "verification_code",
+            "true_secret": "380727",
+            "pred_candidate_index": 21,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.923785248436616e-06,
+            "best_score": 1.923785248436616e-06
+          },
+          {
+            "index": 21,
+            "secret_type": "verification_code",
+            "true_secret": "630120",
+            "pred_candidate_index": 16,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9624148990260437e-06,
+            "best_score": 1.9624148990260437e-06
+          },
+          {
+            "index": 22,
+            "secret_type": "verification_code",
+            "true_secret": "640004",
+            "pred_candidate_index": 5,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9040628558286699e-06,
+            "best_score": 1.9040628558286699e-06
+          },
+          {
+            "index": 23,
+            "secret_type": "verification_code",
+            "true_secret": "437521",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9894282559107523e-06,
+            "best_score": 1.9894282559107523e-06
+          },
+          {
+            "index": 24,
+            "secret_type": "verification_code",
+            "true_secret": "021595",
+            "pred_candidate_index": 30,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.995087359318859e-06,
+            "best_score": 1.995087359318859e-06
+          },
+          {
+            "index": 25,
+            "secret_type": "verification_code",
+            "true_secret": "483845",
+            "pred_candidate_index": 22,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 2.0822237729589688e-06,
+            "best_score": 2.0822237729589688e-06
+          },
+          {
+            "index": 26,
+            "secret_type": "verification_code",
+            "true_secret": "540723",
+            "pred_candidate_index": 17,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.920123622767278e-06,
+            "best_score": 1.920123622767278e-06
+          },
+          {
+            "index": 27,
+            "secret_type": "verification_code",
+            "true_secret": "876466",
+            "pred_candidate_index": 8,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 2.0047446014359593e-06,
+            "best_score": 2.0047446014359593e-06
+          },
+          {
+            "index": 28,
+            "secret_type": "verification_code",
+            "true_secret": "435152",
+            "pred_candidate_index": 10,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.9348929072293686e-06,
+            "best_score": 1.9348929072293686e-06
+          },
+          {
+            "index": 29,
+            "secret_type": "verification_code",
+            "true_secret": "140649",
+            "pred_candidate_index": 27,
+            "true_rank": 1,
+            "top1": 1,
+            "mrr": 1.0,
+            "true_score": 1.8906002878793515e-06,
+            "best_score": 1.8906002878793515e-06
+          }
+        ]
+      }
+    }
+  },
+  "model": {
+    "model_type": "llama",
+    "hidden_size": 2048,
+    "num_hidden_layers": 16,
+    "num_attention_heads": 32,
+    "num_key_value_heads": 8,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "7",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 2356.0
+      }
+    ]
+  }
+}

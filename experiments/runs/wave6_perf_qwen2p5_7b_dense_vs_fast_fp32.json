@@ -1,0 +1,286 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct",
+    "snapshot": null,
+    "out": "experiments/runs/wave6_perf_qwen2p5_7b_dense_vs_fast_fp32.json",
+    "modes": [
+      "plain",
+      "wrapped",
+      "wrapped_fast"
+    ],
+    "prompt_lengths": [
+      64,
+      256,
+      1024
+    ],
+    "decode_tokens": 8,
+    "warmup": 1,
+    "repeats": 3,
+    "seed": 20260605,
+    "force_fp32": true,
+    "fp32_cache": false,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "2",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "results": [
+    {
+      "mode": "plain",
+      "prompt_length": 64,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.07640970125794411,
+        "std": 0.0007445523421443361,
+        "min": 0.07582099735736847,
+        "max": 0.07746010087430477
+      },
+      "decode_s": {
+        "mean": 0.24518240988254547,
+        "std": 0.021502103860611736,
+        "min": 0.2194719761610031,
+        "max": 0.2720996644347906
+      },
+      "decode_tokens_per_s": {
+        "mean": 32.880760177339916,
+        "std": 2.8789168178819837,
+        "min": 29.40099178959929,
+        "max": 36.4511230086672
+      },
+      "kv_cache_bytes_after_decode": 8257536
+    },
+    {
+      "mode": "plain",
+      "prompt_length": 256,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.2274880732099215,
+        "std": 0.001792111153237306,
+        "min": 0.22618622705340385,
+        "max": 0.23002218268811703
+      },
+      "decode_s": {
+        "mean": 0.21723164059221745,
+        "std": 0.0004763122069704972,
+        "min": 0.21683483198285103,
+        "max": 0.2179014440625906
+      },
+      "decode_tokens_per_s": {
+        "mean": 36.8272245398214,
+        "std": 0.08063040871721704,
+        "min": 36.713845722390246,
+        "max": 36.894441390452904
+      },
+      "kv_cache_bytes_after_decode": 30277632
+    },
+    {
+      "mode": "plain",
+      "prompt_length": 1024,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.8847870367268721,
+        "std": 0.00019665870358329712,
+        "min": 0.8846297021955252,
+        "max": 0.8850643150508404
+      },
+      "decode_s": {
+        "mean": 0.21877015754580498,
+        "std": 0.0008844848279094662,
+        "min": 0.2176498994231224,
+        "max": 0.21981219574809074
+      },
+      "decode_tokens_per_s": {
+        "mean": 36.568656934980446,
+        "std": 0.1479272628875348,
+        "min": 36.39470491058723,
+        "max": 36.7562770357527
+      },
+      "kv_cache_bytes_after_decode": 118358016
+    },
+    {
+      "mode": "wrapped",
+      "prompt_length": 64,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.07865033857524395,
+        "std": 0.0001327344644346786,
+        "min": 0.07846299931406975,
+        "max": 0.07875428721308708
+      },
+      "decode_s": {
+        "mean": 0.2603831359495719,
+        "std": 0.0004849711259902246,
+        "min": 0.25988814420998096,
+        "max": 0.2610417678952217
+      },
+      "decode_tokens_per_s": {
+        "mean": 30.724062443237784,
+        "std": 0.05717473223607856,
+        "min": 30.646436639254915,
+        "max": 30.782473838191965
+      },
+      "kv_cache_bytes_after_decode": 8257536
+    },
+    {
+      "mode": "wrapped",
+      "prompt_length": 256,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.22963624137143293,
+        "std": 1.2115474378251695e-05,
+        "min": 0.22961914539337158,
+        "max": 0.22964577563107014
+      },
+      "decode_s": {
+        "mean": 0.2621960360556841,
+        "std": 0.000836640359503446,
+        "min": 0.2611300852149725,
+        "max": 0.26317371614277363
+      },
+      "decode_tokens_per_s": {
+        "mean": 30.511832356335457,
+        "std": 0.09740962506129158,
+        "min": 30.39817242106329,
+        "max": 30.636071647639096
+      },
+      "kv_cache_bytes_after_decode": 30277632
+    },
+    {
+      "mode": "wrapped",
+      "prompt_length": 1024,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.8908717433611552,
+        "std": 0.0001757433587172307,
+        "min": 0.8906522933393717,
+        "max": 0.8910825122147799
+      },
+      "decode_s": {
+        "mean": 0.26086379028856754,
+        "std": 0.0010937790263410199,
+        "min": 0.25975130684673786,
+        "max": 0.2623507920652628
+      },
+      "decode_tokens_per_s": {
+        "mean": 30.667883648229722,
+        "std": 0.12833391782255837,
+        "min": 30.493523335770632,
+        "max": 30.798690089826085
+      },
+      "kv_cache_bytes_after_decode": 118358016
+    },
+    {
+      "mode": "wrapped_fast",
+      "prompt_length": 64,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.07956477006276448,
+        "std": 0.00011183762563551043,
+        "min": 0.0794069804251194,
+        "max": 0.0796530619263649
+      },
+      "decode_s": {
+        "mean": 0.33467852013806504,
+        "std": 0.003285431022089575,
+        "min": 0.3317995220422745,
+        "max": 0.3392762802541256
+      },
+      "decode_tokens_per_s": {
+        "mean": 23.905825175091465,
+        "std": 0.23321006576995001,
+        "min": 23.57960301264745,
+        "max": 24.11094491866303
+      },
+      "kv_cache_bytes_after_decode": 8257536
+    },
+    {
+      "mode": "wrapped_fast",
+      "prompt_length": 256,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.23106417370339236,
+        "std": 4.437606631664095e-05,
+        "min": 0.2310054935514927,
+        "max": 0.23111278377473354
+      },
+      "decode_s": {
+        "mean": 0.3336918366452058,
+        "std": 0.0008226686168826824,
+        "min": 0.33265004865825176,
+        "max": 0.334661265835166
+      },
+      "decode_tokens_per_s": {
+        "mean": 23.97436125612991,
+        "std": 0.05912468759677725,
+        "min": 23.904768243900442,
+        "max": 24.049297549385916
+      },
+      "kv_cache_bytes_after_decode": 30277632
+    },
+    {
+      "mode": "wrapped_fast",
+      "prompt_length": 1024,
+      "decode_tokens": 8,
+      "repeats": 3,
+      "prefill_s": {
+        "mean": 0.8942638033380111,
+        "std": 0.00016616911771131026,
+        "min": 0.8940379545092583,
+        "max": 0.8944329638034105
+      },
+      "decode_s": {
+        "mean": 0.3359710406512022,
+        "std": 0.0018609836778234613,
+        "min": 0.3338503260165453,
+        "max": 0.3383811451494694
+      },
+      "decode_tokens_per_s": {
+        "mean": 23.812305782324483,
+        "std": 0.1317344594487436,
+        "min": 23.641979213901674,
+        "max": 23.962834170194963
+      },
+      "kv_cache_bytes_after_decode": 118358016
+    }
+  ],
+  "model": {
+    "model_type": "qwen2",
+    "hidden_size": 3584,
+    "num_hidden_layers": 28,
+    "num_attention_heads": 28,
+    "num_key_value_heads": 4,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "2",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 9.1328125,
+        "reserved_mib": 30.0
+      }
+    ]
+  }
+}

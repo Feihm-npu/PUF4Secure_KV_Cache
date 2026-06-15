@@ -1,0 +1,539 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/rq7_qwen3_N1000_affine.json",
+    "samples": 20,
+    "candidates": 1000,
+    "seed": 20260605,
+    "secret_types": "verification_code",
+    "modes": [
+      "protected_native"
+    ],
+    "layers": "0",
+    "distance_mode": "l2",
+    "distance_modes": "norm_l2,gram_l2",
+    "include_k": false,
+    "include_v": true,
+    "force_fp32": true,
+    "fp32_cache": true,
+    "norm_blind": false,
+    "norm_log_range": 1.0,
+    "unit_norm_cache": false,
+    "nonorth_log_range": 0.0,
+    "affine_mask": true,
+    "mask_std": 128.0,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "0",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "modes": {
+    "protected_native": {
+      "norm_l2": {
+        "summary": {
+          "samples": 20,
+          "top1": 0.0,
+          "mrr": 0.004693897853894831,
+          "by_type": {
+            "verification_code": {
+              "samples": 20,
+              "top1": 0.0,
+              "mrr": 0.004693897853894831
+            }
+          }
+        },
+        "records": [
+          {
+            "index": 0,
+            "secret_type": "verification_code",
+            "true_secret": "824130",
+            "pred_candidate_index": 420,
+            "true_rank": 853,
+            "top1": 0,
+            "mrr": 0.0011723329425556857,
+            "true_score": 19633.705078125,
+            "best_score": 19633.37890625
+          },
+          {
+            "index": 1,
+            "secret_type": "verification_code",
+            "true_secret": "296637",
+            "pred_candidate_index": 326,
+            "true_rank": 235,
+            "top1": 0,
+            "mrr": 0.00425531914893617,
+            "true_score": 19633.640625,
+            "best_score": 19633.4921875
+          },
+          {
+            "index": 2,
+            "secret_type": "verification_code",
+            "true_secret": "108871",
+            "pred_candidate_index": 869,
+            "true_rank": 585,
+            "top1": 0,
+            "mrr": 0.0017094017094017094,
+            "true_score": 19633.642578125,
+            "best_score": 19633.400390625
+          },
+          {
+            "index": 3,
+            "secret_type": "verification_code",
+            "true_secret": "983681",
+            "pred_candidate_index": 452,
+            "true_rank": 139,
+            "top1": 0,
+            "mrr": 0.007194244604316547,
+            "true_score": 19633.630859375,
+            "best_score": 19633.51953125
+          },
+          {
+            "index": 4,
+            "secret_type": "verification_code",
+            "true_secret": "952068",
+            "pred_candidate_index": 818,
+            "true_rank": 400,
+            "top1": 0,
+            "mrr": 0.0025,
+            "true_score": 19633.6015625,
+            "best_score": 19633.3984375
+          },
+          {
+            "index": 5,
+            "secret_type": "verification_code",
+            "true_secret": "632309",
+            "pred_candidate_index": 191,
+            "true_rank": 578,
+            "top1": 0,
+            "mrr": 0.0017301038062283738,
+            "true_score": 19633.666015625,
+            "best_score": 19633.427734375
+          },
+          {
+            "index": 6,
+            "secret_type": "verification_code",
+            "true_secret": "905766",
+            "pred_candidate_index": 527,
+            "true_rank": 178,
+            "top1": 0,
+            "mrr": 0.0056179775280898875,
+            "true_score": 19633.55859375,
+            "best_score": 19633.404296875
+          },
+          {
+            "index": 7,
+            "secret_type": "verification_code",
+            "true_secret": "083846",
+            "pred_candidate_index": 454,
+            "true_rank": 223,
+            "top1": 0,
+            "mrr": 0.004484304932735426,
+            "true_score": 19633.61328125,
+            "best_score": 19633.462890625
+          },
+          {
+            "index": 8,
+            "secret_type": "verification_code",
+            "true_secret": "687392",
+            "pred_candidate_index": 239,
+            "true_rank": 156,
+            "top1": 0,
+            "mrr": 0.00641025641025641,
+            "true_score": 19633.5625,
+            "best_score": 19633.39453125
+          },
+          {
+            "index": 9,
+            "secret_type": "verification_code",
+            "true_secret": "453085",
+            "pred_candidate_index": 367,
+            "true_rank": 482,
+            "top1": 0,
+            "mrr": 0.002074688796680498,
+            "true_score": 19633.62109375,
+            "best_score": 19633.40234375
+          },
+          {
+            "index": 10,
+            "secret_type": "verification_code",
+            "true_secret": "896443",
+            "pred_candidate_index": 768,
+            "true_rank": 132,
+            "top1": 0,
+            "mrr": 0.007575757575757576,
+            "true_score": 19633.603515625,
+            "best_score": 19633.458984375
+          },
+          {
+            "index": 11,
+            "secret_type": "verification_code",
+            "true_secret": "997137",
+            "pred_candidate_index": 42,
+            "true_rank": 100,
+            "top1": 0,
+            "mrr": 0.01,
+            "true_score": 19633.57421875,
+            "best_score": 19633.455078125
+          },
+          {
+            "index": 12,
+            "secret_type": "verification_code",
+            "true_secret": "903476",
+            "pred_candidate_index": 216,
+            "true_rank": 281,
+            "top1": 0,
+            "mrr": 0.0035587188612099642,
+            "true_score": 19633.583984375,
+            "best_score": 19633.41796875
+          },
+          {
+            "index": 13,
+            "secret_type": "verification_code",
+            "true_secret": "477809",
+            "pred_candidate_index": 109,
+            "true_rank": 76,
+            "top1": 0,
+            "mrr": 0.013157894736842105,
+            "true_score": 19633.53515625,
+            "best_score": 19633.416015625
+          },
+          {
+            "index": 14,
+            "secret_type": "verification_code",
+            "true_secret": "917337",
+            "pred_candidate_index": 932,
+            "true_rank": 190,
+            "top1": 0,
+            "mrr": 0.005263157894736842,
+            "true_score": 19633.599609375,
+            "best_score": 19633.408203125
+          },
+          {
+            "index": 15,
+            "secret_type": "verification_code",
+            "true_secret": "829182",
+            "pred_candidate_index": 279,
+            "true_rank": 582,
+            "top1": 0,
+            "mrr": 0.001718213058419244,
+            "true_score": 19633.677734375,
+            "best_score": 19633.42578125
+          },
+          {
+            "index": 16,
+            "secret_type": "verification_code",
+            "true_secret": "568595",
+            "pred_candidate_index": 435,
+            "true_rank": 105,
+            "top1": 0,
+            "mrr": 0.009523809523809525,
+            "true_score": 19633.537109375,
+            "best_score": 19633.421875
+          },
+          {
+            "index": 17,
+            "secret_type": "verification_code",
+            "true_secret": "168179",
+            "pred_candidate_index": 531,
+            "true_rank": 293,
+            "top1": 0,
+            "mrr": 0.0034129692832764505,
+            "true_score": 19633.591796875,
+            "best_score": 19633.40234375
+          },
+          {
+            "index": 18,
+            "secret_type": "verification_code",
+            "true_secret": "121645",
+            "pred_candidate_index": 196,
+            "true_rank": 954,
+            "top1": 0,
+            "mrr": 0.0010482180293501049,
+            "true_score": 19633.77734375,
+            "best_score": 19633.44140625
+          },
+          {
+            "index": 19,
+            "secret_type": "verification_code",
+            "true_secret": "052963",
+            "pred_candidate_index": 485,
+            "true_rank": 680,
+            "top1": 0,
+            "mrr": 0.0014705882352941176,
+            "true_score": 19633.693359375,
+            "best_score": 19633.427734375
+          }
+        ]
+      },
+      "gram_l2": {
+        "summary": {
+          "samples": 20,
+          "top1": 0.0,
+          "mrr": 0.007863210051911122,
+          "by_type": {
+            "verification_code": {
+              "samples": 20,
+              "top1": 0.0,
+              "mrr": 0.007863210051911122
+            }
+          }
+        },
+        "records": [
+          {
+            "index": 0,
+            "secret_type": "verification_code",
+            "true_secret": "824130",
+            "pred_candidate_index": 420,
+            "true_rank": 25,
+            "top1": 0,
+            "mrr": 0.04,
+            "true_score": 30945710.0,
+            "best_score": 30945708.0
+          },
+          {
+            "index": 1,
+            "secret_type": "verification_code",
+            "true_secret": "296637",
+            "pred_candidate_index": 433,
+            "true_rank": 512,
+            "top1": 0,
+            "mrr": 0.001953125,
+            "true_score": 30945992.0,
+            "best_score": 30945988.0
+          },
+          {
+            "index": 2,
+            "secret_type": "verification_code",
+            "true_secret": "108871",
+            "pred_candidate_index": 0,
+            "true_rank": 218,
+            "top1": 0,
+            "mrr": 0.0045871559633027525,
+            "true_score": 30945788.0,
+            "best_score": 30945788.0
+          },
+          {
+            "index": 3,
+            "secret_type": "verification_code",
+            "true_secret": "983681",
+            "pred_candidate_index": 2,
+            "true_rank": 346,
+            "top1": 0,
+            "mrr": 0.002890173410404624,
+            "true_score": 30945986.0,
+            "best_score": 30945984.0
+          },
+          {
+            "index": 4,
+            "secret_type": "verification_code",
+            "true_secret": "952068",
+            "pred_candidate_index": 403,
+            "true_rank": 972,
+            "top1": 0,
+            "mrr": 0.00102880658436214,
+            "true_score": 30945686.0,
+            "best_score": 30945682.0
+          },
+          {
+            "index": 5,
+            "secret_type": "verification_code",
+            "true_secret": "632309",
+            "pred_candidate_index": 0,
+            "true_rank": 832,
+            "top1": 0,
+            "mrr": 0.001201923076923077,
+            "true_score": 30945724.0,
+            "best_score": 30945724.0
+          },
+          {
+            "index": 6,
+            "secret_type": "verification_code",
+            "true_secret": "905766",
+            "pred_candidate_index": 0,
+            "true_rank": 660,
+            "top1": 0,
+            "mrr": 0.0015151515151515152,
+            "true_score": 30945802.0,
+            "best_score": 30945800.0
+          },
+          {
+            "index": 7,
+            "secret_type": "verification_code",
+            "true_secret": "083846",
+            "pred_candidate_index": 140,
+            "true_rank": 253,
+            "top1": 0,
+            "mrr": 0.003952569169960474,
+            "true_score": 30945896.0,
+            "best_score": 30945894.0
+          },
+          {
+            "index": 8,
+            "secret_type": "verification_code",
+            "true_secret": "687392",
+            "pred_candidate_index": 1,
+            "true_rank": 13,
+            "top1": 0,
+            "mrr": 0.07692307692307693,
+            "true_score": 30945814.0,
+            "best_score": 30945814.0
+          },
+          {
+            "index": 9,
+            "secret_type": "verification_code",
+            "true_secret": "453085",
+            "pred_candidate_index": 29,
+            "true_rank": 413,
+            "top1": 0,
+            "mrr": 0.002421307506053269,
+            "true_score": 30945666.0,
+            "best_score": 30945664.0
+          },
+          {
+            "index": 10,
+            "secret_type": "verification_code",
+            "true_secret": "896443",
+            "pred_candidate_index": 90,
+            "true_rank": 600,
+            "top1": 0,
+            "mrr": 0.0016666666666666668,
+            "true_score": 30945958.0,
+            "best_score": 30945956.0
+          },
+          {
+            "index": 11,
+            "secret_type": "verification_code",
+            "true_secret": "997137",
+            "pred_candidate_index": 1,
+            "true_rank": 554,
+            "top1": 0,
+            "mrr": 0.0018050541516245488,
+            "true_score": 30945906.0,
+            "best_score": 30945904.0
+          },
+          {
+            "index": 12,
+            "secret_type": "verification_code",
+            "true_secret": "903476",
+            "pred_candidate_index": 3,
+            "true_rank": 446,
+            "top1": 0,
+            "mrr": 0.002242152466367713,
+            "true_score": 30945790.0,
+            "best_score": 30945788.0
+          },
+          {
+            "index": 13,
+            "secret_type": "verification_code",
+            "true_secret": "477809",
+            "pred_candidate_index": 0,
+            "true_rank": 942,
+            "top1": 0,
+            "mrr": 0.0010615711252653928,
+            "true_score": 30945726.0,
+            "best_score": 30945724.0
+          },
+          {
+            "index": 14,
+            "secret_type": "verification_code",
+            "true_secret": "917337",
+            "pred_candidate_index": 5,
+            "true_rank": 319,
+            "top1": 0,
+            "mrr": 0.003134796238244514,
+            "true_score": 30945866.0,
+            "best_score": 30945864.0
+          },
+          {
+            "index": 15,
+            "secret_type": "verification_code",
+            "true_secret": "829182",
+            "pred_candidate_index": 87,
+            "true_rank": 517,
+            "top1": 0,
+            "mrr": 0.0019342359767891683,
+            "true_score": 30945880.0,
+            "best_score": 30945878.0
+          },
+          {
+            "index": 16,
+            "secret_type": "verification_code",
+            "true_secret": "568595",
+            "pred_candidate_index": 13,
+            "true_rank": 414,
+            "top1": 0,
+            "mrr": 0.0024154589371980675,
+            "true_score": 30945746.0,
+            "best_score": 30945744.0
+          },
+          {
+            "index": 17,
+            "secret_type": "verification_code",
+            "true_secret": "168179",
+            "pred_candidate_index": 309,
+            "true_rank": 318,
+            "top1": 0,
+            "mrr": 0.0031446540880503146,
+            "true_score": 30945736.0,
+            "best_score": 30945734.0
+          },
+          {
+            "index": 18,
+            "secret_type": "verification_code",
+            "true_secret": "121645",
+            "pred_candidate_index": 618,
+            "true_rank": 495,
+            "top1": 0,
+            "mrr": 0.00202020202020202,
+            "true_score": 30945808.0,
+            "best_score": 30945806.0
+          },
+          {
+            "index": 19,
+            "secret_type": "verification_code",
+            "true_secret": "052963",
+            "pred_candidate_index": 7,
+            "true_rank": 732,
+            "top1": 0,
+            "mrr": 0.001366120218579235,
+            "true_score": 30945866.0,
+            "best_score": 30945864.0
+          }
+        ]
+      }
+    }
+  },
+  "model": {
+    "model_type": "qwen3",
+    "hidden_size": 1024,
+    "num_hidden_layers": 28,
+    "num_attention_heads": 16,
+    "num_key_value_heads": 8,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "0",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 20.0
+      }
+    ]
+  }
+}

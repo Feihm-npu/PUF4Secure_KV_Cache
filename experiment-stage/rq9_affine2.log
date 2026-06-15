@@ -1,0 +1,27 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+{
+  "mode": "wrapped",
+  "prompt_length": 256,
+  "decode_tokens": 64,
+  "repeats": 5,
+  "prefill_s": {
+    "mean": 0.05961186857894063,
+    "std": 0.0008933943150342512,
+    "min": 0.05874164099805057,
+    "max": 0.061195250949822366
+  },
+  "decode_s": {
+    "mean": 2.8404715854208917,
+    "std": 0.014455168000342807,
+    "min": 2.8223823390435427,
+    "max": 2.8615686900448054
+  },
+  "decode_tokens_per_s": {
+    "mean": 22.532052827813082,
+    "std": 0.1145493292267715,
+    "min": 22.365355136380778,
+    "max": 22.675878854063587
+  },
+  "kv_cache_bytes_after_decode": 73400320
+}
+Wrote experiments/runs/rq9_perf_affine_qwen3.json

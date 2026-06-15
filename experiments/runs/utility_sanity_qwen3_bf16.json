@@ -1,0 +1,305 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/utility_sanity_qwen3_bf16.json",
+    "modes": [
+      "plain",
+      "wrapped"
+    ],
+    "force_fp32": false,
+    "fp32_cache": false,
+    "device_id": "device_A",
+    "ppl_dataset": "ag_news",
+    "ppl_split": "test",
+    "ppl_text_field": "text",
+    "ppl_samples": 4,
+    "ppl_max_length": 256,
+    "mc_dataset": "hellaswag",
+    "mc_split": "validation",
+    "mc_samples": 4,
+    "mc_max_length": 256,
+    "prompts_file": "experiments/prompts/synthetic_privacy_prompts.txt",
+    "long_decode_prompts": 2,
+    "max_new_tokens": 16,
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "modes": {
+    "plain": {
+      "perplexity": {
+        "dataset": "ag_news",
+        "split": "test",
+        "text_field": "text",
+        "samples_requested": 4,
+        "samples_used": 4,
+        "tokens": 227,
+        "mean_nll": 4.51663148035562,
+        "perplexity": 91.5267684035804
+      },
+      "hellaswag": {
+        "dataset": "hellaswag",
+        "split": "validation",
+        "samples_requested": 4,
+        "samples_used": 4,
+        "skipped": 0,
+        "accuracy": 0.25,
+        "records": [
+          {
+            "index": 0,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -43.254661083221436,
+              -42.02083969116211,
+              -17.69482421875,
+              -37.83845520019531
+            ]
+          },
+          {
+            "index": 1,
+            "label": 3,
+            "pred": 1,
+            "scores": [
+              -30.705936431884766,
+              -13.865428447723389,
+              -19.54844355583191,
+              -27.133745670318604
+            ]
+          },
+          {
+            "index": 2,
+            "label": 2,
+            "pred": 2,
+            "scores": [
+              -57.77574157714844,
+              -50.09872555732727,
+              -25.632388591766357,
+              -120.30252456665039
+            ]
+          },
+          {
+            "index": 3,
+            "label": 2,
+            "pred": 0,
+            "scores": [
+              -14.097919464111328,
+              -27.492873668670654,
+              -35.42900800704956,
+              -30.097154140472412
+            ]
+          }
+        ]
+      },
+      "long_decode": [
+        {
+          "prompt": "My temporary verification code is 482913. Please keep it private.",
+          "tokens": [
+            358,
+            1184,
+            311,
+            990,
+            432,
+            369,
+            279,
+            2701,
+            9079,
+            25,
+            220,
+            16,
+            13,
+            2014,
+            10146,
+            279
+          ],
+          "text": " I need to use it for the following tasks: 1. To verify the",
+          "length": 16
+        },
+        {
+          "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+          "tokens": [
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501
+          ],
+          "text": " The project is a new project that is being launched. The project is a new",
+          "length": 16
+        }
+      ]
+    },
+    "wrapped": {
+      "perplexity": {
+        "dataset": "ag_news",
+        "split": "test",
+        "text_field": "text",
+        "samples_requested": 4,
+        "samples_used": 4,
+        "tokens": 227,
+        "mean_nll": 4.52687838004024,
+        "perplexity": 92.46945557991822
+      },
+      "hellaswag": {
+        "dataset": "hellaswag",
+        "split": "validation",
+        "samples_requested": 4,
+        "samples_used": 4,
+        "skipped": 0,
+        "accuracy": 0.25,
+        "records": [
+          {
+            "index": 0,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -42.9500036239624,
+              -41.68048095703125,
+              -17.638988494873047,
+              -37.82374954223633
+            ]
+          },
+          {
+            "index": 1,
+            "label": 3,
+            "pred": 1,
+            "scores": [
+              -30.486802577972412,
+              -13.832529544830322,
+              -19.47825336456299,
+              -26.97079825401306
+            ]
+          },
+          {
+            "index": 2,
+            "label": 2,
+            "pred": 2,
+            "scores": [
+              -57.761695861816406,
+              -50.793224573135376,
+              -25.886192321777344,
+              -120.17253112792969
+            ]
+          },
+          {
+            "index": 3,
+            "label": 2,
+            "pred": 0,
+            "scores": [
+              -14.002716541290283,
+              -27.422213554382324,
+              -35.62130689620972,
+              -30.016217708587646
+            ]
+          }
+        ]
+      },
+      "long_decode": [
+        {
+          "prompt": "My temporary verification code is 482913. Please keep it private.",
+          "tokens": [
+            358,
+            1184,
+            311,
+            990,
+            419,
+            2038,
+            311,
+            10146,
+            847,
+            2692,
+            13,
+            358,
+            1079,
+            537,
+            264,
+            4462
+          ],
+          "text": " I need to use this code to verify my account. I am not a member",
+          "length": 16
+        },
+        {
+          "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+          "tokens": [
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501
+          ],
+          "text": " The project is a new project that is being launched. The project is a new",
+          "length": 16
+        }
+      ]
+    }
+  },
+  "long_decode_comparisons": [
+    {
+      "prompt_index": 0,
+      "mode": "wrapped",
+      "divergence_step": 4,
+      "exact_match_rate": 0.25,
+      "rouge_l_vs_plain": 0.42857142857142855,
+      "char_overlap_vs_plain": 0.7642276422764227,
+      "plain_text": " I need to use it for the following tasks: 1. To verify the",
+      "mode_text": " I need to use this code to verify my account. I am not a member"
+    },
+    {
+      "prompt_index": 1,
+      "mode": "wrapped",
+      "divergence_step": 16,
+      "exact_match_rate": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "char_overlap_vs_plain": 1.0,
+      "plain_text": " The project is a new project that is being launched. The project is a new",
+      "mode_text": " The project is a new project that is being launched. The project is a new"
+    }
+  ],
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 1136.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+## ignore folder ./documents
+documents/
+
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Tooling framework (not part of the research deliverable; ~65MB of assets)
+.opencode/
+
+# LaTeX build artifacts (keep .tex / .bib sources, drop generated files)
+paper_latex/*.aux
+paper_latex/*.fls
+paper_latex/*.fdb_latexmk
+paper_latex/*.log
+paper_latex/*.out
+paper_latex/*.synctex.gz
+paper_latex/*.bbl
+paper_latex/*.blg
+paper_latex/*.pdf
+
+# Virtualenvs / editor
+.venv/
+*.egg-info/

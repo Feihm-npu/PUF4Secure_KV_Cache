@@ -1,0 +1,79 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B",
+    "snapshot": null,
+    "out": "experiments/runs/wave3_kpa_native_llama3p2_1b_4_16.json",
+    "known_prompts": [
+      4,
+      16
+    ],
+    "seq_len": 32,
+    "seed": 314159,
+    "alignment": "naive",
+    "prompts_file": "experiments/prompts/synthetic_privacy_prompts.txt",
+    "skip_downstream": true,
+    "force_fp32": true,
+    "fp32_cache": false,
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B/snapshots/4e20de362430cd3b72f300e6b0f18e50e7166e08"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "6",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "cutoffs": [
+    {
+      "known_prompts": 4,
+      "rows_per_unit": 128,
+      "n_units": 256,
+      "fit_elapsed_s": 1.498708875849843,
+      "targets": {
+        "same_session": {
+          "fresh_prompt_residual": 7.306431342582801e-06,
+          "fresh_prompt_transfer_residual": 7.306791313779214e-06
+        },
+        "session_refresh": {
+          "fresh_prompt_residual": 1.4153926850238485,
+          "fresh_prompt_transfer_residual": 1.4153927170371012
+        }
+      }
+    },
+    {
+      "known_prompts": 16,
+      "rows_per_unit": 512,
+      "n_units": 256,
+      "fit_elapsed_s": 4.065588936209679,
+      "targets": {
+        "same_session": {
+          "fresh_prompt_residual": 3.871333825098401e-06,
+          "fresh_prompt_transfer_residual": 3.8692036599927065e-06
+        },
+        "session_refresh": {
+          "fresh_prompt_residual": 1.4165000931118619,
+          "fresh_prompt_transfer_residual": 1.4165001071065435
+        }
+      }
+    }
+  ],
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "6",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 9440.6416015625,
+        "reserved_mib": 9696.0
+      }
+    ]
+  }
+}

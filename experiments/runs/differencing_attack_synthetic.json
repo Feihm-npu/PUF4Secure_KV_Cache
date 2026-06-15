@@ -1,0 +1,23 @@
+{
+  "config": {
+    "candidates": 32,
+    "dim": 128,
+    "trials": 300,
+    "mask_std": 128.0,
+    "device_id": "device-A",
+    "seed": 0,
+    "out": "experiments/runs/differencing_attack_synthetic.json"
+  },
+  "chance_level": 0.03125,
+  "results": {
+    "position_only": {
+      "single_cache_top1": 0.05,
+      "differenced_top1": 1.0
+    },
+    "per_write_nonce": {
+      "single_cache_top1": 0.05,
+      "differenced_top1": 0.03333333333333333
+    }
+  },
+  "note": "synthetic K/V-scale vectors; TODO swap in real captured caches."
+}

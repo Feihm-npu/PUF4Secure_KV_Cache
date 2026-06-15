@@ -1,0 +1,8 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+N=32 chance=0.0312 std=128.0 samples=20
+mode               distance    differenced top-1      mrr
+position_only      norm_l2                1.0000    1.000  <- BROKEN
+position_only      gram_l2                1.0000    1.000  <- BROKEN
+per_write_nonce    norm_l2                0.0000    0.084
+per_write_nonce    gram_l2                0.0500    0.154
+wrote experiments/runs/differencing_native_llama3p2_1b.json

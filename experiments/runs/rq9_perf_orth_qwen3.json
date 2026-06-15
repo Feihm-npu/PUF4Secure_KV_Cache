@@ -1,0 +1,110 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/rq9_perf_orth_qwen3.json",
+    "modes": [
+      "plain",
+      "wrapped"
+    ],
+    "prompt_lengths": [
+      256
+    ],
+    "decode_tokens": 64,
+    "warmup": 1,
+    "repeats": 5,
+    "seed": 20260605,
+    "force_fp32": true,
+    "fp32_cache": true,
+    "affine_mask": false,
+    "mask_std": 4.0,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "0",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "results": [
+    {
+      "mode": "plain",
+      "prompt_length": 256,
+      "decode_tokens": 64,
+      "repeats": 5,
+      "prefill_s": {
+        "mean": 0.041049560997635126,
+        "std": 0.0008737450648210388,
+        "min": 0.03940370900090784,
+        "max": 0.04168747097719461
+      },
+      "decode_s": {
+        "mean": 1.8811569328187034,
+        "std": 0.010182119439609186,
+        "min": 1.8677619029767811,
+        "max": 1.8978766930522397
+      },
+      "decode_tokens_per_s": {
+        "mean": 34.022611192548936,
+        "std": 0.18374783039362927,
+        "min": 33.721895755552325,
+        "max": 34.26560949658454
+      },
+      "kv_cache_bytes_after_decode": 73400320
+    },
+    {
+      "mode": "wrapped",
+      "prompt_length": 256,
+      "decode_tokens": 64,
+      "repeats": 5,
+      "prefill_s": {
+        "mean": 0.046541301207616924,
+        "std": 0.0001896662881672088,
+        "min": 0.046202767989598215,
+        "max": 0.04674324195366353
+      },
+      "decode_s": {
+        "mean": 2.207677496434189,
+        "std": 0.007761414932633021,
+        "min": 2.198163592023775,
+        "max": 2.2152305260533467
+      },
+      "decode_tokens_per_s": {
+        "mean": 28.990100320139227,
+        "std": 0.10205566010062957,
+        "min": 28.89089837256006,
+        "max": 29.11521245835819
+      },
+      "kv_cache_bytes_after_decode": 73400320
+    }
+  ],
+  "model": {
+    "model_type": "qwen3",
+    "hidden_size": 1024,
+    "num_hidden_layers": 28,
+    "num_attention_heads": 16,
+    "num_key_value_heads": 8,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "0",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.126953125,
+        "reserved_mib": 22.0
+      }
+    ]
+  }
+}

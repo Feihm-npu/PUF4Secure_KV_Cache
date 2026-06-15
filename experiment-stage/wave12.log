@@ -1,0 +1,289 @@
+=================================================================
+[16:23:38] START: J1 affine utility (ppl+hellaswag+mmlu+long-decode)
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== utility mode: plain ===
+  ppl=57.5900
+  hellaswag_acc=0.4219
+  mmlu_acc=0.3906 (n=128)
+  decoded_prompts=3
+=== utility mode: wrapped ===
+  ppl=57.5900
+  hellaswag_acc=0.4219
+  mmlu_acc=0.3906 (n=128)
+  decoded_prompts=3
+Wrote experiments/runs/wave12_affine_utility_qwen3_0p6b_std128_fp32.json
+[17:03:04] EXIT 0
+=================================================================
+[17:03:04] START: J2 affine long-decode divergence (32x32)
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+{
+  "samples": 32,
+  "max_new_tokens": 32,
+  "full_match_rate": 1.0,
+  "divergence_rate": 0.0,
+  "mean_divergence_step_diverged_only": 0.0,
+  "divergence_curve": [
+    {
+      "step": 0,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 1,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 2,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 3,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 4,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 5,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 6,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 7,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 8,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 9,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 10,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 11,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 12,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 13,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 14,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 15,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 16,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 17,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 18,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 19,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 20,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 21,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 22,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 23,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 24,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 25,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 26,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 27,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 28,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 29,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 30,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 31,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 32,
+      "diverged_fraction": 0.0
+    }
+  ]
+}
+Wrote experiments/runs/wave12_affine_decode_divergence_qwen3_0p6b_std128_fp32_32x32.json
+[17:19:19] EXIT 0
+=================================================================
+[17:19:19] START: J3 affine perf (plain vs affine, long horizon)
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+{
+  "mode": "plain",
+  "prompt_length": 64,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.03252419575073873,
+    "std": 0.00028584544642194223,
+    "min": 0.03217004399630241,
+    "max": 0.03307196602690965
+  },
+  "decode_s": {
+    "mean": 3.710655188504461,
+    "std": 0.01960145787278387,
+    "min": 3.6856185749929864,
+    "max": 3.7515947310021147
+  },
+  "decode_tokens_per_s": {
+    "mean": 34.49621459217422,
+    "std": 0.1815029540961093,
+    "min": 34.118823907669,
+    "max": 34.72958402925446
+  },
+  "kv_cache_bytes_after_decode": 44040192
+}
+{
+  "mode": "plain",
+  "prompt_length": 256,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.04200131312973099,
+    "std": 0.00015615093306252972,
+    "min": 0.041756880993489176,
+    "max": 0.04221201399923302
+  },
+  "decode_s": {
+    "mean": 3.7025388691254193,
+    "std": 0.013509498935060763,
+    "min": 3.671179327997379,
+    "max": 3.715916978981113
+  },
+  "decode_tokens_per_s": {
+    "mean": 34.57133527444676,
+    "std": 0.12677172641572318,
+    "min": 34.44641005814317,
+    "max": 34.86618020096113
+  },
+  "kv_cache_bytes_after_decode": 88080384
+}
+{
+  "mode": "plain",
+  "prompt_length": 1024,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.13292895687845885,
+    "std": 0.000292697311372381,
+    "min": 0.13233234602375887,
+    "max": 0.13332580900168978
+  },
+  "decode_s": {
+    "mean": 3.7287881370029936,
+    "std": 0.08574175316757711,
+    "min": 3.656403090019012,
+    "max": 3.9039203469874337
+  },
+  "decode_tokens_per_s": {
+    "mean": 34.345230101197046,
+    "std": 0.7708536753976409,
+    "min": 32.787554207855365,
+    "max": 35.00708123494515
+  },
+  "kv_cache_bytes_after_decode": 264241152
+}
+{
+  "mode": "wrapped",
+  "prompt_length": 64,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 1.6646522647461097,
+    "std": 0.015957004673990742,
+    "min": 1.624066791991936,
+    "max": 1.6765512999845669
+  },
+  "decode_s": {
+    "mean": 216.0457052703714,
+    "std": 0.5432771837279612,
+    "min": 214.90250377598568,
+    "max": 216.58029666397488
+  },
+  "decode_tokens_per_s": {
+    "mean": 0.5924709828191903,
+    "std": 0.0014934137463696751,
+    "min": 0.5910048234839778,
+    "max": 0.5956189330089293
+  },
+  "kv_cache_bytes_after_decode": 44040192
+}
+{
+  "mode": "wrapped",
+  "prompt_length": 256,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 6.5023014612525,
+    "std": 0.0495572592193937,
+    "min": 6.440038823027862,
+    "max": 6.579441486974247
+  },
+  "decode_s": {
+    "mean": 522.8852303015046,
+    "std": 1.8314734996376922,
+    "min": 520.3664307710133,
+    "max": 525.6775981569954
+  },
+  "decode_tokens_per_s": {
+    "mean": 0.24479859414237598,
+    "std": 0.0008568407782094158,
+    "min": 0.2434952534571815,
+    "max": 0.24598050994631948
+  },
+  "kv_cache_bytes_after_decode": 88080384
+}

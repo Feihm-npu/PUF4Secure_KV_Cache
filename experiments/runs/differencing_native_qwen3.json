@@ -1,0 +1,41 @@
+{
+  "config": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "samples": 20,
+    "candidates": 32,
+    "seed": 20260615,
+    "secret_types": "verification_code",
+    "mask_std": 128.0,
+    "layers": "0",
+    "device_id": "device_A",
+    "out": "experiments/runs/differencing_native_qwen3.json"
+  },
+  "chance": 0.03125,
+  "modes": {
+    "position_only": {
+      "norm_l2": {
+        "samples": 20,
+        "top1": 1.0,
+        "mrr": 1.0
+      },
+      "gram_l2": {
+        "samples": 20,
+        "top1": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "per_write_nonce": {
+      "norm_l2": {
+        "samples": 20,
+        "top1": 0.05,
+        "mrr": 0.10620708267857878
+      },
+      "gram_l2": {
+        "samples": 20,
+        "top1": 0.05,
+        "mrr": 0.10876574057136204
+      }
+    }
+  }
+}

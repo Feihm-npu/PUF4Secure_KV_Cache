@@ -1,0 +1,117 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct",
+    "snapshot": null,
+    "out": "experiments/runs/wave1_utility_smoke_qwen2p5_1p5b_fp32.json",
+    "modes": [
+      "plain",
+      "wrapped"
+    ],
+    "force_fp32": true,
+    "fp32_cache": false,
+    "device_id": "device_A",
+    "ppl_dataset": "ag_news",
+    "ppl_split": "test",
+    "ppl_text_field": "text",
+    "ppl_samples": 2,
+    "ppl_max_length": 256,
+    "mc_dataset": "hellaswag",
+    "mc_split": "validation",
+    "mc_samples": 0,
+    "mc_max_length": 256,
+    "prompts_file": "experiments/prompts/synthetic_privacy_prompts.txt",
+    "long_decode_prompts": 1,
+    "max_new_tokens": 4,
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "6",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "modes": {
+    "plain": {
+      "perplexity": {
+        "dataset": "ag_news",
+        "split": "test",
+        "text_field": "text",
+        "samples_requested": 2,
+        "samples_used": 2,
+        "tokens": 111,
+        "mean_nll": 3.573929348507443,
+        "perplexity": 35.656424767579935
+      },
+      "long_decode": [
+        {
+          "prompt": "My temporary verification code is 482913. Please keep it private.",
+          "tokens": [
+            1416,
+            498,
+            1184,
+            311
+          ],
+          "text": " If you need to",
+          "length": 4
+        }
+      ]
+    },
+    "wrapped": {
+      "perplexity": {
+        "dataset": "ag_news",
+        "split": "test",
+        "text_field": "text",
+        "samples_requested": 2,
+        "samples_used": 2,
+        "tokens": 111,
+        "mean_nll": 3.573927587217039,
+        "perplexity": 35.65636196631645
+      },
+      "long_decode": [
+        {
+          "prompt": "My temporary verification code is 482913. Please keep it private.",
+          "tokens": [
+            1416,
+            498,
+            1184,
+            311
+          ],
+          "text": " If you need to",
+          "length": 4
+        }
+      ]
+    }
+  },
+  "long_decode_comparisons": [
+    {
+      "prompt_index": 0,
+      "mode": "wrapped",
+      "divergence_step": 4,
+      "exact_match_rate": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "char_overlap_vs_plain": 1.0,
+      "plain_text": " If you need to",
+      "mode_text": " If you need to"
+    }
+  ],
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "6",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 9.25,
+        "reserved_mib": 2946.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+\section{Design}
+\label{sec:design}
+
+Figure~\ref{fig:overview} illustrates the architecture of \sys{}. The design binds attention state to a device-specific session basis, so the legitimate model computes with PUF-derived state while an attacker sees tensors that no longer align with the public model weights. We present the orthogonal basis as the minimal exact construction and then add affine masking to address the norm-invariant attack found in evaluation.
+
+\subsection{Design Rationale}
+
+The central observation is that attention is invariant under paired orthogonal transformations. For any orthogonal matrix $O_k$, the score matrix remains unchanged:
+\begin{equation}
+    (QO_k)(KO_k)^\top = QO_kO_k^\top K^\top = QK^\top.
+\end{equation}
+For any orthogonal matrix $O_v$, the value path can be cancelled after attention:
+\begin{equation}
+    \left(\mathrm{softmax}(QK^\top)V O_v\right)O_v^\top = \mathrm{softmax}(QK^\top)V.
+\end{equation}
+These identities let a model store $K'=KO_k$ and $V'=VO_v$ while preserving the same output on the device that knows $O_k$ and $O_v$. They also reveal the structural limitation of any purely orthogonal construction. Right-multiplication by an orthogonal matrix is an isometry of the row space, so \emph{every} statistic of the cached matrix $X\in\mathbb{R}^{n\times d}$ that is invariant under $X\mapsto XO$ is preserved exactly. This is not a single leak but a whole class:
+\begin{itemize}
+    \item per-row norms $\|X_i\|_2$ (the diagonal of the Gram matrix);
+    \item the full Gram matrix $G=XX^\top$ of pairwise inner products, i.e.\ the relative geometry of all cached tokens, since $(XO)(XO)^\top = XX^\top$;
+    \item the singular-value spectrum $\sigma(X)$, since $\sigma(XO)=\sigma(X)$.
+\end{itemize}
+An attacker who holds a finite set of candidate plaintexts can compute any of these invariants under the public model and match them against the protected cache without ever learning the basis $O$. Orthogonal bases therefore provide non-migratability and direction hiding, but they do not provide confidentiality against candidate matching: the design must additionally \emph{remove the basis-invariant class}, not merely hide the direction. We confirm in evaluation that norm, Gram, and spectrum matching each recover protected secrets at top-1 $1.000$, and that the affine-mask construction below removes all three. Section~\ref{sec:theory} makes this precise: Lemma~\ref{lem:orbit} shows the orbit of a right-orthogonal map is exactly $\{Y:YY^\top=XX^\top\}$, so an orthogonal cache leaks \emph{exactly} the Gram matrix (Theorem~\ref{thm:impossible}, requirement R1), and Theorem~\ref{thm:dichotomy} casts the design space as an axis between geometry-preserving schemes (which compute on protected coordinates but admit only statistical confidentiality) and cryptographic schemes (which force decrypt-before-attend and materialize plaintext). \sys{} chooses the geometry-preserving side, so the value of physical binding is the plaintext-non-materialization of Definition~\ref{def:inuse}, not confidentiality stronger than encryption.
+
+\subsection{PUF-derived Orthogonal Bases}
+
+For each session, layer $\ell$, and KV head $h$, \sys{} derives two seeds from the reconstructed PUF root:
+\begin{align}
+    s_k &= \mathrm{HMAC}(r_d, n_s, \ell, h, \texttt{K\_attn}), \\
+    s_v &= \mathrm{HMAC}(r_d, n_s, \ell, h, \texttt{V\_attn}),
+\end{align}
+where $r_d$ is the stable device root and $n_s$ is the session nonce. The prototype maps these seeds to block-diagonal Givens rotations because 2-by-2 rotations are orthogonal, cheap to generate, and compatible with RoPE pair structure. The implementation also includes signed permutation, Hadamard, Householder, and dense QR variants for cache-level ablations.
+
+The production rule learned from evaluation is that the nonce must change across sessions. A fixed root-derived basis is profileable: an adversary who collects aligned plaintext/protected pairs can solve an orthogonal Procrustes problem and strip the basis. Session refresh prevents the learned transform from transferring to a later cache, but it does not remove same-cache invariants such as row norms.
+
+\subsection{Level-3 Attention Wrapper}
+
+\sys{} integrates the basis into the attention block rather than transforming the cache after plaintext generation. For Qwen3, the wrapper applies rotations after RoPE and K normalization, before \texttt{past\_key\_values.update}. For grouped-query attention, all query heads that share a KV head reuse that KV head's $O_k$ and $O_v$.
+
+For each layer, the wrapper computes
+\begin{align}
+    q'_{\ell,g} &= q_{\ell,g}O_{k,\ell,h(g)}, \\
+    k'_{\ell,h} &= k_{\ell,h}O_{k,\ell,h}, \\
+    v'_{\ell,h} &= v_{\ell,h}O_{v,\ell,h},
+\end{align}
+where $h(g)$ maps a query head to its shared KV head. The cache stores $k'$ and $v'$. After attention, the wrapper multiplies each query-head output by $O_{v,\ell,h(g)}^\top$ before the output projection.
+
+This Level-3 integration is the mechanism that distinguishes \sys{} from a cache-only obfuscator: the protected representation is produced and consumed inside the attention block, so the cache that is exported, offloaded, or migrated is never in the model-native basis. Because $O_k$ and $O_v$ are linear, they fold directly into the projection weights ($O_k$ into $W_q,W_k$; $O_v$ into $W_v$ and $O_v^\top$ into $W_o$), so the rotation costs nothing per token and---crucially---the model-native plaintext $K,V$ is \emph{never materialized} anywhere in the memory hierarchy: attention computes on the protected coordinates $kO_k,vO_v$ throughout. This is the plaintext-non-materialization property of Definition~\ref{def:inuse}, which encrypt-at-rest cannot provide because it must produce a plaintext page before attending. In the orthogonal path the legitimate device additionally does not decrypt the cache before using it, because the cache is already in the model's session basis; the affine-mask path trades that no-decrypt property for invariant removal (Theorem~\ref{thm:dichotomy}) while still only ever materializing the rotated, never the plaintext, coordinates.
+
+Because the rotations are linear maps applied to $q$, $k$, and $v$ \emph{around} the attention kernel, the orthogonal path is compatible with fused-kernel attention: routing the rotated tensors through the standard \texttt{scaled\_dot\_product\_attention} entry point reproduces the plain model's logits to within $4\times10^{-5}$. The affine-mask path is the part that resists naive fusion, because the mask must be subtracted between the cache read and the QK/AV products; we return to flash/paged integration in Section~\ref{sec:discussion}.
+
+\subsection{No-sidecar Affine Masking}
+
+The invariant-leakage class suggests a sharper design rule: the exported cache must not preserve \emph{any} basis-invariant statistic an attacker can reproduce with a public model, not merely the row norms. A sidecar design can store unit-normalized cache rows and keep the original norms in trusted process memory, but this only removes the norm and still leaves the Gram and spectrum invariants, and it raises the systems objection that a trusted sidecar begins to resemble a smaller trusted cache. We therefore implement a no-sidecar alternative that uses only recomputable PUF-derived masks and perturbs the full row geometry.
+
+For each session, layer, KV head, cache position $i$, and a \emph{per-write nonce} $w$, the device derives additive masks $M^k_{w,i}$ and $M^v_{w,i}$ from the PUF root. The exported cache stores
+\begin{align}
+    \tilde{k}_{i} &= k_i O_k + M^k_{w,i}, \\
+    \tilde{v}_{i} &= v_i O_v + M^v_{w,i},
+\end{align}
+with $M^\cdot_{w,i}=F_{r_d}(n_s,w,\ell,h,i)$ mapped to $\mathcal{N}(0,\sigma^2 I)$, where $F$ is the PUF-keyed PRF. During legitimate attention, the device reads $w$ from the (non-secret) cache metadata, regenerates the same masks, and computes $k_iO_k=\tilde{k}_i-M^k_{w,i}$ and $v_iO_v=\tilde{v}_i-M^v_{w,i}$ before the QK and AV products. The mask is not stored as content metadata; it is recomputed from the PUF/session coordinates. A copied cache without the original live PUF oracle contains masked rows whose norms and raw coordinates are dominated by $M_{w,i}$ rather than by the underlying candidate secret.
+
+Because $M_{w,i}$ is additive and non-orthogonal, it perturbs the row norms, the Gram matrix, and the singular-value spectrum simultaneously, removing the entire invariant class rather than a single statistic (requirement R1). Theorem~\ref{thm:confidentiality} bounds the resulting migration advantage by $\lVert\Delta C\rVert_F/(\sigma\sqrt{2\pi})$ plus PRF and fuzzy-extractor terms, which replaces the ad-hoc choice of $\sigma$ with a target advantage: this is statistical (Gaussian-mechanism-style) confidentiality, the strongest a geometry-preserving scheme can reach (Theorem~\ref{thm:dichotomy}).
+
+\paragraph{Keystream freshness (requirement R2).} The per-write nonce $w$ is not cosmetic. A mask that is a function of position alone is reused across two protected caches of the same session---for example two prefills of a multi-turn conversation that share a prefix---and differencing the two caches at a shared position $i$ cancels the additive mask, $\tilde{k}^{(a)}_i-\tilde{k}^{(b)}_i=(k^{(a)}_i-k^{(b)}_i)O_k$, returning the attacker to the orthogonal-leakage regime of Theorem~\ref{thm:impossible}. Drawing $w$ freshly on every $\mathsf{Protect}$ call (stored as a non-secret IV, exactly as in AEAD) makes the two keystreams independent, so the difference retains a fresh mask. We treat this differencing attack as a first-class threat and evaluate it in Section~\ref{sec:evaluation}.
+
+\paragraph{Authentication.} To prevent a migrated cache from being used as a forged injection history, the device appends a tag $\tau=\mathsf{MAC}_{r_d}(\tilde C,w,n_s)$ over the protected cache and its metadata, and $\mathsf{Attend}$ aborts on mismatch. This closes the integrity gap relative to AES-GCM at negligible cost and is the analogue of the GCM tag for the affine path.
+
+We are explicit about what this costs in the \sys{} story. The orthogonal path computes directly on protected coordinates, but affine masking regenerates and subtracts $M_{s,i}$ \emph{inside} attention before the QK and AV products: the legitimate path now performs a decrypt-before-attend step, where $M_{s,i}$ acts as a PUF-derived additive keystream. The defended property is therefore not ``attention never decrypts the cache'' but \emph{physical non-migratability with no extractable key}: a copied cache plus the complete software stack is useless on any device whose PUF root differs, because $M_{s,i}$ (and $O_s$) can only be regenerated from the physical root, and that root is never materialized as a storable key. Affine masking is a prototype redesign rather than a final production path: the recomputable mask must be generated efficiently (Section~\ref{sec:evaluation} shows a naive per-position derivation is $O(n^2)$ over a decode and reports the cached $O(n)$ variant), and large masks introduce finite-precision cancellation error, so the construction is fp32-sensitive. The evaluation reports candidate-attack reduction across the full invariant class, utility, long-decode stability, the security-versus-precision tradeoff in $\mathrm{std}(M)$, and serving overhead.
+
+\subsection{Layout and Session Refresh}
+
+Cache layout permutations act on the token-row dimension. If $P$ permutes rows, then
+\begin{equation}
+    \mathrm{softmax}(QK^\top P^\top)PV = \mathrm{softmax}(QK^\top)V.
+\end{equation}
+This identity makes layout compatible with attention. We evaluate row and block permutations as profiling hardening mechanisms.
+
+The current orthogonal design treats layout as a secondary defense, not the primary boundary. Our Hungarian experiments show that block layout alone is broken by block-aware assignment, and row layout still allows the attacker to recover the basis even though held-out token order remains hard to transfer. Session refresh is therefore mandatory, with layout retained as defense-in-depth.
+
+\subsection{PUF Noise Handling}
+
+Raw PUF responses are noisy, so \sys{} separates the exact path from optional stochastic behavior. The exact path reconstructs a stable root through a fuzzy extractor before generating attention matrices. In the simulator, a 256-bit root with a 64-bit correction budget preserves the same root up to 20\% bit error rate (BER) and collapses to a corrupted root beyond that budget. The corrupted root behaves like a wrong device: legitimate utility fails, and the cache remains unusable to attackers.
+
+\subsection{Implementation}
+
+We implement \sys{} in PyTorch and Hugging Face Transformers. The cache-level implementation provides \texttt{protect\_kv\_cache} and \texttt{recover\_kv\_cache} for ablations and attack tests. The Level-3 implementation monkey-patches RoPE attention modules for Qwen3, Qwen2, and Llama-family models and supports bf16, an fp32 eager matmul, an fp32 \texttt{scaled\_dot\_product\_attention} backend, fp32 cache storage, bounded non-orthogonal scaling, unit-norm sidecar diagnostics, and PUF-derived affine masks. Because the affine mask $M_{w,i}$ is a pure function of position within a fixed $(\text{session},\text{write-nonce})$ context, it is generated once per position and cached incrementally, which reduces a naive per-position re-derivation from $O(n^2)$ to $O(n)$ over a full decode; the per-write nonce $w$ is constant for the lifetime of a given cache, so freshness costs no extra regeneration. Profiling experiments stream random-token prompts and accumulate $X^\top Y$ online for each layer/head/target, so 1,000-prompt Procrustes runs require about 29 MB of CPU accumulator memory for Qwen3-0.6B.
+
+\sys{} offers three advantages in the current prototype: (1) it stores no plaintext cache on the legitimate path, (2) it turns wrong-device replay into a basis or mask mismatch with residual near $\sqrt{2}$ even when the attacker holds the cache and the complete software stack, and (3) it exposes fixed-basis profiling and the full basis-invariant candidate-matching class (norm, Gram, and spectrum) as measurable failure modes that guide the session-refresh and affine-mask redesigns.

@@ -1,0 +1,40 @@
+\section{Background, Threat Model, and Goals}
+\label{sec:background}
+
+\subsection{KV-cache Inference State}
+
+Decoder-only transformers compute query, key, and value tensors for each token. During prefill, the model processes the input sequence and stores the K/V tensors for every layer. During decode, the model computes the current query and attends to cached keys and values, avoiding repeated computation over the historical context.
+
+Let $Q,K,V \in \mathbb{R}^{n \times d}$ denote the per-head query, key, and value matrices after model-specific transformations such as rotary position embedding (RoPE)~\cite{roformer} and normalization. The attention output is
+\begin{equation}
+    \mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V.
+\end{equation}
+The cache stores $K,V$ because future tokens need the historical state. This persistence creates the attack surface: a cache contains structured, token-aligned representations of private input.
+
+\subsection{Cache Attacks}
+
+We use four attack families as security tests. \textbf{Inversion} uses the model projection matrices to map a leaked K or V vector back toward the input embedding space. On Qwen3-0.6B, the layer-0 value projection is square, so least-squares V-inversion recovers prompt tokens with top-1 accuracy 1.000. \textbf{Collision matching} generates candidate tokens locally and chooses the token whose K/V slice best matches the leaked cache. We evaluate both raw-vector L2 matching and norm-only matching, because orthogonal transforms preserve $\ell_2$ norms. \textbf{Injection} treats a leaked cache as history and appends an instruction that induces the model to repeat or summarize the cached context. \textbf{Profiling} collects aligned plaintext/protected pairs and estimates the transform that maps one basis to the other. These attacks test algebraic recovery, statistical matching, semantic replay, and adaptive basis learning.
+
+\subsection{PUF-derived Basis Generation}
+
+A physically unclonable function (PUF) produces device-specific responses from physical manufacturing variation. In our prototype, a simulator maps a device identifier and session nonce to a stable root and then derives structured seeds by HMAC-SHA256 over $(\mathrm{layer},\mathrm{head},\mathrm{block},\mathrm{purpose})$. The simulator supports three modes: a stable same-device root, a wrong-device root, and a noisy root corrected up to a configurable bit-error budget.
+
+The simulator is not a substitute for physical validation. It gives the software prototype the same interface expected from a fuzzy-extracted PUF root: a stable same-device seed, a different cross-device seed, and a reconstruction failure mode when noise exceeds the correction budget. Section~\ref{sec:discussion} states the remaining hardware-validation gap.
+
+\subsection{Threat Model}
+
+We consider a post-compromise cache-migration adversary. The adversary can obtain model weights, tokenizer, model configuration, source code, public helper data, and a protected \kv{} copied from local storage, an offloading buffer, or a memory dump after the session. The adversary can run the same model locally, query their own device, enumerate finite candidate secrets, compare basis-invariant statistics such as row norms, and run inversion, collision, injection, replay, and chosen-input profiling attacks.
+
+The adversary cannot clone the original physical PUF, cannot query the original device's live PUF oracle after cache migration, and cannot read all live session matrices or regenerated affine masks during legitimate inference. A full live runtime compromise that dumps the regenerated basis matrices or masks defeats the base design; such a setting requires secure boot, memory isolation, or a small trusted component to protect the live PUF-derived state. The paper therefore studies cache confidentiality and non-migratability after the protected state leaves the device, not total compromise of an actively running session.
+
+\subsection{Security and Utility Goals}
+
+\textbf{G1: Reconstruction and candidate-matching resistance.} A protected cache should reduce V-inversion, raw-vector collision recovery, norm-only candidate recovery, and exact secret leakage relative to a plaintext cache. We operationalize this goal with V-inversion top-1 accuracy, collision token accuracy, finite-candidate top-1/MRR, injection ROUGE-L, exact keyword hits, and digit recall.
+
+\textbf{G2: Replay resistance.} A protected cache copied to a standard model or a wrong device should fail as historical context. We measure replay by injection leakage and by the relative L2 distance between wrong-device recovered tensors and the plaintext cache.
+
+\textbf{G3: Profiling resistance across sessions.} A basis learned from chosen inputs in one session should not transfer to a later session. We measure this goal with Procrustes residual, basis-recovery error, and downstream V-inversion after stripping the learned basis.
+
+\textbf{G4: Legitimate equivalence.} The original device should preserve model behavior. We test equivalence by fp32 token agreement, perplexity, multiple-choice accuracy, and long greedy decode agreement.
+
+\textbf{G5: Practicality.} The construction should identify a vectorizable path and expose its overhead. We measure end-to-end prototype serving overhead for the PyTorch wrapper and leave fused-kernel overhead to future implementation work.

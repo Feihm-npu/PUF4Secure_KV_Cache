@@ -1,0 +1,65 @@
+{
+  "kind": "SIMULATED (software PUF, SHA256 root, no physical entropy)",
+  "root_bits": 256,
+  "correction_budget_bits": 64,
+  "inter_device_frac_hamming": {
+    "pairs": 2000,
+    "mean": 0.500037109375,
+    "std": 0.03093947519489811,
+    "min": 0.39453125,
+    "max": 0.6015625
+  },
+  "min_entropy_bits_sim": 256,
+  "min_entropy_note": "simulated PRG root; real H_inf needs FPGA traces",
+  "helper_data_leakage": "N/A (simulator has no syndrome helper data)",
+  "reliability_curve": [
+    {
+      "ber": 0.0,
+      "mean_raw_frac_hamming": 0.0,
+      "rep_success": 1.0,
+      "rep_failure_delta_fe": 0.0
+    },
+    {
+      "ber": 0.05,
+      "mean_raw_frac_hamming": 0.05123046875,
+      "rep_success": 1.0,
+      "rep_failure_delta_fe": 0.0
+    },
+    {
+      "ber": 0.1,
+      "mean_raw_frac_hamming": 0.102138671875,
+      "rep_success": 1.0,
+      "rep_failure_delta_fe": 0.0
+    },
+    {
+      "ber": 0.15,
+      "mean_raw_frac_hamming": 0.152240234375,
+      "rep_success": 1.0,
+      "rep_failure_delta_fe": 0.0
+    },
+    {
+      "ber": 0.2,
+      "mean_raw_frac_hamming": 0.203185546875,
+      "rep_success": 0.974,
+      "rep_failure_delta_fe": 0.026
+    },
+    {
+      "ber": 0.25,
+      "mean_raw_frac_hamming": 0.2499921875,
+      "rep_success": 0.5315,
+      "rep_failure_delta_fe": 0.4685
+    },
+    {
+      "ber": 0.3,
+      "mean_raw_frac_hamming": 0.300912109375,
+      "rep_success": 0.039,
+      "rep_failure_delta_fe": 0.961
+    },
+    {
+      "ber": 0.4,
+      "mean_raw_frac_hamming": 0.402857421875,
+      "rep_success": 0.0,
+      "rep_failure_delta_fe": 1.0
+    }
+  ]
+}

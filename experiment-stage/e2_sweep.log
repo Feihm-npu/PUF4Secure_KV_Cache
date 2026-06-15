@@ -1,0 +1,937 @@
+[23:50:16] === std=4 ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Wrote experiments/runs/wave13_e2_sanity_std4_qwen3_0p6b_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.975,
+  "mrr": 0.9875,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.8571428571428571,
+      "mrr": 0.9285714285714286
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_gram_l2_std4_qwen3_0p6b_40x32_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.35,
+  "mrr": 0.5051474594110925,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.16666666666666666,
+      "mrr": 0.4071428571428572
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.5,
+      "mrr": 0.7083333333333334
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.8571428571428571,
+      "mrr": 0.9285714285714286
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.42857142857142855,
+      "mrr": 0.5863945578231292
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.16018834966203385
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.25528012588434584
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_norm_l2_std4_qwen3_0p6b_40x32_fp32.json
+[23:52:38] std=4 done
+[23:52:38] === std=16 ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Wrote experiments/runs/wave13_e2_sanity_std16_qwen3_0p6b_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.125,
+  "mrr": 0.2781596457712925,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.16666666666666666,
+      "mrr": 0.33829365079365076
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.15216518349510677
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.3532509157509157
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.2857142857142857,
+      "mrr": 0.4571428571428572
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.11074046310178244
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24795616759289527
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_gram_l2_std16_qwen3_0p6b_40x32_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.1692390330206616,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13497796779530524
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.1405446623093682
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.22010898458266878
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.20581811672037234
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.06047182975754404
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24451900325347528
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_norm_l2_std16_qwen3_0p6b_40x32_fp32.json
+[23:55:00] std=16 done
+[23:55:00] === std=64 ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Wrote experiments/runs/wave13_e2_sanity_std64_qwen3_0p6b_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.16154280050921171,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.14670868347338936
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.1079599640125956
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.213876459674779
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.18809523809523807
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.05760752813711297
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24523507915752113
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_gram_l2_std64_qwen3_0p6b_40x32_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.16410666198039583,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13497796779530524
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13803957480428067
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.2018707482993197
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.1976548514142499
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.059352578638292915
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24485913930789707
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_norm_l2_std64_qwen3_0p6b_40x32_fp32.json
+[23:57:23] std=64 done
+[23:57:23] === std=128 ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Wrote experiments/runs/wave13_e2_sanity_std128_qwen3_0p6b_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.15717595248795196,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.14616402116402116
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.10689158794421953
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.21027163312877598
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.16904761904761906
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.056689160790174185
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24523507915752113
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_gram_l2_std128_qwen3_0p6b_40x32_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.16410666198039583,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13497796779530524
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13803957480428067
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.2018707482993197
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.1976548514142499
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.059352578638292915
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24485913930789707
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_norm_l2_std128_qwen3_0p6b_40x32_fp32.json
+[23:59:41] std=128 done
+[23:59:41] === std=256 ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Wrote experiments/runs/wave13_e2_sanity_std256_qwen3_0p6b_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.1592939236980284,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.14616402116402116
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.10712250712250714
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.21027163312877598
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.18095238095238095
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.056689160790174185
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24523507915752113
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_gram_l2_std256_qwen3_0p6b_40x32_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.16410666198039583,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13497796779530524
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13803957480428067
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.2018707482993197
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.1976548514142499
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.059352578638292915
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24485913930789707
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_norm_l2_std256_qwen3_0p6b_40x32_fp32.json
+[00:02:02] std=256 done
+[00:02:02] === std=512 ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Wrote experiments/runs/wave13_e2_sanity_std512_qwen3_0p6b_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.1585042331254431,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.14616402116402116
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.1079599640125956
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.21027163312877598
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.17619047619047618
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.05580301685891747
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.2456527901015479
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_gram_l2_std512_qwen3_0p6b_40x32_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 40,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 40,
+  "top1": 0.05,
+  "mrr": 0.16410666198039583,
+  "by_type": {
+    "api_key": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13497796779530524
+    },
+    "codename": {
+      "samples": 6,
+      "top1": 0.0,
+      "mrr": 0.13803957480428067
+    },
+    "email": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.2018707482993197
+    },
+    "phone": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.1976548514142499
+    },
+    "ssn": {
+      "samples": 7,
+      "top1": 0.0,
+      "mrr": 0.059352578638292915
+    },
+    "verification_code": {
+      "samples": 7,
+      "top1": 0.14285714285714285,
+      "mrr": 0.24485913930789707
+    }
+  }
+}
+Wrote experiments/runs/wave13_e2_norm_l2_std512_qwen3_0p6b_40x32_fp32.json
+[00:04:22] std=512 done
+[00:04:22] E2 SWEEP DONE

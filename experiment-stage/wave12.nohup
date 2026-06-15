@@ -1,0 +1,8 @@
+=================================================================
+[16:23:38] START: J1 affine utility (ppl+hellaswag+mmlu+long-decode)
+[17:03:04] EXIT 0
+=================================================================
+[17:03:04] START: J2 affine long-decode divergence (32x32)
+[17:19:19] EXIT 0
+=================================================================
+[17:19:19] START: J3 affine perf (plain vs affine, long horizon)

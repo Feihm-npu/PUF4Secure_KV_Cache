@@ -1,0 +1,35 @@
+{
+  "config": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "prefill_lengths": [
+      256
+    ],
+    "decode_tokens": 64,
+    "warmup": 1,
+    "repeats": 5,
+    "force_fp32": false,
+    "device_id": "device_A",
+    "out": "experiments/runs/aes_baseline_perf_qwen3_fp16.json",
+    "dtype": "torch.bfloat16"
+  },
+  "by_prefill": {
+    "256": {
+      "b1_plain_tok_s": 28.380377596060033,
+      "b2_aes_ctr_tok_s": 15.050590723440468,
+      "b3_aes_gcm_tok_s": 19.25440371524663,
+      "b2_aes_ctr_inc_tok_s": 28.254987499418394,
+      "b3_aes_gcm_inc_tok_s": 28.34731644542138,
+      "model_decode_s": 2.2550897887442263,
+      "ctr_s": 1.9993045413400978,
+      "gcm_s": 1.0717622651951388,
+      "ctr_inc_s": 0.01000847271643579,
+      "gcm_inc_s": 0.002630038117058575,
+      "final_kv_bytes": 36700160,
+      "b2_overhead_pct": 46.9683210785402,
+      "b3_overhead_pct": 32.1559283343726,
+      "b2_inc_overhead_pct": 0.44181969114831543,
+      "b3_inc_overhead_pct": 0.11649299071778935
+    }
+  }
+}

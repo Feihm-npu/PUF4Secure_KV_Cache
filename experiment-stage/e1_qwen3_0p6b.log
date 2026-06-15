@@ -1,0 +1,313 @@
+[23:49:08] wave13_invariant_gram_l2_ortho_qwen3_0p6b_60x32_layers0midlast_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 60,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 60,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+Wrote experiments/runs/wave13_invariant_gram_l2_ortho_qwen3_0p6b_60x32_layers0midlast_fp32.json
+[23:50:43] exit 0
+[23:50:43] wave13_invariant_svd_l2_ortho_qwen3_0p6b_60x32_layers0midlast_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 60,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 60,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+Wrote experiments/runs/wave13_invariant_svd_l2_ortho_qwen3_0p6b_60x32_layers0midlast_fp32.json
+[23:52:56] exit 0
+[23:52:56] wave13_invariant_gram_l2_affine_std128_qwen3_0p6b_60x32_layers0midlast_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 60,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 60,
+  "top1": 0.03333333333333333,
+  "mrr": 0.13995434521376648,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.11299302549302548
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.10939811066126855
+    },
+    "email": {
+      "samples": 10,
+      "top1": 0.1,
+      "mrr": 0.16423559773559773
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.15666666666666668
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.059504957421038854
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 0.1,
+      "mrr": 0.23692771330500167
+    }
+  }
+}
+Wrote experiments/runs/wave13_invariant_gram_l2_affine_std128_qwen3_0p6b_60x32_layers0midlast_fp32.json
+[23:54:29] exit 0
+[23:54:29] wave13_invariant_svd_l2_affine_std128_qwen3_0p6b_60x32_layers0midlast_fp32.json
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain {
+  "samples": 60,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "email": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native {
+  "samples": 60,
+  "top1": 0.03333333333333333,
+  "mrr": 0.13014135241294847,
+  "by_type": {
+    "api_key": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.09821959759030699
+    },
+    "codename": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.1326569629201208
+    },
+    "email": {
+      "samples": 10,
+      "top1": 0.1,
+      "mrr": 0.16372876636034533
+    },
+    "phone": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.14767424242424243
+    },
+    "ssn": {
+      "samples": 10,
+      "top1": 0.0,
+      "mrr": 0.0492292594683899
+    },
+    "verification_code": {
+      "samples": 10,
+      "top1": 0.1,
+      "mrr": 0.1893392857142857
+    }
+  }
+}
+Wrote experiments/runs/wave13_invariant_svd_l2_affine_std128_qwen3_0p6b_60x32_layers0midlast_fp32.json
+[23:56:42] exit 0
+[23:56:42] E1 qwen3_0p6b DONE

@@ -1,0 +1,121 @@
+{
+  "settings": {
+    "n_prompts": 20,
+    "seq_len": 32,
+    "head_dim": 128
+  },
+  "scenarios": {
+    "S1_large_nolayout_naive": {
+      "alignment": "naive",
+      "spec": {
+        "kind": "givens",
+        "layout": "none"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.001715901793554522,
+      "mean_basis_recovery_err": 0.005139658939318012,
+      "downstream_v_inversion_top1_mean": 1.0,
+      "downstream_transfer_residual_mean": 0.0017762558660385605,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 11.701883010566235
+    },
+    "S2_large_rowlayout_naive": {
+      "alignment": "naive",
+      "spec": {
+        "kind": "givens",
+        "layout": "row"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.9341549676788523,
+      "mean_basis_recovery_err": 1.3496345440757012,
+      "downstream_v_inversion_top1_mean": 0.0,
+      "downstream_transfer_residual_mean": 1.0815486201038522,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 13.170584604144096
+    },
+    "S2b_large_rowlayout_sortnorm": {
+      "alignment": "sort_by_norm",
+      "spec": {
+        "kind": "givens",
+        "layout": "row"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.13119711696226752,
+      "mean_basis_recovery_err": 0.018580457390327258,
+      "downstream_v_inversion_top1_mean": 0.07268518581986427,
+      "downstream_transfer_residual_mean": 0.9600253545586446,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 14.680478416383266
+    },
+    "S3_large_blocklayout_sortnormblock": {
+      "alignment": "sort_by_norm_block",
+      "spec": {
+        "kind": "givens",
+        "layout": "block"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.8570912924752286,
+      "mean_basis_recovery_err": 1.1687848482736256,
+      "downstream_v_inversion_top1_mean": 0.0,
+      "downstream_transfer_residual_mean": 1.0430740881955873,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 15.94681467115879
+    },
+    "S4_large_session_refresh_naive": {
+      "alignment": "naive",
+      "spec": {
+        "kind": "givens",
+        "layout": "none"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "99999999999999999999999999999999",
+      "mean_fresh_prompt_residual": 1.4034918097381652,
+      "mean_basis_recovery_err": 0.005139658939318012,
+      "downstream_v_inversion_top1_mean": 0.0,
+      "downstream_transfer_residual_mean": 1.4040023179508039,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 11.789808817207813
+    },
+    "S2c_large_rowlayout_hungarian": {
+      "alignment": "hungarian",
+      "spec": {
+        "kind": "givens",
+        "layout": "row"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.001715901793554522,
+      "mean_basis_recovery_err": 0.005139658939318012,
+      "downstream_v_inversion_top1_mean": 0.07268518581986427,
+      "downstream_transfer_residual_mean": 0.9626331873731999,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 23.89889676310122
+    },
+    "S3b_large_blocklayout_hungarian_block": {
+      "alignment": "hungarian_block",
+      "spec": {
+        "kind": "givens",
+        "layout": "block"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.001715901793554522,
+      "mean_basis_recovery_err": 0.005139658939318012,
+      "downstream_v_inversion_top1_mean": 1.0,
+      "downstream_transfer_residual_mean": 0.5634701750159192,
+      "n_units": 448,
+      "rows_per_unit": 640,
+      "fit_time_s": 32.10363351739943
+    }
+  }
+}

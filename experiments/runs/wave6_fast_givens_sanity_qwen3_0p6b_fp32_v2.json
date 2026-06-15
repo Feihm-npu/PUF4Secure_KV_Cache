@@ -1,0 +1,80 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/wave6_fast_givens_sanity_qwen3_0p6b_fp32_v2.json",
+    "prompts_file": "experiments/prompts/synthetic_privacy_prompts.txt",
+    "prompt_count": 1,
+    "max_length": 128,
+    "max_new_tokens": 8,
+    "force_fp32": true,
+    "fp32_cache": false,
+    "fast_givens": true,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "results": [
+    {
+      "prompt_index": 0,
+      "prompt": "My temporary verification code is 482913. Please keep it private.",
+      "max_abs_logit_diff": 3.147125244140625e-05,
+      "mean_abs_logit_diff": 3.2194257073570043e-06,
+      "plain_tokens": [
+        358,
+        1184,
+        311,
+        990,
+        432,
+        369,
+        279,
+        2701
+      ],
+      "wrapped_tokens": [
+        358,
+        1184,
+        311,
+        990,
+        432,
+        369,
+        279,
+        2701
+      ],
+      "token_match_rate": 1.0,
+      "divergence_step": 8
+    }
+  ],
+  "model": {
+    "model_type": "qwen3",
+    "hidden_size": 1024,
+    "num_hidden_layers": 28,
+    "num_attention_heads": 16,
+    "num_key_value_heads": 8,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 20.0
+      }
+    ]
+  }
+}

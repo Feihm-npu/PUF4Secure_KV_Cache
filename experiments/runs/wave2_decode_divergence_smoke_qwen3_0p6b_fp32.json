@@ -1,0 +1,195 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/wave2_decode_divergence_smoke_qwen3_0p6b_fp32.json",
+    "dataset": "ag_news",
+    "split": "test",
+    "text_field": "text",
+    "samples": 4,
+    "max_prompt_chars": 256,
+    "max_new_tokens": 8,
+    "force_fp32": true,
+    "fp32_cache": false,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "6",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "prompt_count": 4,
+  "records": [
+    {
+      "index": 0,
+      "prompt": "Fears for T N pension after talks Unions representing workers at Turner   Newall say they are 'disappointed' after talks with stricken parent firm Federal Mogul.",
+      "plain_tokens": [
+        576,
+        11300,
+        1053,
+        807,
+        525,
+        364,
+        4243,
+        70116
+      ],
+      "wrapped_tokens": [
+        576,
+        11300,
+        1053,
+        807,
+        525,
+        364,
+        4243,
+        70116
+      ],
+      "divergence_step": 8,
+      "token_match_rate": 1.0
+    },
+    {
+      "index": 1,
+      "prompt": "The Race is On: Second Private Team Sets Launch Date for Human Spaceflight (SPACE.com) SPACE.com - TORONTO, Canada -- A second\\team of rocketeers competing for the  #36;10 million Ansari X Prize, a contest for\\privately funded suborbital space flight, has ",
+      "plain_tokens": [
+        11626,
+        1181,
+        7050,
+        2400,
+        369,
+        279,
+        2086,
+        2083
+      ],
+      "wrapped_tokens": [
+        11626,
+        1181,
+        7050,
+        2400,
+        369,
+        279,
+        2086,
+        2083
+      ],
+      "divergence_step": 8,
+      "token_match_rate": 1.0
+    },
+    {
+      "index": 2,
+      "prompt": "Ky. Company Wins Grant to Study Peptides (AP) AP - A company founded by a chemistry researcher at the University of Louisville won a grant to develop a method of producing better peptides, which are short chains of amino acids, the building blocks of prote",
+      "plain_tokens": [
+        23320,
+        13,
+        576,
+        2813,
+        374,
+        3118,
+        304,
+        279
+      ],
+      "wrapped_tokens": [
+        23320,
+        13,
+        576,
+        2813,
+        374,
+        3118,
+        304,
+        279
+      ],
+      "divergence_step": 8,
+      "token_match_rate": 1.0
+    },
+    {
+      "index": 3,
+      "prompt": "Prediction Unit Helps Forecast Wildfires (AP) AP - It's barely dawn when Mike Fitzpatrick starts his shift with a blur of colorful maps, figures and endless charts, but already he knows what the day will bring. Lightning will strike in places he expects. W",
+      "plain_tokens": [
+        14857,
+        686,
+        2525,
+        304,
+        7482,
+        566,
+        3171,
+        944
+      ],
+      "wrapped_tokens": [
+        14857,
+        686,
+        2525,
+        304,
+        7482,
+        566,
+        3171,
+        944
+      ],
+      "divergence_step": 8,
+      "token_match_rate": 1.0
+    }
+  ],
+  "summary": {
+    "samples": 4,
+    "max_new_tokens": 8,
+    "full_match_rate": 1.0,
+    "divergence_rate": 0.0,
+    "mean_divergence_step_diverged_only": 0.0,
+    "divergence_curve": [
+      {
+        "step": 0,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 1,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 2,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 3,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 4,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 5,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 6,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 7,
+        "diverged_fraction": 0.0
+      },
+      {
+        "step": 8,
+        "diverged_fraction": 0.0
+      }
+    ]
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "6",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 20.0
+      }
+    ]
+  }
+}

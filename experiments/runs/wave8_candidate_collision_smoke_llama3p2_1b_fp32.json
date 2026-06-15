@@ -1,0 +1,251 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B",
+    "snapshot": null,
+    "out": "experiments/runs/wave8_candidate_collision_smoke_llama3p2_1b_fp32.json",
+    "samples": 4,
+    "candidates": 8,
+    "seed": 20260605,
+    "modes": [
+      "plain",
+      "protected_native"
+    ],
+    "layers": "0",
+    "include_k": true,
+    "include_v": true,
+    "force_fp32": true,
+    "fp32_cache": false,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B/snapshots/4e20de362430cd3b72f300e6b0f18e50e7166e08"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "modes": {
+    "plain": {
+      "summary": {
+        "samples": 4,
+        "top1": 1.0,
+        "mrr": 1.0
+      },
+      "records": [
+        {
+          "index": 0,
+          "true_code": "824130",
+          "candidates": [
+            "259511",
+            "162672",
+            "670242",
+            "302101",
+            "783184",
+            "063547",
+            "824130",
+            "924512"
+          ],
+          "true_candidate_index": 6,
+          "prompt": "For this account recovery request, the temporary verification code is 824130. Keep it private.",
+          "pred_candidate_index": 6,
+          "true_rank": 1,
+          "top1": 1,
+          "mrr": 1.0,
+          "true_score": 0.0,
+          "best_score": 0.0
+        },
+        {
+          "index": 1,
+          "true_code": "211755",
+          "candidates": [
+            "015234",
+            "096346",
+            "211755",
+            "185270",
+            "088628",
+            "299308",
+            "435969",
+            "434296"
+          ],
+          "true_candidate_index": 2,
+          "prompt": "For this account recovery request, the temporary verification code is 211755. Keep it private.",
+          "pred_candidate_index": 2,
+          "true_rank": 1,
+          "top1": 1,
+          "mrr": 1.0,
+          "true_score": 0.0,
+          "best_score": 0.0
+        },
+        {
+          "index": 2,
+          "true_code": "873963",
+          "candidates": [
+            "720680",
+            "049443",
+            "250681",
+            "772047",
+            "741549",
+            "192128",
+            "873963",
+            "103074"
+          ],
+          "true_candidate_index": 6,
+          "prompt": "For this account recovery request, the temporary verification code is 873963. Keep it private.",
+          "pred_candidate_index": 6,
+          "true_rank": 1,
+          "top1": 1,
+          "mrr": 1.0,
+          "true_score": 0.0,
+          "best_score": 0.0
+        },
+        {
+          "index": 3,
+          "true_code": "643724",
+          "candidates": [
+            "693691",
+            "712990",
+            "262602",
+            "657276",
+            "939865",
+            "085501",
+            "643724",
+            "767697"
+          ],
+          "true_candidate_index": 6,
+          "prompt": "For this account recovery request, the temporary verification code is 643724. Keep it private.",
+          "pred_candidate_index": 6,
+          "true_rank": 1,
+          "top1": 1,
+          "mrr": 1.0,
+          "true_score": 0.0,
+          "best_score": 0.0
+        }
+      ]
+    },
+    "protected_native": {
+      "summary": {
+        "samples": 4,
+        "top1": 0.25,
+        "mrr": 0.41071428571428575
+      },
+      "records": [
+        {
+          "index": 0,
+          "true_code": "824130",
+          "candidates": [
+            "259511",
+            "162672",
+            "670242",
+            "302101",
+            "783184",
+            "063547",
+            "824130",
+            "924512"
+          ],
+          "true_candidate_index": 6,
+          "prompt": "For this account recovery request, the temporary verification code is 824130. Keep it private.",
+          "pred_candidate_index": 4,
+          "true_rank": 7,
+          "top1": 0,
+          "mrr": 0.14285714285714285,
+          "true_score": 145.5807614326477,
+          "best_score": 145.18042135238647
+        },
+        {
+          "index": 1,
+          "true_code": "211755",
+          "candidates": [
+            "015234",
+            "096346",
+            "211755",
+            "185270",
+            "088628",
+            "299308",
+            "435969",
+            "434296"
+          ],
+          "true_candidate_index": 2,
+          "prompt": "For this account recovery request, the temporary verification code is 211755. Keep it private.",
+          "pred_candidate_index": 4,
+          "true_rank": 3,
+          "top1": 0,
+          "mrr": 0.3333333333333333,
+          "true_score": 145.0531096458435,
+          "best_score": 144.7657356262207
+        },
+        {
+          "index": 2,
+          "true_code": "873963",
+          "candidates": [
+            "720680",
+            "049443",
+            "250681",
+            "772047",
+            "741549",
+            "192128",
+            "873963",
+            "103074"
+          ],
+          "true_candidate_index": 6,
+          "prompt": "For this account recovery request, the temporary verification code is 873963. Keep it private.",
+          "pred_candidate_index": 6,
+          "true_rank": 1,
+          "top1": 1,
+          "mrr": 1.0,
+          "true_score": 144.5082244873047,
+          "best_score": 144.5082244873047
+        },
+        {
+          "index": 3,
+          "true_code": "643724",
+          "candidates": [
+            "693691",
+            "712990",
+            "262602",
+            "657276",
+            "939865",
+            "085501",
+            "643724",
+            "767697"
+          ],
+          "true_candidate_index": 6,
+          "prompt": "For this account recovery request, the temporary verification code is 643724. Keep it private.",
+          "pred_candidate_index": 0,
+          "true_rank": 6,
+          "top1": 0,
+          "mrr": 0.16666666666666666,
+          "true_score": 145.0926752090454,
+          "best_score": 144.79924201965332
+        }
+      ]
+    }
+  },
+  "model": {
+    "model_type": "llama",
+    "hidden_size": 2048,
+    "num_hidden_layers": 16,
+    "num_attention_heads": 32,
+    "num_key_value_heads": 8,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "1",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 2356.0
+      }
+    ]
+  }
+}

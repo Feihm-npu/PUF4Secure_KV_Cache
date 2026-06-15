@@ -34,6 +34,7 @@ import time
 from pathlib import Path
 
 import torch
+from scipy.optimize import linear_sum_assignment
 
 from puf4secure_kvcache.attacks import invert_v_layer0
 from puf4secure_kvcache.kv_io import load_capture
@@ -96,6 +97,73 @@ class ProcrustesAccumulator:
     def _key(self, layer, head, target):
         return (layer, head, target)
 
+    def _hungarian_profile(self, X: torch.Tensor, Y: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """Align rows by rotation-invariant distance profiles.
+
+        Direct X-vs-Y distances are not meaningful because Y is in an unknown
+        orthogonal basis. Pairwise row distances *within* X and within Y are
+        invariant under that basis, so each row is represented by its sorted
+        distance-to-all-other-rows profile and then matched with Hungarian.
+        """
+        if X.shape[0] <= 1:
+            return X, Y
+        Dx = torch.cdist(X.float().cpu(), X.float().cpu())
+        Dy = torch.cdist(Y.float().cpu(), Y.float().cpu())
+        Px = Dx.sort(dim=1).values
+        Py = Dy.sort(dim=1).values
+        cost = torch.cdist(Px, Py).numpy()
+        row_ind, col_ind = linear_sum_assignment(cost)
+        perm_y = torch.empty(X.shape[0], dtype=torch.long)
+        perm_y[torch.as_tensor(row_ind, dtype=torch.long)] = torch.as_tensor(col_ind, dtype=torch.long)
+        return X, Y[perm_y.to(Y.device)]
+
+    def _hungarian_profile_block(self, X: torch.Tensor, Y: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """Block-aware Hungarian alignment for block-layout defenses.
+
+        First match protected blocks to plaintext blocks by their internal
+        distance profiles, then match rows inside each assigned block.
+        """
+        S = X.shape[0]
+        bs = self.block_size
+        if S <= bs:
+            return self._hungarian_profile(X, Y)
+        x_slices = [(s, min(s + bs, S)) for s in range(0, S, bs)]
+        y_slices = [(s, min(s + bs, S)) for s in range(0, S, bs)]
+        if len(x_slices) != len(y_slices):
+            return self._hungarian_profile(X, Y)
+
+        profiles_x = []
+        profiles_y = []
+        max_len = 0
+        for slices, src, profiles in [(x_slices, X, profiles_x), (y_slices, Y, profiles_y)]:
+            for s, e in slices:
+                D = torch.cdist(src[s:e].float().cpu(), src[s:e].float().cpu())
+                prof = D.flatten().sort().values
+                profiles.append(prof)
+                max_len = max(max_len, prof.numel())
+        def pad(prof):
+            if prof.numel() == max_len:
+                return prof
+            return torch.nn.functional.pad(prof, (0, max_len - prof.numel()))
+        Px = torch.stack([pad(p) for p in profiles_x])
+        Py = torch.stack([pad(p) for p in profiles_y])
+        block_cost = torch.cdist(Px, Py).numpy()
+        row_ind, col_ind = linear_sum_assignment(block_cost)
+        block_for_x = dict(zip(row_ind.tolist(), col_ind.tolist()))
+
+        Y_out = torch.empty_like(Y)
+        for xb_idx, yb_idx in block_for_x.items():
+            xs, xe = x_slices[xb_idx]
+            ys, ye = y_slices[yb_idx]
+            Xb = X[xs:xe]
+            Yb = Y[ys:ye]
+            if Xb.shape[0] == Yb.shape[0]:
+                _, Yb_aligned = self._hungarian_profile(Xb, Yb)
+                Y_out[xs:xe] = Yb_aligned
+            else:
+                Y_out[xs:xe] = Y[ys:ys + (xe - xs)]
+        return X, Y_out
+
     def _align(self, X: torch.Tensor, Y: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """Return permuted (X', Y') so that row i of X' is paired with row i of Y'.
 
@@ -121,6 +189,10 @@ class ProcrustesAccumulator:
                 X_out[s:e] = xb[xb.norm(dim=1).argsort()]
                 Y_out[s:e] = yb[yb.norm(dim=1).argsort()]
             return X_out, Y_out
+        if self.alignment == "hungarian":
+            return self._hungarian_profile(X, Y)
+        if self.alignment == "hungarian_block":
+            return self._hungarian_profile_block(X, Y)
         raise ValueError(f"Unknown alignment: {self.alignment!r}")
 
     def add(self, plain_kv, protected_kv):
@@ -222,6 +294,10 @@ def main():
     ap.add_argument("--seed", type=int, default=12345)
     ap.add_argument("--runs-dir", type=Path, default=Path("experiments/runs"))
     ap.add_argument("--out", type=Path, default=Path("experiments/runs/profiling_large_summary.json"))
+    ap.add_argument("--include-hungarian", action="store_true",
+                    help="Add Hungarian/profile alignment scenarios for row/block layout.")
+    ap.add_argument("--scenario-filter", nargs="*", default=None,
+                    help="Optional list of scenario names to run after scenario construction.")
     args = ap.parse_args()
 
     model, tokenizer = load_model_and_tokenizer(resolve_snapshot_path())
@@ -263,6 +339,19 @@ def main():
         ("S4_large_session_refresh_naive",
          spec_nolayout, puf_A, puf_A_sess2, "naive"),
     ]
+    if args.include_hungarian:
+        scenarios.extend([
+            ("S2c_large_rowlayout_hungarian",
+             spec_row, puf_A, puf_A, "hungarian"),
+            ("S3b_large_blocklayout_hungarian_block",
+             spec_block, puf_A, puf_A, "hungarian_block"),
+        ])
+    if args.scenario_filter:
+        wanted = set(args.scenario_filter)
+        scenarios = [s for s in scenarios if s[0] in wanted]
+        missing = wanted - {s[0] for s in scenarios}
+        if missing:
+            raise ValueError(f"Unknown scenario(s): {sorted(missing)}")
 
     summary = {"settings": {"n_prompts": args.n_prompts, "seq_len": args.seq_len,
                             "head_dim": head_dim}, "scenarios": {}}

@@ -1,0 +1,41 @@
+{
+  "config": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--meta-llama--Llama-3.2-1B",
+    "snapshot": null,
+    "samples": 20,
+    "candidates": 32,
+    "seed": 20260615,
+    "secret_types": "verification_code",
+    "mask_std": 128.0,
+    "layers": "0",
+    "device_id": "device_A",
+    "out": "experiments/runs/differencing_native_llama3p2_1b.json"
+  },
+  "chance": 0.03125,
+  "modes": {
+    "position_only": {
+      "norm_l2": {
+        "samples": 20,
+        "top1": 1.0,
+        "mrr": 1.0
+      },
+      "gram_l2": {
+        "samples": 20,
+        "top1": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "per_write_nonce": {
+      "norm_l2": {
+        "samples": 20,
+        "top1": 0.0,
+        "mrr": 0.08359641551141653
+      },
+      "gram_l2": {
+        "samples": 20,
+        "top1": 0.05,
+        "mrr": 0.15381533462876223
+      }
+    }
+  }
+}

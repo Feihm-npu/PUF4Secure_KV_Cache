@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/rq9_perf_affine_qwen3.json",
+    "modes": [
+      "wrapped"
+    ],
+    "prompt_lengths": [
+      256
+    ],
+    "decode_tokens": 64,
+    "warmup": 1,
+    "repeats": 5,
+    "seed": 20260605,
+    "force_fp32": true,
+    "fp32_cache": true,
+    "affine_mask": true,
+    "mask_std": 128.0,
+    "device_id": "device_A",
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "0",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "results": [
+    {
+      "mode": "wrapped",
+      "prompt_length": 256,
+      "decode_tokens": 64,
+      "repeats": 5,
+      "prefill_s": {
+        "mean": 0.05961186857894063,
+        "std": 0.0008933943150342512,
+        "min": 0.05874164099805057,
+        "max": 0.061195250949822366
+      },
+      "decode_s": {
+        "mean": 2.8404715854208917,
+        "std": 0.014455168000342807,
+        "min": 2.8223823390435427,
+        "max": 2.8615686900448054
+      },
+      "decode_tokens_per_s": {
+        "mean": 22.532052827813082,
+        "std": 0.1145493292267715,
+        "min": 22.365355136380778,
+        "max": 22.675878854063587
+      },
+      "kv_cache_bytes_after_decode": 73400320
+    }
+  ],
+  "model": {
+    "model_type": "qwen3",
+    "hidden_size": 1024,
+    "num_hidden_layers": 28,
+    "num_attention_heads": 16,
+    "num_key_value_heads": 8,
+    "dtype": "torch.float32"
+  },
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "0",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.126953125,
+        "reserved_mib": 22.0
+      }
+    ]
+  }
+}

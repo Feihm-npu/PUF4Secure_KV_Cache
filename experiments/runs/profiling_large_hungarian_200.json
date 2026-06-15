@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "n_prompts": 200,
+    "seq_len": 32,
+    "head_dim": 128
+  },
+  "scenarios": {
+    "S2c_large_rowlayout_hungarian": {
+      "alignment": "hungarian",
+      "spec": {
+        "kind": "givens",
+        "layout": "row"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.0016514648161400616,
+      "mean_basis_recovery_err": 0.003448296982945807,
+      "downstream_v_inversion_top1_mean": 0.07268518581986427,
+      "downstream_transfer_residual_mean": 0.9626330893328697,
+      "n_units": 448,
+      "rows_per_unit": 6400,
+      "fit_time_s": 181.64491154812276
+    },
+    "S3b_large_blocklayout_hungarian_block": {
+      "alignment": "hungarian_block",
+      "spec": {
+        "kind": "givens",
+        "layout": "block"
+      },
+      "puf_fit": "b9ee715ab5b74993bf168531d687364d",
+      "puf_target": "b9ee715ab5b74993bf168531d687364d",
+      "mean_fresh_prompt_residual": 0.0016514648161400616,
+      "mean_basis_recovery_err": 0.003448296982945807,
+      "downstream_v_inversion_top1_mean": 1.0,
+      "downstream_transfer_residual_mean": 0.5634201001844712,
+      "n_units": 448,
+      "rows_per_unit": 6400,
+      "fit_time_s": 283.4732855949551
+    }
+  }
+}

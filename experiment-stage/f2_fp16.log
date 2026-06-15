@@ -1,0 +1,143 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+{
+  "samples": 32,
+  "max_new_tokens": 32,
+  "full_match_rate": 0.84375,
+  "divergence_rate": 0.15625,
+  "mean_divergence_step_diverged_only": 16.4,
+  "divergence_curve": [
+    {
+      "step": 0,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 1,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 2,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 3,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 4,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 5,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 6,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 7,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 8,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 9,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 10,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 11,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 12,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 13,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 14,
+      "diverged_fraction": 0.0625
+    },
+    {
+      "step": 15,
+      "diverged_fraction": 0.0625
+    },
+    {
+      "step": 16,
+      "diverged_fraction": 0.0625
+    },
+    {
+      "step": 17,
+      "diverged_fraction": 0.09375
+    },
+    {
+      "step": 18,
+      "diverged_fraction": 0.09375
+    },
+    {
+      "step": 19,
+      "diverged_fraction": 0.09375
+    },
+    {
+      "step": 20,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 21,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 22,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 23,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 24,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 25,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 26,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 27,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 28,
+      "diverged_fraction": 0.125
+    },
+    {
+      "step": 29,
+      "diverged_fraction": 0.15625
+    },
+    {
+      "step": 30,
+      "diverged_fraction": 0.15625
+    },
+    {
+      "step": 31,
+      "diverged_fraction": 0.15625
+    },
+    {
+      "step": 32,
+      "diverged_fraction": 0.15625
+    }
+  ]
+}
+Wrote experiments/runs/wave14_decode_divergence_qwen3_0p6b_fp16_32x32.json

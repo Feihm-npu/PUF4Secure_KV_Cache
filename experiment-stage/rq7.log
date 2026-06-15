@@ -1,0 +1,235 @@
+=== N=32 samples=30 variant=orth ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain [norm_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+plain [gram_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native [norm_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native [gram_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+Wrote experiments/runs/rq7_qwen3_N32_orth.json
+=== N=32 samples=30 variant=affine ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+protected_native [norm_l2] {
+  "samples": 30,
+  "top1": 0.0,
+  "mrr": 0.09632708085151272,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 0.0,
+      "mrr": 0.09632708085151272
+    }
+  }
+}
+protected_native [gram_l2] {
+  "samples": 30,
+  "top1": 0.0,
+  "mrr": 0.07065211633114446,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 0.0,
+      "mrr": 0.07065211633114446
+    }
+  }
+}
+Wrote experiments/runs/rq7_qwen3_N32_affine.json
+=== N=100 samples=30 variant=orth ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain [norm_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+plain [gram_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native [norm_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native [gram_l2] {
+  "samples": 30,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+Wrote experiments/runs/rq7_qwen3_N100_orth.json
+=== N=100 samples=30 variant=affine ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+protected_native [norm_l2] {
+  "samples": 30,
+  "top1": 0.03333333333333333,
+  "mrr": 0.07851524111342507,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 0.03333333333333333,
+      "mrr": 0.07851524111342507
+    }
+  }
+}
+protected_native [gram_l2] {
+  "samples": 30,
+  "top1": 0.0,
+  "mrr": 0.03694203756562352,
+  "by_type": {
+    "verification_code": {
+      "samples": 30,
+      "top1": 0.0,
+      "mrr": 0.03694203756562352
+    }
+  }
+}
+Wrote experiments/runs/rq7_qwen3_N100_affine.json
+=== N=1000 samples=20 variant=orth ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+plain [norm_l2] {
+  "samples": 20,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 20,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+plain [gram_l2] {
+  "samples": 20,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 20,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native [norm_l2] {
+  "samples": 20,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 20,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+protected_native [gram_l2] {
+  "samples": 20,
+  "top1": 1.0,
+  "mrr": 1.0,
+  "by_type": {
+    "verification_code": {
+      "samples": 20,
+      "top1": 1.0,
+      "mrr": 1.0
+    }
+  }
+}
+Wrote experiments/runs/rq7_qwen3_N1000_orth.json
+=== N=1000 samples=20 variant=affine ===
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+protected_native [norm_l2] {
+  "samples": 20,
+  "top1": 0.0,
+  "mrr": 0.004693897853894831,
+  "by_type": {
+    "verification_code": {
+      "samples": 20,
+      "top1": 0.0,
+      "mrr": 0.004693897853894831
+    }
+  }
+}
+protected_native [gram_l2] {
+  "samples": 20,
+  "top1": 0.0,
+  "mrr": 0.007863210051911122,
+  "by_type": {
+    "verification_code": {
+      "samples": 20,
+      "top1": 0.0,
+      "mrr": 0.007863210051911122
+    }
+  }
+}
+Wrote experiments/runs/rq7_qwen3_N1000_affine.json
+RQ7 DONE

@@ -1,0 +1,397 @@
+\section{Security Model and Theoretical Limits}
+\label{sec:theory}
+
+This section makes the protection goal precise and proves what is and is not
+achievable. We formalize the migration adversary with an explicit split between
+persistent (at-rest) and transient (live) state, give four security definitions,
+prove that any purely orthogonal basis leaks \emph{exactly} the Gram matrix of the
+cache and therefore cannot be confidential (Theorem~\ref{thm:impossible}), and
+establish a geometry--confidentiality dichotomy that positions \sys{} against
+encrypt-at-rest (Theorem~\ref{thm:dichotomy}). We then analyze the construction of
+Section~\ref{sec:design}: a nonce-disciplined additive PUF keystream achieves
+tunable migration confidentiality (Theorem~\ref{thm:confidentiality}), resists
+cross-session profiling (Theorem~\ref{thm:session}), and admits a precision
+feasibility window that explains why the construction is fp32-only
+(Theorem~\ref{thm:precision}).
+
+\subsection{Notation and the Protection Abstraction}
+\label{sec:theory-notation}
+
+Fix a layer $\ell$ and KV head $h$. Let $X\in\mathbb{R}^{n\times d}$ denote the
+per-head cache matrix of a target ($X=K$ or $X=V$) over $n$ tokens with head
+dimension $d$, computed by the public model with weights $W$ (projections
+$W_q,W_k,W_v,W_o$, RoPE schedule, normalization). A \emph{protection scheme} is a
+triple $(\mathsf{Enroll},\mathsf{Protect},\mathsf{Attend})$:
+$\mathsf{Enroll}$ binds a device $D$ to a root $r_D$ and publishes helper data
+$h$; $\mathsf{Protect}(C,r_D,n_s)\to(\tilde C,\mathit{md})$ maps a plaintext cache
+$C=\{X_{\ell,h}\}$ to a protected cache $\tilde C$ and non-secret metadata
+$\mathit{md}$ (nonces, IVs, tags) under session nonce $n_s$; and
+$\mathsf{Attend}(\tilde C,\mathit{md},r_D)$ reproduces attention on the legitimate
+device. We write $\mathrm{Attn}(C)$ for plaintext attention.
+
+We model the PUF-derived randomness as a pseudorandom function (PRF)
+$F:\{0,1\}^{\kappa}\times\{0,1\}^{*}\to\mathbb{R}^{d}$ keyed by the reconstructed
+root $r_D$; in the implementation $F$ is HMAC-SHA256 expanded and mapped to the
+required range, which is a standard PRF instantiation. The two concrete schemes we
+study are the \emph{orthogonal} scheme $\tilde X=XO$ with
+$O=O(r_D,n_s,\ell,h)\in O(d)$, and the \emph{affine} scheme
+$\tilde X_i = X_iO + M_i$ with mask rows $M_i=F_{r_D}(n_s,w,\ell,h,i)$ for a
+per-write nonce $w$.
+
+\subsection{Threat Model: Persistent versus Transient State}
+\label{sec:theory-threat}
+
+The security boundary is \emph{temporal}. We partition all state into:
+\begin{itemize}
+  \item \textbf{At-rest state} $\mathcal{A}_{\mathrm{rest}}=(\tilde C, W, h, \mathit{md})$,
+        which persists on disk, flash, or a cold offload tier after the session and
+        is what migrates;
+  \item \textbf{Live state} $\mathcal{A}_{\mathrm{live}}=(r_D,\{O\},\{M\}, C, \text{activations})$,
+        which exists only in device RAM during an active session.
+\end{itemize}
+
+\begin{definition}[Migration adversary]
+\label{def:adversary}
+$\mathcal{A}_{\mathrm{mig}}$ is a PPT algorithm that receives the entire at-rest
+state $\mathcal{A}_{\mathrm{rest}}$ and controls a \emph{different} device $D'$,
+from which it can reconstruct an independent root $r_{D'}$ and run the full
+software stack. $\mathcal{A}_{\mathrm{mig}}$ \emph{cannot} read any live state of
+$D$ and \emph{cannot} query the physical PUF $P_D$ of the originating device.
+\end{definition}
+
+This is the post-compromise cache-migration setting: the cache file outlives the
+session, but the root only exists while $D$ is powered and attending. A full live
+runtime compromise (Definition~\ref{def:adversary} with $\mathcal{A}_{\mathrm{live}}$)
+defeats any in-process scheme and is out of scope; Definition~\ref{def:inuse}
+quantifies the residual leakage of a \emph{single} live snapshot.
+
+\subsection{Security Definitions}
+\label{sec:theory-defs}
+
+We use the advantage convention $\mathsf{Adv}(\mathcal{A})=\lvert 2\Pr[b'=b]-1\rvert\in[0,1]$.
+
+\begin{definition}[Correctness]
+\label{def:correct}
+A scheme is $\varepsilon_{\mathrm{num}}$-correct if for every context $m$,
+on device $D$,
+$\lVert \mathsf{Attend}(\mathsf{Protect}(C,r_D,n_s),r_D)-\mathrm{Attn}(C)\rVert_\infty
+\le \varepsilon_{\mathrm{num}}$.
+\end{definition}
+
+\begin{definition}[Migration confidentiality, \textsc{IND-MIG}]
+\label{def:indmig}
+For a scheme $\Pi$ and adversary $\mathcal{A}_{\mathrm{mig}}$, the game draws
+$b\xleftarrow{\$}\{0,1\}$; $\mathcal{A}_{\mathrm{mig}}$ submits two equal-length
+contexts $m_0,m_1$; the challenger returns
+$(\tilde C_b,\mathit{md})\gets\mathsf{Protect}(C_{m_b},r_D,n_s)$ together with
+$\mathcal{A}_{\mathrm{rest}}$ and a fresh independent root $r_{D'}$, but withholds
+$r_D$; $\mathcal{A}_{\mathrm{mig}}$ outputs $b'$. $\Pi$ is
+$\varepsilon$-migration-confidential if
+$\mathsf{Adv}^{\textsc{ind-mig}}_{\Pi}(\mathcal{A}_{\mathrm{mig}})\le\varepsilon$
+for all PPT $\mathcal{A}_{\mathrm{mig}}$.
+\end{definition}
+
+The finite-candidate matchers of Section~\ref{sec:evaluation} are concrete
+\textsc{IND-MIG} distinguishers: they instantiate $m_0,m_1$ with candidate secrets
+and decide $b'$ by comparing a statistic of $\tilde C_b$ to the statistics the
+public model assigns to each candidate.
+
+\begin{definition}[Cross-session resistance]
+\label{def:session}
+In the multi-session game $\mathcal{A}$ first obtains $q$ aligned pairs
+$(C_{m_j},\tilde C_{m_j})$ under chosen contexts and \emph{distinct} session nonces
+$n_1,\dots,n_q$, then plays \textsc{IND-MIG} on a challenge session with a fresh
+nonce $n^\ast\notin\{n_j\}$. $\Pi$ is cross-session resistant if the challenge
+advantage is negligible in the security parameter.
+\end{definition}
+
+\begin{definition}[In-use materialization leakage]
+\label{def:inuse}
+Let $\mathcal{M}_{\mathrm{live}}$ be the set of tensors materialized by
+$\mathsf{Attend}$ during one attention call. The scheme is
+\emph{plaintext-non-materializing} if every $T\in\mathcal{M}_{\mathrm{live}}$
+satisfies $T=C\cdot O'$ for some orthogonal $O'$ unknown to
+$\mathcal{A}_{\mathrm{mig}}$ (equivalently, no materialized tensor equals the
+model-native plaintext $C$). A single live snapshot then leaks at most the Gram
+matrix $CC^\top$, never $C$ itself.
+\end{definition}
+
+\subsection{What Orthogonal Bases Leak}
+\label{sec:theory-impossible}
+
+The starting observation is that an orthogonal basis is an isometry of the row
+space, so it cannot hide any quantity that depends only on inner products.
+
+\begin{lemma}[Maximal invariant]
+\label{lem:orbit}
+For $X,Y\in\mathbb{R}^{n\times d}$, $YY^\top=XX^\top$ if and only if $Y=XO$ for some
+$O\in O(d)$. Hence the orbit of $X$ under right multiplication by $O(d)$ is exactly
+$\{Y:YY^\top=XX^\top\}$, and the Gram matrix $XX^\top$ is a maximal invariant of
+that action.
+\end{lemma}
+
+\begin{proof}
+($\Leftarrow$) $(XO)(XO)^\top=XOO^\top X^\top=XX^\top$. ($\Rightarrow$) Let
+$X=U\Sigma W_X^\top$ and $Y=U'\Sigma' W_Y^\top$ be thin SVDs. Then
+$XX^\top=U\Sigma^2U^\top$ and $YY^\top=U'\Sigma'^2U'^\top$; equality forces
+$U\Sigma^2U^\top=U'\Sigma'^2U'^\top$, so we may take $U'=U$ and $\Sigma'=\Sigma$.
+With $r=\mathrm{rank}(X)$, the columns of $W_X,W_Y\in\mathbb{R}^{d\times r}$ are
+orthonormal; set $O=W_XW_Y^\top$ extended by any orthogonal map between the
+complements $\mathrm{span}(W_Y)^\perp$ and $\mathrm{span}(W_X)^\perp$. Then $O\in
+O(d)$ and $XO=U\Sigma W_X^\top W_X W_Y^\top=U\Sigma W_Y^\top=Y$.
+\end{proof}
+
+\begin{theorem}[Orthogonal protection is not confidential]
+\label{thm:impossible}
+Let $\Pi_O$ be any scheme of the form $\tilde X=XO$ with $O\in O(d)$ (possibly
+secret and $r_D$-derived). Then $\Pi_O$ reveals $XX^\top$ and only functions of
+$XX^\top$ to $\mathcal{A}_{\mathrm{mig}}$. Consequently, for any two contexts with
+$C_{m_0}C_{m_0}^\top\neq C_{m_1}C_{m_1}^\top$ there is an efficient adversary with
+$\mathsf{Adv}^{\textsc{ind-mig}}_{\Pi_O}=1-\mathrm{negl}$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:orbit}, $\tilde X$ ranges over the orbit
+$\{Y:YY^\top=XX^\top\}$; any statistic an adversary computes without $O$ is
+constant on the orbit and hence a function of $XX^\top$. The adversary also
+\emph{recovers} $XX^\top$ directly: $\tilde X\tilde X^\top=XX^\top$. For the
+distinguisher, $\mathcal{A}_{\mathrm{mig}}$ knows $m_0,m_1$ and the public weights,
+so it computes the plaintext caches $C_{m_0},C_{m_1}$ deterministically, forms
+$G_b=C_{m_b}C_{m_b}^\top$, and outputs $b'=\arg\min_b\lVert\tilde C\tilde C^\top-G_b\rVert$.
+In exact arithmetic $\tilde C\tilde C^\top=G_b$ for the true $b$ and
+$G_0\neq G_1$, so $b'=b$ with certainty; floating point contributes only the
+$\mathrm{negl}$ term.
+\end{proof}
+
+\begin{corollary}
+\label{cor:invariants}
+Per-token norms $\lVert X_i\rVert_2$ (the diagonal of $XX^\top$), the full Gram
+matrix, and the singular spectrum $\sigma(X)$ (the eigenvalues of $XX^\top$) are
+all recovered, matching the measured top-1 $1.000$ for norm, Gram, and spectrum
+matching in Section~\ref{sec:evaluation}. Signed permutations, Hadamard,
+Householder, and dense-QR bases are all orthogonal and hence all covered.
+\end{corollary}
+
+Theorem~\ref{thm:impossible} yields the first design requirement.
+\begin{quote}
+\textbf{R1 (break the Gram matrix).} A confidential scheme must apply a
+non-isometric map: $\tilde C\tilde C^\top$ must not equal $CC^\top$.
+\end{quote}
+
+\subsection{A Geometry--Confidentiality Dichotomy}
+\label{sec:theory-dichotomy}
+
+R1 forces a departure from orthogonality, but how far one must depart is itself
+constrained by the requirement that attention still be computable on the protected
+cache. This is the crux tradeoff.
+
+\begin{theorem}[Dichotomy, informal]
+\label{thm:dichotomy}
+Let a scheme be \emph{geometry-preserving} if $\mathsf{Attend}$ recovers
+$\mathrm{Attn}(C)$ using only (i) linear maps folded into $W$ and (ii) subtraction
+of a content-independent mask $M$, i.e.\ without ever computing the model-native
+plaintext $C$. Then:
+\begin{enumerate}
+  \item \textbf{(geometry-preserving $\Rightarrow$ at most statistical confidentiality)}
+        If $\tilde C=CO+M$ with $M$ pseudorandom of per-coordinate scale $\sigma$,
+        then there exist contexts with
+        $\mathsf{Adv}^{\textsc{ind-mig}}\ge \Omega(\lVert C_{m_0}-C_{m_1}\rVert/\sigma)$;
+        confidentiality is negligible only as $\sigma\to\infty$, which
+        Theorem~\ref{thm:precision} shows is numerically infeasible.
+  \item \textbf{(cryptographic IND $\Rightarrow$ decryption)}
+        If $\tilde C$ is \textsc{IND-CPA} (so $\tilde C$ is pseudo-independent of
+        $CC^\top$), then no folded-linear/additive $\mathsf{Attend}$ recovers
+        $\mathrm{Attn}(C)$; $\mathsf{Attend}$ must invert $\mathsf{Protect}$ and
+        materialize $C$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(1) is the converse direction of Theorem~\ref{thm:confidentiality}: subtracting a
+mask of scale $\sigma$ leaves the rotated means $C_{m_b}O$ separated by
+$\lVert C_{m_0}-C_{m_1}\rVert$ under additive noise of scale $\sigma$, and the
+optimal distinguisher advantage between two such distributions is
+$\Theta(\lVert C_{m_0}-C_{m_1}\rVert/\sigma)$. (2) Attention scores depend on the
+inner products $QK^\top$, i.e.\ on the geometry $CC^\top$. If $\tilde C$ is
+pseudo-independent of $CC^\top$, no statistic measurable from $\tilde C$ by a
+folded-linear map reproduces those inner products, so $\mathsf{Attend}$ cannot be
+geometry-preserving and must decrypt.
+\end{proof}
+
+Thus three designs occupy one axis: orthogonal-only is the $\sigma=0$ endpoint
+(geometry fully preserved, Gram fully leaked); encrypt-at-rest (PUF-key$+$AES) is
+the $\sigma=\infty$ endpoint (geometry destroyed, plaintext materialized on
+decrypt); the affine mask is the tunable interior. The value of \sys{} is therefore
+\emph{not} stronger confidentiality than AES---it is weaker---but the
+\emph{plaintext-non-materialization} of Definition~\ref{def:inuse}, which AES cannot
+provide because it must produce a plaintext page to attend.
+
+\subsection{The Nonce-Disciplined Affine Construction}
+\label{sec:theory-construction}
+
+Section~\ref{sec:design} realizes R1 with an additive PUF keystream. Two further
+requirements come from the analysis. First, a mask that is a function of position
+alone is reused across two protected caches of the same session, and differencing
+cancels it.
+
+\begin{quote}
+\textbf{R2 (keystream freshness).} Let $\tilde C^{(a)},\tilde C^{(b)}$ be two
+same-session protected caches sharing position $i$ with a position-only mask
+$M_i$. Then $\tilde C^{(a)}_i-\tilde C^{(b)}_i=(X^{(a)}_i-X^{(b)}_i)O$ is
+mask-free, returning the attacker to the orthogonal-leakage regime of
+Theorem~\ref{thm:impossible}. The mask must therefore depend on a per-write nonce
+$w$ drawn freshly by each $\mathsf{Protect}$ call and stored (non-secret) in
+$\mathit{md}$: $M_i=F_{r_D}(n_s,w,\ell,h,i)$. This is AEAD nonce hygiene applied to
+the keystream.
+\end{quote}
+
+Second, the at-rest cache should be authenticated so that
+$\mathcal{A}_{\mathrm{mig}}$ cannot forge an injected history. We append a tag
+$\tau=\mathsf{MAC}_{r_D}(\tilde C,w,n_s)$; $\mathsf{Attend}$ aborts on tag mismatch.
+This closes the integrity gap relative to AES-GCM at negligible cost.
+
+\subsection{Security Analysis of the Affine Construction}
+\label{sec:theory-analysis}
+
+\begin{theorem}[Migration confidentiality]
+\label{thm:confidentiality}
+Let $\Pi_{\mathrm{aff}}$ be the nonce-disciplined affine scheme with mask rows
+$M_i=F_{r_D}(n_s,w,\ell,h,i)$ mapped to $\mathcal{N}(0,\sigma^2 I_d)$ and a fresh
+per-write nonce $w$. For every PPT $\mathcal{A}_{\mathrm{mig}}$,
+\begin{multline*}
+\mathsf{Adv}^{\textsc{ind-mig}}_{\Pi_{\mathrm{aff}}}(\mathcal{A}_{\mathrm{mig}})
+\;\le\;
+\frac{\max_{m_0,m_1}\lVert C_{m_0}-C_{m_1}\rVert_F}{\sigma\sqrt{2\pi}}\\
+\;+\;\mathsf{Adv}^{\mathsf{PRF}}_{F}(\mathcal{B}_1)
+\;+\;\mathsf{Adv}^{\mathsf{FE}}(\mathcal{B}_2),
+\end{multline*}
+for reductions $\mathcal{B}_1,\mathcal{B}_2$ of comparable running time.
+\end{theorem}
+
+\begin{proof}
+We use a hybrid argument.
+\emph{Hybrid 0} is the real \textsc{IND-MIG} game.
+\emph{Hybrid 1} replaces the fuzzy-extractor output $r_D$ by a uniform key; the
+two differ by $\mathsf{Adv}^{\mathsf{FE}}$ because the public helper $h$ leaves
+$r_D$ near-uniform (Assumption~\ref{ass:fe}), and $\mathcal{A}_{\mathrm{mig}}$ holds
+only the independent $r_{D'}$ (Assumption~\ref{ass:unclonable}).
+\emph{Hybrid 2} replaces $F_{r_D}$ by a truly random function; the distinguishing
+gap is $\mathsf{Adv}^{\mathsf{PRF}}_F$ by a standard reduction $\mathcal{B}_1$ that
+answers mask queries with its PRF oracle.
+In Hybrid 2 the masks are independent fresh draws, because the per-write nonce $w$
+guarantees no input to $F$ repeats across the challenge (R2). Hence
+$\tilde C_b=C_{m_b}O+M$ with $M$ a fresh $\mathcal{N}(0,\sigma^2 I)$ sample, and the
+adversary must distinguish $\mathcal{N}(C_{m_0}O,\sigma^2 I)$ from
+$\mathcal{N}(C_{m_1}O,\sigma^2 I)$. The optimal advantage equals the total
+variation distance $2\Phi\!\big(\tfrac{\Delta}{2\sigma}\big)-1$ with
+$\Delta=\lVert C_{m_0}O-C_{m_1}O\rVert_F=\lVert C_{m_0}-C_{m_1}\rVert_F$ (orthogonal
+$O$ preserves the Frobenius norm). Since $2\Phi(x)-1\le x\sqrt{2/\pi}$,
+the term is at most $\Delta/(\sigma\sqrt{2\pi})$. Summing the hybrid gaps gives the
+bound.
+\end{proof}
+
+Theorem~\ref{thm:confidentiality} replaces the unprincipled constant $\sigma=128$
+with a requirement: to reach advantage $\varepsilon$ one needs
+$\sigma\ge \Delta_{\max}/(\varepsilon\sqrt{2\pi})$. The confidentiality is
+\emph{statistical} (advantage tunable by $\sigma$, in the style of the Gaussian
+mechanism~\cite{dwork_calibrating}), not cryptographic, exactly as
+Theorem~\ref{thm:dichotomy} predicts for a geometry-preserving scheme.
+
+\begin{quote}
+\textbf{R3 ($\sigma$ window).} $\sigma$ must be large enough for confidentiality
+(above) yet small enough for numerically faithful de-masking
+(Theorem~\ref{thm:precision}).
+\end{quote}
+
+\begin{theorem}[Cross-session resistance]
+\label{thm:session}
+If $F$ is a PRF and each session uses a distinct nonce, $\Pi_{\mathrm{aff}}$ (and
+its orthogonal core) satisfy Definition~\ref{def:session}: the challenge advantage
+is at most $\mathsf{Adv}^{\mathsf{PRF}}_F$ plus the single-session bound of
+Theorem~\ref{thm:confidentiality}.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The basis $O(r_D,n^\ast,\cdot)$ and mask stream $\{F_{r_D}(n^\ast,\cdot)\}$ are
+$F$ evaluated on inputs disjoint from every profiled session $n_j$. By PRF
+security their joint distribution is independent of the profiled
+$\{O(r_D,n_j,\cdot),F_{r_D}(n_j,\cdot)\}$, so any basis $\hat O$ the adversary
+learned in session $n_j$ applies to the challenge as the unknown orthogonal map
+$\hat O^\top O(r_D,n^\ast,\cdot)$, leaving a random basis. The residual is the
+mismatch scale of unrelated unit vectors ($\approx\sqrt 2$), matching the measured
+$1.41$--$1.42$ session-refresh residuals in Section~\ref{sec:evaluation}.
+\end{proof}
+
+\begin{theorem}[Precision feasibility window]
+\label{thm:precision}
+Recovering $C_iO=\tilde C_i-M_i$ in floating point with unit roundoff $u$ incurs
+relative error $\rho\approx(\sigma/\lVert X_i\rVert)\,u$ from catastrophic
+cancellation. Requiring both numerical fidelity $\rho\le\tau$ and migration
+advantage $\le\varepsilon$ (hence $\sigma\ge\Delta_{\max}/(\varepsilon\sqrt{2\pi})$
+by Theorem~\ref{thm:confidentiality}) is feasible only if
+\[
+u\;\le\;\varepsilon\,\tau\,\sqrt{2\pi}\Big/c,\qquad
+c:=\Delta_{\max}/\lVert X\rVert=\Theta(1).
+\]
+\end{theorem}
+
+\begin{proof}
+Subtracting $M_i$ of magnitude $\sim\sigma$ from $\tilde C_i$ of magnitude
+$\sim\sigma$ to obtain a result of magnitude $\lVert X_i\rVert\ll\sigma$ yields
+absolute error $\sim\sigma u$ and relative error $\sim\sigma u/\lVert X_i\rVert$.
+Imposing $\rho\le\tau$ gives $\sigma\le\tau\lVert X\rVert/u$; combined with
+$\sigma\ge c\lVert X\rVert/(\varepsilon\sqrt{2\pi})$ the interval is nonempty iff
+$c/(\varepsilon\sqrt{2\pi})\le\tau/u$, i.e.\ $u\le\varepsilon\tau\sqrt{2\pi}/c$.
+\end{proof}
+
+For a representative operating point $\varepsilon=0.03$, $\tau=10^{-3}$, $c\approx1$
+the bound is $u\lesssim7.5\times10^{-8}$: fp32 ($u\approx6\times10^{-8}$) admits a
+window, while fp16 ($u\approx5\times10^{-4}$) and bf16 ($u\approx4\times10^{-3}$) do
+not. This predicts the empirical ordering---$0\%$ fp32, $15.6\%$ fp16, and
+$56.25\%$ bf16 long-decode divergence in Section~\ref{sec:evaluation}---from first
+principles, and identifies fp32 cache storage as a \emph{necessary} systems
+condition for the affine path rather than a tuning choice.
+
+\subsection{PUF and Fuzzy-Extractor Assumptions}
+\label{sec:theory-puf}
+
+The reductions above rely on three physical assumptions about the PUF, discharged
+by hardware characterization (Section~\ref{sec:evaluation}, currently simulated).
+
+\begin{assumption}[Entropy]
+\label{ass:entropy}
+The raw PUF response $R_D$ has min-entropy $H_\infty(R_D)\ge m$ over manufacturing
+randomness.
+\end{assumption}
+\begin{assumption}[Reliability]
+\label{ass:reliable}
+Intra-device responses have bit-error rate $\le p$, and $\mathsf{Rep}$ corrects up
+to $t\ge p\cdot n_{\mathrm{bits}}$ errors with reconstruction-failure probability
+$\delta_{\mathrm{FE}}$.
+\end{assumption}
+\begin{assumption}[Unclonability/independence]
+\label{ass:unclonable}
+For $D'\neq D$, $R_{D'}$ is independent of $R_D$ (inter-device fractional Hamming
+distance $\approx 0.5$); no off-device computation reconstructs $r_D$.
+\end{assumption}
+\begin{assumption}[Fuzzy extractor]
+\label{ass:fe}
+$(\mathsf{Gen},\mathsf{Rep})$ is an $(m,\kappa,t,\delta_{\mathrm{FE}})$-fuzzy
+extractor~\cite{dodis_fuzzy}: $\mathsf{Gen}(R_D)\to(r_D,h)$ outputs a key $r_D$ that
+is $\mathsf{Adv}^{\mathsf{FE}}$-close to uniform given the public helper $h$, and
+$\mathsf{Rep}(R_D',h)=r_D$ whenever $\mathrm{dist}(R_D,R_D')\le t$.
+\end{assumption}
+
+These assemble into the end-to-end argument: Assumptions~\ref{ass:entropy}
+and~\ref{ass:fe} make $r_D$ a near-uniform PRF key, so HMAC instantiates
+$F$~\cite{suh_devadas_puf,gassend_silicon}; Assumption~\ref{ass:unclonable} makes
+the migration adversary's $r_{D'}$ useless, which is what
+Definition~\ref{def:adversary} encodes physically rather than by stipulation; and
+Assumption~\ref{ass:reliable} bounds the legitimate-utility failure rate by
+$\delta_{\mathrm{FE}}$ (the empirical analogue is the noise-budget experiment of
+Section~\ref{sec:evaluation}). The orthogonal core is then a binding baseline
+(Theorem~\ref{thm:impossible} denies it confidentiality), the nonce-disciplined
+affine mask adds tunable statistical confidentiality
+(Theorem~\ref{thm:confidentiality}) within the precision window
+(Theorem~\ref{thm:precision}), and authentication closes integrity---each property
+tied to an explicit assumption or reduction rather than to measurement alone.

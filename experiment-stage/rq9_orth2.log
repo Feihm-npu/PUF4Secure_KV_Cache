@@ -1,0 +1,52 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+{
+  "mode": "plain",
+  "prompt_length": 256,
+  "decode_tokens": 64,
+  "repeats": 5,
+  "prefill_s": {
+    "mean": 0.041049560997635126,
+    "std": 0.0008737450648210388,
+    "min": 0.03940370900090784,
+    "max": 0.04168747097719461
+  },
+  "decode_s": {
+    "mean": 1.8811569328187034,
+    "std": 0.010182119439609186,
+    "min": 1.8677619029767811,
+    "max": 1.8978766930522397
+  },
+  "decode_tokens_per_s": {
+    "mean": 34.022611192548936,
+    "std": 0.18374783039362927,
+    "min": 33.721895755552325,
+    "max": 34.26560949658454
+  },
+  "kv_cache_bytes_after_decode": 73400320
+}
+{
+  "mode": "wrapped",
+  "prompt_length": 256,
+  "decode_tokens": 64,
+  "repeats": 5,
+  "prefill_s": {
+    "mean": 0.046541301207616924,
+    "std": 0.0001896662881672088,
+    "min": 0.046202767989598215,
+    "max": 0.04674324195366353
+  },
+  "decode_s": {
+    "mean": 2.207677496434189,
+    "std": 0.007761414932633021,
+    "min": 2.198163592023775,
+    "max": 2.2152305260533467
+  },
+  "decode_tokens_per_s": {
+    "mean": 28.990100320139227,
+    "std": 0.10205566010062957,
+    "min": 28.89089837256006,
+    "max": 29.11521245835819
+  },
+  "kv_cache_bytes_after_decode": 73400320
+}
+Wrote experiments/runs/rq9_perf_orth_qwen3.json

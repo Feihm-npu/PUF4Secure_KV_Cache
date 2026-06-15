@@ -1,0 +1,103 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.22s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.19s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  2.11s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  2.14s/it]
+{
+  "mode": "plain",
+  "prompt_length": 64,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.07493955461541191,
+    "std": 0.00010804812178998773,
+    "min": 0.07480146599118598,
+    "max": 0.07513420999748632
+  },
+  "decode_s": {
+    "mean": 3.396369420497649,
+    "std": 0.012499660522912988,
+    "min": 3.380023451987654,
+    "max": 3.4152017470041756
+  },
+  "decode_tokens_per_s": {
+    "mean": 37.687811814301604,
+    "std": 0.13852982652094406,
+    "min": 37.479484224404004,
+    "max": 37.869559728861766
+  },
+  "kv_cache_bytes_after_decode": 22020096
+}
+{
+  "mode": "plain",
+  "prompt_length": 256,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.2260696731209464,
+    "std": 0.0002512052971526281,
+    "min": 0.2257694769941736,
+    "max": 0.2266553379886318
+  },
+  "decode_s": {
+    "mean": 3.4147044956262107,
+    "std": 0.020764357183057844,
+    "min": 3.399236359022325,
+    "max": 3.4673498129996005
+  },
+  "decode_tokens_per_s": {
+    "mean": 37.48631217695755,
+    "std": 0.22532667526131556,
+    "min": 36.91580224184745,
+    "max": 37.65551626331005
+  },
+  "kv_cache_bytes_after_decode": 44040192
+}
+{
+  "mode": "wrapped",
+  "prompt_length": 64,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.07871410125517286,
+    "std": 0.00014909144172048326,
+    "min": 0.0785099100030493,
+    "max": 0.07899461800116114
+  },
+  "decode_s": {
+    "mean": 4.159432080617989,
+    "std": 0.0643268754778502,
+    "min": 4.111651699000504,
+    "max": 4.309431000001496
+  },
+  "decode_tokens_per_s": {
+    "mean": 30.780624284258707,
+    "std": 0.465091157654028,
+    "min": 29.702297124598484,
+    "max": 31.131041579011995
+  },
+  "kv_cache_bytes_after_decode": 22020096
+}
+{
+  "mode": "wrapped",
+  "prompt_length": 256,
+  "decode_tokens": 128,
+  "repeats": 8,
+  "prefill_s": {
+    "mean": 0.22968599300293135,
+    "std": 0.00029155124996412544,
+    "min": 0.22932609598501585,
+    "max": 0.2301674940099474
+  },
+  "decode_s": {
+    "mean": 4.143576070251584,
+    "std": 0.02863761433615562,
+    "min": 4.114283423987217,
+    "max": 4.198204179992899
+  },
+  "decode_tokens_per_s": {
+    "mean": 30.8926593883992,
+    "std": 0.2124574426644732,
+    "min": 30.489226943749195,
+    "max": 31.11112842973593
+  },
+  "kv_cache_bytes_after_decode": 44040192
+}
+Wrote experiments/runs/wave12_perf_qwen2p5_7b_fp32_long_horizon.json

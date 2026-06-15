@@ -1,0 +1,6 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== utility mode: plain ===
+  mmlu_acc=0.3828 (n=256)
+=== utility mode: wrapped ===
+  mmlu_acc=0.3828 (n=256)
+Wrote experiments/runs/wave12_mmlu_qwen3_0p6b_fp32.json
