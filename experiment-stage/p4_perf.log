@@ -1,0 +1,24 @@
+### plain + orthogonal
+  "mode": "plain",
+  "prompt_length": 256,
+  "decode_tokens_per_s": {
+  "mode": "plain",
+  "prompt_length": 1024,
+  "decode_tokens_per_s": {
+  "mode": "wrapped",
+  "prompt_length": 256,
+  "decode_tokens_per_s": {
+  "mode": "wrapped",
+  "prompt_length": 1024,
+  "decode_tokens_per_s": {
+### affine eager
+  "prompt_length": 256,
+  "decode_tokens_per_s": {
+  "prompt_length": 1024,
+  "decode_tokens_per_s": {
+### affine fused
+  "prompt_length": 256,
+  "decode_tokens_per_s": {
+  "prompt_length": 1024,
+  "decode_tokens_per_s": {
+P4 PERF DONE

@@ -1,0 +1,271 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+{
+  "samples": 64,
+  "max_new_tokens": 64,
+  "full_match_rate": 0.96875,
+  "divergence_rate": 0.03125,
+  "mean_divergence_step_diverged_only": 22.5,
+  "divergence_curve": [
+    {
+      "step": 0,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 1,
+      "diverged_fraction": 0.0
+    },
+    {
+      "step": 2,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 3,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 4,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 5,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 6,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 7,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 8,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 9,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 10,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 11,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 12,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 13,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 14,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 15,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 16,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 17,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 18,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 19,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 20,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 21,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 22,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 23,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 24,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 25,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 26,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 27,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 28,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 29,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 30,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 31,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 32,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 33,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 34,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 35,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 36,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 37,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 38,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 39,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 40,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 41,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 42,
+      "diverged_fraction": 0.015625
+    },
+    {
+      "step": 43,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 44,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 45,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 46,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 47,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 48,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 49,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 50,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 51,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 52,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 53,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 54,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 55,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 56,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 57,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 58,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 59,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 60,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 61,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 62,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 63,
+      "diverged_fraction": 0.03125
+    },
+    {
+      "step": 64,
+      "diverged_fraction": 0.03125
+    }
+  ]
+}
+Wrote experiments/runs/p3_divergence_eager_llama.json

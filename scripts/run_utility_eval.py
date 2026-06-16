@@ -72,7 +72,8 @@ def _select_first(dataset, n: int):
 
 @contextmanager
 def _mode_context(model, mode: str, *, fp32_cache: bool, device_id: str,
-                  fast_givens: bool, affine_mask: bool = False, mask_std: float = 4.0):
+                  fast_givens: bool, affine_mask: bool = False, mask_std: float = 4.0,
+                  attn_backend: str = "eager"):
     installed = False
     if mode == "wrapped":
         puf = make_puf(device_id)
@@ -85,6 +86,7 @@ def _mode_context(model, mode: str, *, fp32_cache: bool, device_id: str,
             fast_givens=fast_givens,
             affine_mask=affine_mask,
             mask_std=mask_std,
+            attn_backend=attn_backend,
         )
         installed = True
     elif mode != "plain":
@@ -315,6 +317,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--fast-givens", action="store_true", help="Use vectorized pairwise Givens rotations instead of dense matrices.")
     ap.add_argument("--affine-mask", action="store_true", help="Use the no-sidecar PUF-derived affine-mask wrapped path.")
     ap.add_argument("--mask-std", type=float, default=4.0, help="Standard deviation of the affine mask (used when --affine-mask).")
+    ap.add_argument("--attn-backend", default="eager", help="eager | sdpa | triton_fused (fused regenerates+subtracts the mask inside the decode kernel; affects the long-decode metric).")
     ap.add_argument("--device-id", default="device_A")
 
     ap.add_argument("--ppl-dataset", default="ag_news")
@@ -384,6 +387,7 @@ def main() -> None:
                 fast_givens=args.fast_givens,
                 affine_mask=args.affine_mask,
                 mask_std=args.mask_std,
+                attn_backend=args.attn_backend,
             ):
                 rec = {}
                 if args.ppl_samples > 0:

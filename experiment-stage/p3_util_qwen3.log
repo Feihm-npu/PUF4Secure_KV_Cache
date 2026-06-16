@@ -1,0 +1,10 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.1+cu128 for torchao version 0.13.0
+=== utility mode: plain ===
+  ppl=73.4210
+  hellaswag_acc=0.4062
+  decoded_prompts=3
+=== utility mode: wrapped ===
+  ppl=73.4208
+  hellaswag_acc=0.4062
+  decoded_prompts=3
+Wrote experiments/runs/p3_utility_fused_qwen3.json

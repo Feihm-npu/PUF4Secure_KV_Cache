@@ -12,6 +12,56 @@ Environment (verified 2026-06-16): Triton 3.5.1 with `tl.randn/tl.rand/tl.randin
 `k_attn = k.float() - k_mask` in `puf_attention.py` (an `_sdpa_attention` backend
 already exists as the pre-attention de-mask reference).
 
+## STATUS & HANDOFF (for the next agent)
+
+Branch `route-b-theory-and-experiments` (NOT pushed; main untouched). The fused
+de-masking is implemented and proven **numerically correct**, but is **not yet
+performance-competitive** — a naive single-program-per-head decode kernel degrades
+at long context. The remaining work is a split-K rewrite (P4b) + paper (P5).
+
+### Phase status
+| Phase | Status | Evidence / commit |
+|---|---|---|
+| P0 counter-based mask | ✅ DONE | `13d7551`; `mask_gen.py`; unit tests; Thm B/E spot-checked |
+| P1 standalone kernel | ✅ DONE | `efc4b63`; `fused_attn.py`; `test_fused_kernel.py` ~1e-6 vs SDPA |
+| P2 GQA + HF integration | ✅ DONE | `9ad2eea`; backend `"triton_fused"`; `test_fused_e2e.py` TOKEN-IDENTICAL Qwen3+Llama |
+| P3 utility/divergence | ✅ DONE | fused == eager-affine: divergence Qwen3 0.0/0.0, Llama 0.031/0.031 (identical); PPL Δ1.5e-4, HellaSwag Δ0, long-decode exact 1.0 |
+| P4 performance | ⚠️ NEGATIVE FINDING | naive fused NOT faster: prefill256 −33% (≈eager −32%), prefill1024 **−68%** (worse than eager −33%) — low occupancy / serial-over-N |
+| P4b split-K kernel | ❌ TODO | the real performance work (below) |
+| P5 paper RQ12 | ❌ TODO | numbers ready; write-up below |
+
+### What is implemented & where
+- `src/puf4secure_kvcache/mask_gen.py` — counter-based mask `M[ctr]=σ(randn(sa,ctr)+randn(sb,ctr))/√2`, flat counter `pos*(H*D)+head*D+ch`, 126-bit key (`sa‖sb=HMAC(root,nonce,layer,purpose)`). THE generator shared by write path, read path, and kernel — keep identical.
+- `src/puf4secure_kvcache/fused_attn.py` — Triton flash-decode kernel `fused_demask_decode(q[B,Hq,D], k_tilde/v_tilde[B,Hkv,N,D], seeds_k, seeds_v, sigma, scale)`. grid=(B,Hq), one program/head, online-softmax, **serial over N ← the perf bottleneck**.
+- `src/puf4secure_kvcache/puf_attention.py` — `_wrapped_forward` uses the kernel when `_puf_attn_backend=="triton_fused"` AND S==1 (decode) AND CUDA; else eager de-mask. Seeds via `counter_seeds(root, layer, "K/V_affine_mask|wn=...")` (= write path).
+- Scripts gained `--attn-backend eager|sdpa|triton_fused`: `run_utility_eval`, `run_decode_divergence_benchmark`, `run_performance_eval`.
+- Tests: `scripts/test_fused_kernel.py` (kernel vs SDPA, batch+GQA), `scripts/test_fused_e2e.py <model> [n]` (real-model token match).
+
+### How to run
+- correctness: `PYTHONPATH=src python scripts/test_fused_kernel.py`; `... scripts/test_fused_e2e.py <model-cache-dir> 32`
+- divergence: `... run_decode_divergence_benchmark.py --model-cache-dir <M> --affine-mask --mask-std 128 --force-fp32 --fp32-cache --attn-backend triton_fused --samples 64 --max-new-tokens 64`
+- perf: `experiment-stage/run_p4_perf.sh` (run on a CLEAN/uncontended GPU — timing-sensitive)
+
+### CRITICAL invariants (do not break)
+1. Kernel counter MUST equal mask_gen's: `pos*(Hkv*D)+kvhead*D+ch`, using the **KV head** (not query head) for GQA, stride `Hkv*D`. Seeds keyed by (layer, write-nonce, K/V purpose).
+2. **fp32-only** (Thm E: catastrophic cancellation when subtracting a std-128 mask). Never run the affine path in fp16/bf16.
+3. Same `tl.randn(seed, counter)` on write/read/kernel → masks match bit-for-bit. **Pin Triton 3.5.1** (RNG reproducibility).
+4. Fused path is DECODE-only (S==1); prefill falls back to eager de-mask (correct, one-time O(n) cost).
+5. The Llama 0.031 divergence is inherent affine-vs-plain fp32 rounding (eager shows the SAME 0.031), NOT a fused bug — confirmed in P3.
+
+### P4b — split-K flash-decoding (the real performance work)
+Naive kernel = grid=(B,Hq), each program serial over the full N → low occupancy on a 108-SM A100; worsens with N (1024 → −68%). SDPA parallelizes N efficiently, so naive fused loses. Fix with FlashDecoding/split-K:
+- Add a 3rd grid dim: grid=(B, Hq, n_splits). Each program computes a partial `(m_i, l_i, acc)` over its N-chunk, **regenerating the mask for its chunk's positions via `tl.randn(seed, pos*Hkv*D + kvh*D + ch)`** (same counter).
+- A second reduction kernel merges partials per (B,Hq) via the log-sum-exp combine.
+- Target: affine-fused overhead from −68%@1024 toward orthogonal −14% (de-mask piggybacks on the load; only Philox ALU added).
+- Honest risk: at batch=1 even split-K may not beat heavily-optimized SDPA; the win is clearest at long context / larger batch. Always re-measure plain/orth/affine-eager/affine-fused with `run_p4_perf.sh`.
+- References: vLLM / FlashInfer paged flash-decoding kernels; the OpenAI Triton fused-attention tutorial. The single new line is the `- tl.randn(seed,ctr)*σ` de-mask in the cache-load epilogue.
+
+### P5 — paper integration
+- New RQ12: fused-kernel decode overhead table (plain / orthogonal / affine-eager / affine-fused). Report the honest split-K requirement.
+- Update sec3 (`sec:design`) and sec5 (`sec:discussion`) "fused kernel remains future work" → "decode de-masking fuses into a Triton kernel (validated bit-exact, fused==eager numerically); a *competitive* implementation requires split-K flash-decoding (in progress)".
+- Numbers ready: P3 (fused==eager divergence/utility), P4 perf table above. Figure/table source: `experiments/runs/p4_perf_*.json`, `p3_divergence_*.json`.
+
 ## Key design decisions
 
 ### D1. Regenerate the mask in-kernel via counter-based RNG (no HBM traffic)

@@ -1,0 +1,1274 @@
+{
+  "settings": {
+    "model_cache_dir": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B",
+    "snapshot": null,
+    "out": "experiments/runs/p3_utility_fused_qwen3.json",
+    "modes": [
+      "plain",
+      "wrapped"
+    ],
+    "force_fp32": true,
+    "fp32_cache": true,
+    "fast_givens": false,
+    "affine_mask": true,
+    "mask_std": 128.0,
+    "attn_backend": "triton_fused",
+    "device_id": "device_A",
+    "ppl_dataset": "ag_news",
+    "ppl_split": "test",
+    "ppl_text_field": "text",
+    "ppl_samples": 32,
+    "ppl_max_length": 256,
+    "mc_dataset": "hellaswag",
+    "mc_split": "validation",
+    "mc_samples": 32,
+    "mc_max_length": 256,
+    "mmlu_dataset": "cais/mmlu",
+    "mmlu_subset": "all",
+    "mmlu_split": "test",
+    "mmlu_samples": 0,
+    "mmlu_max_length": 512,
+    "prompts_file": "experiments/prompts/synthetic_privacy_prompts.txt",
+    "long_decode_prompts": 3,
+    "max_new_tokens": 64,
+    "model_path": "/home/feihm/.cache/huggingface/hub/models--Qwen--Qwen3-0.6B/snapshots/c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "resource_before": {
+    "available": true,
+    "cuda_visible_devices": "4",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 0.0,
+        "reserved_mib": 0.0
+      }
+    ]
+  },
+  "modes": {
+    "plain": {
+      "perplexity": {
+        "dataset": "ag_news",
+        "split": "test",
+        "text_field": "text",
+        "samples_requested": 32,
+        "samples_used": 32,
+        "tokens": 2003,
+        "mean_nll": 4.296209594457077,
+        "perplexity": 73.42097035364775
+      },
+      "hellaswag": {
+        "dataset": "hellaswag",
+        "split": "validation",
+        "samples_requested": 32,
+        "samples_used": 32,
+        "skipped": 0,
+        "accuracy": 0.40625,
+        "records": [
+          {
+            "index": 0,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -42.97785830497742,
+              -41.85854244232178,
+              -17.46355438232422,
+              -37.85459899902344
+            ]
+          },
+          {
+            "index": 1,
+            "label": 3,
+            "pred": 1,
+            "scores": [
+              -30.741441249847412,
+              -13.843767642974854,
+              -19.339651823043823,
+              -26.922741651535034
+            ]
+          },
+          {
+            "index": 2,
+            "label": 2,
+            "pred": 2,
+            "scores": [
+              -57.73810577392578,
+              -50.62814712524414,
+              -25.623619556427002,
+              -120.20076370239258
+            ]
+          },
+          {
+            "index": 3,
+            "label": 2,
+            "pred": 0,
+            "scores": [
+              -13.963592052459717,
+              -27.39732027053833,
+              -35.70165157318115,
+              -30.051472187042236
+            ]
+          },
+          {
+            "index": 4,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -18.05056381225586,
+              -10.080033302307129,
+              -14.77023732662201,
+              -18.705764770507812
+            ]
+          },
+          {
+            "index": 5,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -18.32705307006836,
+              -45.872864723205566,
+              -12.423415660858154,
+              -36.36552429199219
+            ]
+          },
+          {
+            "index": 6,
+            "label": 2,
+            "pred": 1,
+            "scores": [
+              -32.098156213760376,
+              -18.56393814086914,
+              -33.20814561843872,
+              -27.662831783294678
+            ]
+          },
+          {
+            "index": 7,
+            "label": 0,
+            "pred": 3,
+            "scores": [
+              -59.45495796203613,
+              -51.51724433898926,
+              -38.366066217422485,
+              -34.95781421661377
+            ]
+          },
+          {
+            "index": 8,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -140.26715278625488,
+              -53.82881164550781,
+              -23.314390182495117,
+              -59.930333614349365
+            ]
+          },
+          {
+            "index": 9,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -57.389878034591675,
+              -33.14014506340027,
+              -74.21981120109558,
+              -70.15399217605591
+            ]
+          },
+          {
+            "index": 10,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -31.11610507965088,
+              -58.60010290145874,
+              -21.900787353515625,
+              -34.41461801528931
+            ]
+          },
+          {
+            "index": 11,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -30.735888481140137,
+              -68.40314650535583,
+              -21.232991695404053,
+              -58.841413497924805
+            ]
+          },
+          {
+            "index": 12,
+            "label": 2,
+            "pred": 2,
+            "scores": [
+              -68.95791625976562,
+              -47.51753568649292,
+              -20.747172832489014,
+              -37.69585704803467
+            ]
+          },
+          {
+            "index": 13,
+            "label": 2,
+            "pred": 3,
+            "scores": [
+              -59.56660985946655,
+              -83.53508949279785,
+              -57.20919728279114,
+              -48.11207580566406
+            ]
+          },
+          {
+            "index": 14,
+            "label": 0,
+            "pred": 1,
+            "scores": [
+              -43.32970333099365,
+              -42.88877010345459,
+              -49.142276763916016,
+              -46.58334469795227
+            ]
+          },
+          {
+            "index": 15,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -73.12016344070435,
+              -80.35816955566406,
+              -105.171217918396,
+              -50.80622863769531
+            ]
+          },
+          {
+            "index": 16,
+            "label": 2,
+            "pred": 1,
+            "scores": [
+              -58.92351150512695,
+              -29.566622734069824,
+              -56.625633239746094,
+              -41.130236864089966
+            ]
+          },
+          {
+            "index": 17,
+            "label": 0,
+            "pred": 2,
+            "scores": [
+              -68.59619903564453,
+              -76.26675510406494,
+              -51.77477288246155,
+              -65.83639359474182
+            ]
+          },
+          {
+            "index": 18,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -38.56900715827942,
+              -36.46274757385254,
+              -38.48481750488281,
+              -76.14281558990479
+            ]
+          },
+          {
+            "index": 19,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -59.54689693450928,
+              -51.22757434844971,
+              -47.08341979980469,
+              -62.6061475276947
+            ]
+          },
+          {
+            "index": 20,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -44.999751567840576,
+              -34.93843460083008,
+              -59.23120737075806,
+              -80.09095191955566
+            ]
+          },
+          {
+            "index": 21,
+            "label": 0,
+            "pred": 3,
+            "scores": [
+              -21.819796919822693,
+              -31.001108169555664,
+              -39.01461124420166,
+              -18.52504003047943
+            ]
+          },
+          {
+            "index": 22,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -23.382210731506348,
+              -70.10985374450684,
+              -27.582014799118042,
+              -22.916685104370117
+            ]
+          },
+          {
+            "index": 23,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -34.86223316192627,
+              -53.725335121154785,
+              -54.448702812194824,
+              -25.234930515289307
+            ]
+          },
+          {
+            "index": 24,
+            "label": 0,
+            "pred": 2,
+            "scores": [
+              -55.98228335380554,
+              -46.133995056152344,
+              -43.93986701965332,
+              -90.45814847946167
+            ]
+          },
+          {
+            "index": 25,
+            "label": 3,
+            "pred": 1,
+            "scores": [
+              -152.32421588897705,
+              -50.40051341056824,
+              -95.2900743484497,
+              -102.79014444351196
+            ]
+          },
+          {
+            "index": 26,
+            "label": 0,
+            "pred": 0,
+            "scores": [
+              -34.3229455947876,
+              -58.92835807800293,
+              -59.58214521408081,
+              -39.56330871582031
+            ]
+          },
+          {
+            "index": 27,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -69.47934579849243,
+              -46.90540313720703,
+              -63.72783374786377,
+              -40.03923797607422
+            ]
+          },
+          {
+            "index": 28,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -29.829742908477783,
+              -21.249774932861328,
+              -59.839582443237305,
+              -24.451205492019653
+            ]
+          },
+          {
+            "index": 29,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -68.76478481292725,
+              -57.540740966796875,
+              -50.754072189331055,
+              -44.18218183517456
+            ]
+          },
+          {
+            "index": 30,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -32.98027753829956,
+              -32.58972930908203,
+              -23.60821533203125,
+              -38.4307906627655
+            ]
+          },
+          {
+            "index": 31,
+            "label": 0,
+            "pred": 1,
+            "scores": [
+              -28.11266326904297,
+              -17.238291263580322,
+              -47.28281307220459,
+              -37.64725112915039
+            ]
+          }
+        ]
+      },
+      "long_decode": [
+        {
+          "prompt": "My temporary verification code is 482913. Please keep it private.",
+          "tokens": [
+            358,
+            1184,
+            311,
+            990,
+            432,
+            369,
+            279,
+            2701,
+            9079,
+            25,
+            220,
+            16,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            11,
+            220,
+            17,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            11,
+            220,
+            18,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            11,
+            220,
+            19,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            13,
+            358,
+            1184
+          ],
+          "text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. I need",
+          "length": 64
+        },
+        {
+          "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+          "tokens": [
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660
+          ],
+          "text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+          "length": 64
+        },
+        {
+          "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+          "tokens": [
+            576,
+            1372,
+            374,
+            264,
+            220,
+            22,
+            48342,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372
+          ],
+          "text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+          "length": 64
+        }
+      ]
+    },
+    "wrapped": {
+      "perplexity": {
+        "dataset": "ag_news",
+        "split": "test",
+        "text_field": "text",
+        "samples_requested": 32,
+        "samples_used": 32,
+        "tokens": 2003,
+        "mean_nll": 4.29620755510335,
+        "perplexity": 73.42082062247091
+      },
+      "hellaswag": {
+        "dataset": "hellaswag",
+        "split": "validation",
+        "samples_requested": 32,
+        "samples_used": 32,
+        "skipped": 0,
+        "accuracy": 0.40625,
+        "records": [
+          {
+            "index": 0,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -42.978034019470215,
+              -41.85855960845947,
+              -17.463607788085938,
+              -37.85468673706055
+            ]
+          },
+          {
+            "index": 1,
+            "label": 3,
+            "pred": 1,
+            "scores": [
+              -30.74138116836548,
+              -13.843671798706055,
+              -19.339533805847168,
+              -26.922675132751465
+            ]
+          },
+          {
+            "index": 2,
+            "label": 2,
+            "pred": 2,
+            "scores": [
+              -57.73799514770508,
+              -50.62806844711304,
+              -25.623672008514404,
+              -120.20080947875977
+            ]
+          },
+          {
+            "index": 3,
+            "label": 2,
+            "pred": 0,
+            "scores": [
+              -13.963520526885986,
+              -27.39732265472412,
+              -35.70167541503906,
+              -30.051548957824707
+            ]
+          },
+          {
+            "index": 4,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -18.050617218017578,
+              -10.080114126205444,
+              -14.77018690109253,
+              -18.705808639526367
+            ]
+          },
+          {
+            "index": 5,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -18.327117919921875,
+              -45.872931480407715,
+              -12.42335844039917,
+              -36.3654899597168
+            ]
+          },
+          {
+            "index": 6,
+            "label": 2,
+            "pred": 1,
+            "scores": [
+              -32.09815979003906,
+              -18.5639226436615,
+              -33.20808005332947,
+              -27.66263437271118
+            ]
+          },
+          {
+            "index": 7,
+            "label": 0,
+            "pred": 3,
+            "scores": [
+              -59.454912185668945,
+              -51.51711320877075,
+              -38.36598491668701,
+              -34.95776414871216
+            ]
+          },
+          {
+            "index": 8,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -140.26716899871826,
+              -53.82856369018555,
+              -23.314373016357422,
+              -59.93027067184448
+            ]
+          },
+          {
+            "index": 9,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -57.39004611968994,
+              -33.140106439590454,
+              -74.21992635726929,
+              -70.1540207862854
+            ]
+          },
+          {
+            "index": 10,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -31.1162166595459,
+              -58.60028314590454,
+              -21.900863647460938,
+              -34.414841175079346
+            ]
+          },
+          {
+            "index": 11,
+            "label": 3,
+            "pred": 2,
+            "scores": [
+              -30.73580026626587,
+              -68.40314650535583,
+              -21.232985973358154,
+              -58.841386795043945
+            ]
+          },
+          {
+            "index": 12,
+            "label": 2,
+            "pred": 2,
+            "scores": [
+              -68.95770263671875,
+              -47.51739978790283,
+              -20.747039794921875,
+              -37.69591212272644
+            ]
+          },
+          {
+            "index": 13,
+            "label": 2,
+            "pred": 3,
+            "scores": [
+              -59.56662034988403,
+              -83.53499412536621,
+              -57.20932602882385,
+              -48.111591815948486
+            ]
+          },
+          {
+            "index": 14,
+            "label": 0,
+            "pred": 1,
+            "scores": [
+              -43.32902526855469,
+              -42.88858890533447,
+              -49.14256525039673,
+              -46.58331370353699
+            ]
+          },
+          {
+            "index": 15,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -73.12048768997192,
+              -80.3580493927002,
+              -105.17056131362915,
+              -50.80636644363403
+            ]
+          },
+          {
+            "index": 16,
+            "label": 2,
+            "pred": 1,
+            "scores": [
+              -58.92350482940674,
+              -29.566669940948486,
+              -56.62568283081055,
+              -41.13023376464844
+            ]
+          },
+          {
+            "index": 17,
+            "label": 0,
+            "pred": 2,
+            "scores": [
+              -68.59608459472656,
+              -76.26642036437988,
+              -51.77497124671936,
+              -65.83633470535278
+            ]
+          },
+          {
+            "index": 18,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -38.56900095939636,
+              -36.46271753311157,
+              -38.485389709472656,
+              -76.14235210418701
+            ]
+          },
+          {
+            "index": 19,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -59.547067165374756,
+              -51.22718930244446,
+              -47.08344268798828,
+              -62.6063015460968
+            ]
+          },
+          {
+            "index": 20,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -44.999688148498535,
+              -34.93843746185303,
+              -59.23120737075806,
+              -80.09117841720581
+            ]
+          },
+          {
+            "index": 21,
+            "label": 0,
+            "pred": 3,
+            "scores": [
+              -21.82040798664093,
+              -31.00108528137207,
+              -39.01456832885742,
+              -18.52514886856079
+            ]
+          },
+          {
+            "index": 22,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -23.38228702545166,
+              -70.10995674133301,
+              -27.58182120323181,
+              -22.916855335235596
+            ]
+          },
+          {
+            "index": 23,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -34.86212158203125,
+              -53.725492000579834,
+              -54.448829650878906,
+              -25.234858989715576
+            ]
+          },
+          {
+            "index": 24,
+            "label": 0,
+            "pred": 2,
+            "scores": [
+              -55.98208665847778,
+              -46.13404941558838,
+              -43.939924240112305,
+              -90.45826864242554
+            ]
+          },
+          {
+            "index": 25,
+            "label": 3,
+            "pred": 1,
+            "scores": [
+              -152.3242645263672,
+              -50.40068507194519,
+              -95.2902421951294,
+              -102.79041862487793
+            ]
+          },
+          {
+            "index": 26,
+            "label": 0,
+            "pred": 0,
+            "scores": [
+              -34.32302927970886,
+              -58.92854690551758,
+              -59.58220100402832,
+              -39.563591957092285
+            ]
+          },
+          {
+            "index": 27,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -69.47923064231873,
+              -46.905455589294434,
+              -63.728708267211914,
+              -40.03920078277588
+            ]
+          },
+          {
+            "index": 28,
+            "label": 1,
+            "pred": 1,
+            "scores": [
+              -29.82976198196411,
+              -21.249744415283203,
+              -59.84001159667969,
+              -24.451103687286377
+            ]
+          },
+          {
+            "index": 29,
+            "label": 3,
+            "pred": 3,
+            "scores": [
+              -68.765212059021,
+              -57.54075050354004,
+              -50.753963470458984,
+              -44.18199825286865
+            ]
+          },
+          {
+            "index": 30,
+            "label": 1,
+            "pred": 2,
+            "scores": [
+              -32.98044681549072,
+              -32.589778900146484,
+              -23.608074188232422,
+              -38.430954933166504
+            ]
+          },
+          {
+            "index": 31,
+            "label": 0,
+            "pred": 1,
+            "scores": [
+              -28.112890243530273,
+              -17.238239765167236,
+              -47.28267574310303,
+              -37.64713954925537
+            ]
+          }
+        ]
+      },
+      "long_decode": [
+        {
+          "prompt": "My temporary verification code is 482913. Please keep it private.",
+          "tokens": [
+            358,
+            1184,
+            311,
+            990,
+            432,
+            369,
+            279,
+            2701,
+            9079,
+            25,
+            220,
+            16,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            11,
+            220,
+            17,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            11,
+            220,
+            18,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            11,
+            220,
+            19,
+            13,
+            2014,
+            10146,
+            279,
+            53248,
+            315,
+            279,
+            1196,
+            594,
+            9569,
+            13,
+            358,
+            1184
+          ],
+          "text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. I need",
+          "length": 64
+        },
+        {
+          "prompt": "The internal project codename is blue-river and the launch date is Friday.",
+          "tokens": [
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660,
+            11626,
+            13,
+            576,
+            2390,
+            374,
+            264,
+            501,
+            2390,
+            429,
+            374,
+            1660
+          ],
+          "text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+          "length": 64
+        },
+        {
+          "prompt": "Alice's private phone number in this synthetic test is 555-0108.",
+          "tokens": [
+            576,
+            1372,
+            374,
+            264,
+            220,
+            22,
+            48342,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372,
+            13,
+            576,
+            1372,
+            374,
+            264,
+            2697,
+            4540,
+            1372
+          ],
+          "text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+          "length": 64
+        }
+      ]
+    }
+  },
+  "long_decode_comparisons": [
+    {
+      "prompt_index": 0,
+      "mode": "wrapped",
+      "divergence_step": 64,
+      "exact_match_rate": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "char_overlap_vs_plain": 1.0,
+      "plain_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. I need",
+      "mode_text": " I need to use it for the following tasks: 1. To verify the authenticity of the user's identity, 2. To verify the authenticity of the user's identity, 3. To verify the authenticity of the user's identity, 4. To verify the authenticity of the user's identity. I need"
+    },
+    {
+      "prompt_index": 1,
+      "mode": "wrapped",
+      "divergence_step": 64,
+      "exact_match_rate": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "char_overlap_vs_plain": 1.0,
+      "plain_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being",
+      "mode_text": " The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being launched. The project is a new project that is being"
+    },
+    {
+      "prompt_index": 2,
+      "mode": "wrapped",
+      "divergence_step": 64,
+      "exact_match_rate": 1.0,
+      "rouge_l_vs_plain": 1.0,
+      "char_overlap_vs_plain": 1.0,
+      "plain_text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number",
+      "mode_text": " The number is a 7-digit number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number. The number is a valid phone number"
+    }
+  ],
+  "resource_after_cleanup": {
+    "available": true,
+    "cuda_visible_devices": "4",
+    "devices": [
+      {
+        "logical_index": 0,
+        "name": "NVIDIA A100-SXM4-80GB",
+        "total_mem_mib": 81153.75,
+        "allocated_mib": 8.125,
+        "reserved_mib": 20.0
+      }
+    ]
+  }
+}
