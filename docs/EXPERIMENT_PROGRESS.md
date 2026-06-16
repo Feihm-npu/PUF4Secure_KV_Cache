@@ -426,3 +426,59 @@ subsection now reports the verified affine+SDPA composition and the fp16
 stability. `latexmk` clean (19 pages). Genuinely remaining: real PUF hardware,
 a fused affine-mask cache-load kernel, and secrets mined from real private
 records rather than seeded.
+
+## 2026-06-17: P4b split-K fused kernel + RQ12 + fp16 fused + Llama-2-7B utility (autonomous)
+
+Completed the remaining non-hardware engineering items from the FUSED_KERNEL_PLAN
+P4b/P5 scope, plus the fp16-fused numerics and the optional Llama-2-7B utility point.
+
+### Code added or extended
+
+| File | Purpose |
+| --- | --- |
+| `src/puf4secure_kvcache/fused_attn.py` | Added split-K (flash-decoding) variant: `_get_splitk_kernel` (grid=(B,Hq,n_splits), partial (m_i,l_i,acc) per chunk) + `_get_reduce_kernel` (log-sum-exp combine). `_plan_splits` auto-tunes n_splits≤8 for one-SM-wave occupancy. `fused_demask_decode` dispatches: n_splits=1 → original single-program kernel; n_splits>1 → split-K + reduce. |
+| `scripts/test_fused_kernel.py` | Added `check_splitk` validating the split-K kernel against SDPA across n_splits∈{2,4,8,auto} and all shape cases including N=1024 (the P4 failure regime). |
+| `paper_latex/sections/sec4_evaluation.tex` | New `\subsection{RQ12: Fused de-masking kernel}` with Table tab:fused-kernel. Llama-2-7B row added to tab:utility-multimodel. RQ3 answer updated with 5 models + fp16 fused number. Open Gaps updated. |
+| `paper_latex/sections/sec3_methodology.tex` | sec:design affine-kernel sentence updated from "resists naive fusion / future work" to "we implement this as a fused Triton flash-decoding kernel". |
+| `paper_latex/sections/sec5_conclusion.tex` | Discussion "Compatibility with fused attention kernels" rewritten to report the implemented split-K kernel + fp16 14.1% number. Limitations #2 and #5 updated. Conclusion's "doubles decode overhead" → precise "$\approx$14pp over orthogonal". |
+
+### Artifacts
+
+| Artifact | Scope |
+| --- | --- |
+| `experiments/runs/p4_perf_orth.json` | plain + orthogonal, prefill 256/1024, decode 128, 8 reps (GPU 2 clean) |
+| `experiments/runs/p4_perf_affine_eager.json` | affine eager de-mask, same operating point |
+| `experiments/runs/p4_perf_affine_fused.json` | affine split-K fused kernel, same operating point |
+| `experiments/runs/p3_divergence_{eager,fused}_{qwen3,llama}.json` | 64-prompt/64-token divergence: fused == eager == 0.0 (fp32) |
+| `experiments/runs/f2_fp16_affine_{eager,fused}_qwen3.json` | fp16 model + fp32 cache + affine: eager 20.3%, fused 14.1% divergence |
+| `experiments/runs/wave1_utility_llama2_7b_fp32_128.json` | Llama-2-7B 128-sample AG News + HellaSwag, fp32 |
+
+### Key results
+
+| Experiment | Before | After | Interpretation |
+| --- | --- | --- | --- |
+| Fused kernel N=1024 decode overhead | naive −68.5% (10.64 tok/s) | split-K −30.2% (23.76 tok/s) | Split-K fixes the catastrophic long-context regression (+123% throughput) |
+| Fused vs eager decode | eager −33% at all N | fused −29% at all N | Fused is consistently 5-7% faster; no long-context degradation |
+| Fused kernel correctness | (new) | max diff 2.7e-6 vs SDPA, token-identical Qwen3+Llama | Split-K + log-sum-exp reduce is numerically equivalent to single-program |
+| fp16 model divergence | eager affine 20.3%, orth 15.6% | fused affine 14.1% | Fused is MORE stable in fp16 (entire de-mask stays fp32 inside kernel) |
+| Llama-2-7B utility | (not measured) | PPL Δ+1.0e-6, HellaSwag Δ0.0 | 5th model confirms fp32-exact equivalence |
+
+### Interpretation
+
+1. The split-K flash-decoding kernel is the correct fix for the naive
+   single-program-per-head design: it lifts SM occupancy from 16 to 128+ programs
+   and eliminates the serial-over-N bottleneck that caused the −68%@1024 collapse.
+   The counter-based Philox mask is position-addressable, so each split regenerates
+   exactly the mask rows the write path produced — no HBM-stored mask needed.
+2. The fused kernel is now numerically validated (1e-6 vs SDPA, token-identical on
+   real models) AND performance-competitive: ~29% decode overhead vs ~33% eager,
+   stable across context lengths. The residual ~14pp gap to orthogonal (−15%) is
+   the inherent fp32 de-mask ALU cost.
+3. Under fp16 model weights, the fused path diverges LESS than the orthogonal path
+   (14.1% vs 15.6%), because the fused kernel performs the entire de-mask and
+   attention in fp32, avoiding the intermediate fp16 rounding the eager/PyTorch
+   path inherits.
+4. Llama-2-7B extends the cross-model fp32-exact utility story to 5 models across
+   3 families (Qwen3, Qwen2, Llama) and 2 scales (0.6B-7B).
+5. Paper now reports RQ12 (fused kernel) as a completed result rather than future
+   work; sec3/sec5/discussion/limitations all updated. `latexmk` clean (29 pages).

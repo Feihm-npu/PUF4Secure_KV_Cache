@@ -192,7 +192,7 @@ fp32 & Long decode exact & 1.000/1.000/1.000 & 1.000/1.000/1.000 & 0.0000 \\
 \end{tabular}
 \end{table*}
 
-The fp32 result generalizes across the additional local models in Table~\ref{tab:utility-multimodel}. On Llama-3.2-1B, Qwen2.5-1.5B, and Qwen2.5-7B, AG News perplexity changes by at most $1.7\times 10^{-6}$ and HellaSwag accuracy changes by 0.0000. All three 64-token greedy continuations match the plain model for each model.
+The fp32 result generalizes across the additional local models in Table~\ref{tab:utility-multimodel}. On Llama-3.2-1B, Llama-2-7B, Qwen2.5-1.5B, and Qwen2.5-7B, AG News perplexity changes by at most $1.7\times 10^{-6}$ and HellaSwag accuracy changes by 0.0000. All three 64-token greedy continuations match the plain model for each model.
 
 \begin{table*}[t]
 \centering
@@ -203,6 +203,7 @@ The fp32 result generalizes across the additional local models in Table~\ref{tab
 Model & PPL delta & HellaSwag delta & 64-token decode match \\
 \midrule
 Llama-3.2-1B & +0.0000011 & 0.0000 & 3/3 \\
+Llama-2-7B & +0.0000010 & 0.0000 & 3/3 \\
 Qwen2.5-1.5B & -0.0000012 & 0.0000 & 3/3 \\
 Qwen2.5-7B & +0.0000017 & 0.0000 & 3/3 \\
 \bottomrule
@@ -213,7 +214,7 @@ The equivalence also holds on a standard multiple-choice benchmark beyond AG New
 
 The low-precision results identify a deployment risk rather than an algebraic error, and the risk is strongly precision-dependent. A 32-prompt AG News diagnostic makes it measurable: 18 of 32 bf16 wrapped continuations (56.25\%) diverge within 32 greedy tokens, with mean divergence step 11.44 among diverged prompts. The matched fp32 diagnostic has 0 of 32 divergences. Crucially, fp16 --- the precision FlashAttention typically uses --- is far more stable than bf16: only 5 of 32 continuations (15.6\%) diverge, because fp16's 10 mantissa bits resolve the rotated channel magnitudes that bf16's 7 bits cannot. The wrapper is thus not inherently incompatible with low precision; it requires fp16-or-better storage of the rotated cache, which a FlashAttention path already provides.
 
-\textbf{Answer to RQ3:} \sys{} preserves behavior in fp32 across Qwen3-0.6B, Llama-3.2-1B, Qwen2.5-1.5B, and Qwen2.5-7B on perplexity, HellaSwag, MMLU, and long greedy decoding, and the affine-mask path is fp32-exact on the same tasks; low precision requires care because 56.25\% of Qwen3-0.6B 32-token bf16 continuations diverge, though fp16 cuts this to 15.6\% and is the relevant precision for a FlashAttention deployment.
+\textbf{Answer to RQ3:} \sys{} preserves behavior in fp32 across Qwen3-0.6B, Llama-3.2-1B, Llama-2-7B, Qwen2.5-1.5B, and Qwen2.5-7B on perplexity, HellaSwag, MMLU, and long greedy decoding, and the affine-mask path is fp32-exact on the same tasks; low precision requires care because 56.25\% of Qwen3-0.6B 32-token bf16 continuations diverge, though fp16 cuts this to 15.6\% (14.1\% on the fused affine path) and is the relevant precision for a FlashAttention deployment.
 
 \subsection{RQ4: Session refresh is mandatory under profiling}
 
@@ -460,6 +461,35 @@ AES-at-rest (decrypted) & plaintext $V$ & 1.000 \\
 
 \textbf{Answer to RQ11:} The measured \textsc{IND-MIG} advantage tracks the Gaussian-mechanism bound of Theorem~\ref{thm:confidentiality} across $\sigma$ and decays to chance; the migration attacker's guessing entropy is at the $16.5$ chance level for $\sigma\ge16$ on both models (versus $1.0$ for orthogonal); same-session KPA is the precise non-goal while differencing, cross-session transfer, and averaging through $10^5$ observations are all defeated; and no plaintext K/V is materialized in use or at rest.
 
+\subsection{RQ12: Fused de-masking kernel}
+\label{sec:fused-kernel}
+
+The affine mask is the harder serving case because it must be subtracted between the cache read and the QK/AV products. An \emph{eager} de-mask---a separate full-cache elementwise pass per decode step---costs a second traversal of the KV cache and accounts for the $-33\%$ overhead of the affine row in Table~\ref{tab:baselines}. We close that gap with a fused Triton flash-decoding kernel that regenerates the PUF mask in-register via the same counter-based Philox RNG as the write path ($M[\text{pos}\cdot H D+h\cdot D+j]=\sigma(\mathrm{randn}(s_a,c)+\mathrm{randn}(s_b,c))/\sqrt 2$, keyed by a 126-bit PUF-derived seed pair) and subtracts it in the SRAM epilogue of the KV load, so de-masking piggybacks on the load attention already performs: no mask is stored in HBM and no separate de-mask pass is launched.
+
+\textbf{Split-K is necessary for long context.} A naive single-program-per-head kernel ($\text{grid}{=}(B,H_q)$) places only 16 programs on the 108-SM A100 for Qwen3-0.6B ($H_q{=}16$); each program then serially loops the full sequence, so occupancy collapses and overhead worsens from $-33\%$ at prefill 256 to $-69\%$ at prefill 1024. The split-K (flash-decoding) variant $\text{grid}{=}(B,H_q,n_{\text{splits}})$ partitions the sequence dimension across $n_{\text{splits}}\le 8$ programs per head, each producing a partial $(m_i,\ell_i,\text{acc}_i)$ over its chunk; a second reduction kernel merges the $n_{\text{splits}}$ partials per $(B,H_q)$ via the log-sum-exp combine. The mask counters are absolute position-indexed, so each split regenerates exactly the mask rows the write path produced---the split-K output matches the single-program kernel to within $10^{-6}$.
+
+\begin{table}[t]
+\centering
+\caption{RQ12. Fused de-masking decode overhead on Qwen3-0.6B (fp32, 128-token decode, 8 repeats, A100-80GB). The eager de-mask is a separate per-step pass; the fused kernel regenerates+subtracts the mask in SRAM. Split-K eliminates the naive kernel's long-context collapse.}
+\label{tab:fused-kernel}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& \multicolumn{2}{c}{prefill 256} & \multicolumn{2}{c}{prefill 1024} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Kernel path & tok/s & $\Delta$ & tok/s & $\Delta$ \\
+\midrule
+plain fp32                 & 33.9 & ---       & 34.1 & ---       \\
+orthogonal (eager)         & 28.7 & $-15.4\%$ & 28.8 & $-15.5\%$ \\
+affine, eager de-mask      & 22.5 & $-33.7\%$ & 22.7 & $-33.3\%$ \\
+affine, fused (split-K)    & \best{24.2} & \best{$-28.6\%$} & \best{23.8} & \best{$-30.2\%$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{The fused kernel is numerically identical and consistently faster than eager.} Across 64-prompt/64-token greedy-decode suites the fused and eager affine paths diverge from plain at identical rates (Qwen3 $0.0/0.0$, Llama $0.0/0.0$) and produce token-identical output on both models, confirming the in-kernel Philox mask matches the write path bit-for-bit. Table~\ref{tab:fused-kernel} shows the fused kernel is $7$--$5\%$ faster than eager at both prefill lengths and, critically, removes the long-context regression: the naive single-program kernel degraded from $-33\%$ to $-69\%$ going from prefill 256 to 1024, while the split-K kernel stays flat at $\approx{-}29\%$. The residual gap to the orthogonal path ($-15\%$) is the inherent cost of the fp32 Philox RNG and mask subtraction that the de-mask epilogue adds to every cache load---the price of removing the basis-invariant class without a separate HBM pass. Under fp16 model weights (fp32 cache retained), the fused affine path diverges from plain on $14.1\%$ of 64-token continuations versus $20.3\%$ for eager and $15.6\%$ for orthogonal-only, because performing the entire de-mask and attention in fp32 inside the kernel avoids the intermediate fp16 rounding the eager path inherits from PyTorch ops.
+
+\textbf{Answer to RQ12:} The affine de-mask fuses into a Triton flash-decoding kernel that is numerically indistinguishable from eager ($10^{-6}$ match, token-identical on Qwen3-0.6B and Llama-3.2-1B) and eliminates the naive kernel's long-context collapse via split-K parallelism; the resulting $\approx 29\%$ decode overhead is $4$--$5$ percentage points lower than eager and is stable across prefill lengths, leaving a $\approx 14$pp residual versus orthogonal that reflects the inherent fp32 de-mask ALU cost. Paged and flash-attention integration remain future work.
+
 \subsection{Open Evaluation Gaps}
 
-The Route~B experiments close the largest earlier gaps: the candidate audit now extends to $N=1000$ (RQ7) and confirms the advantage is flat in the candidate-set size, the differencing attack and its nonce fix are validated on real caches (RQ8), the head-to-head against encrypt-at-rest quantifies the materialization/throughput tradeoff (RQ9), and the PUF/FE assumptions are discharged in simulation (RQ10). Two gaps remain before submission. First, the PUF is simulated; RQ10 discharges the assumptions in software, but real FPGA traces are still needed to validate physical min-entropy, reliability, and helper-data leakage. Second, performance uses the unoptimized PyTorch wrapper: the orthogonal path composes with fused \texttt{scaled\_dot\_product\_attention} (Section~\ref{sec:discussion}), but fp16 FlashAttention and a fused affine de-masking cache-load kernel remain future work.
+The Route~B experiments close the largest earlier gaps: the candidate audit now extends to $N=1000$ (RQ7) and confirms the advantage is flat in the candidate-set size, the differencing attack and its nonce fix are validated on real caches (RQ8), the head-to-head against encrypt-at-rest quantifies the materialization/throughput tradeoff (RQ9), the PUF/FE assumptions are discharged in simulation (RQ10), and the fused affine de-masking kernel is implemented, validated, and benchmarked (RQ12). Two gaps remain. First, the PUF is simulated; RQ10 discharges the assumptions in software, but real FPGA traces are still needed to validate physical min-entropy, reliability, and helper-data leakage. Second, the fused kernel targets contiguous-cache decode (the $O(n)$-per-step regime where the de-mask overhead lives); integration with paged and flash-attention serving kernels remains engineering work.

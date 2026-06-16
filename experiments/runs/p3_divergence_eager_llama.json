@@ -20,7 +20,7 @@
   },
   "resource_before": {
     "available": true,
-    "cuda_visible_devices": "6",
+    "cuda_visible_devices": "4",
     "devices": [
       {
         "logical_index": 0,
@@ -8971,7 +8971,7 @@
   },
   "resource_after_cleanup": {
     "available": true,
-    "cuda_visible_devices": "6",
+    "cuda_visible_devices": "4",
     "devices": [
       {
         "logical_index": 0,

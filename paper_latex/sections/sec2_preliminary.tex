@@ -37,4 +37,4 @@ The adversary cannot clone the original physical PUF, cannot query the original 
 
 \textbf{G4: Legitimate equivalence.} The original device should preserve model behavior. We test equivalence by fp32 token agreement, perplexity, multiple-choice accuracy, and long greedy decode agreement.
 
-\textbf{G5: Practicality.} The construction should identify a vectorizable path and expose its overhead. We measure end-to-end prototype serving overhead for the PyTorch wrapper and leave fused-kernel overhead to future implementation work.
+\textbf{G5: Practicality.} The construction should identify a vectorizable path and expose its overhead. We measure end-to-end prototype serving overhead for the PyTorch wrapper and implement a fused split-K Triton de-masking kernel whose decode overhead we benchmark in RQ12.
